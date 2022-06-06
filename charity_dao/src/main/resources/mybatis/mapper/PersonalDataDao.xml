@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.PersonalDataDao">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.charity_commons.pojo.PersonalData">
+        <!--@Table personal_data-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="uname" column="uname" jdbcType="VARCHAR"/>
+        <result property="idcard" column="idCard" jdbcType="VARCHAR"/>
+        <result property="nation" column="nation" jdbcType="VARCHAR"/>
+        <result property="political" column="political" jdbcType="VARCHAR"/>
+        <result property="nativeplace" column="nativePlace" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="profile" column="profile" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, uname, idCard, nation, political, nativePlace, telephone, profile
+        from charity.personal_data
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, uname, idCard, nation, political, nativePlace, telephone, profile
+        from charity.personal_data
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, uname, idCard, nation, political, nativePlace, telephone, profile
+        from charity.personal_data
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="uname != null and uname != ''">
+                and uname = #{uname}
+            </if>
+            <if test="idcard != null and idcard != ''">
+                and idCard = #{idcard}
+            </if>
+            <if test="nation != null and nation != ''">
+                and nation = #{nation}
+            </if>
+            <if test="political != null and political != ''">
+                and political = #{political}
+            </if>
+            <if test="nativeplace != null and nativeplace != ''">
+                and nativePlace = #{nativeplace}
+            </if>
+            <if test="telephone != null and telephone != ''">
+                and telephone = #{telephone}
+            </if>
+            <if test="profile != null and profile != ''">
+                and profile = #{profile}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into charity.personal_data(uname, idCard, nation, political, telephone, profile)
+        values (#{uname}, #{idcard}, #{nation}, #{political}, #{telephone}, #{profile})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.personal_data
+        <set>
+            <if test="uname != null and uname != ''">
+                uname = #{uname},
+            </if>
+            <if test="idcard != null and idcard != ''">
+                idCard = #{idcard},
+            </if>
+            <if test="nation != null and nation != ''">
+                nation = #{nation},
+            </if>
+            <if test="political != null and political != ''">
+                political = #{political},
+            </if>
+            <if test="telephone != null and telephone != ''">
+                telephone = #{telephone},
+            </if>
+            <if test="profile != null and profile != ''">
+                profile = #{profile},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.personal_data where id = #{id}
+    </delete>
+
+</mapper>

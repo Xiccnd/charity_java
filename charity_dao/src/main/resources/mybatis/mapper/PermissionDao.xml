@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.PermissionDao">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.charity_commons.pojo.Permission">
+        <!--@Table permission-->
+        <result property="perid" column="perid" jdbcType="INTEGER"/>
+        <result property="pername" column="pername" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          perid, pername
+        from charity.permission
+        where perid = #{perid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          perid, pername
+        from charity.permission
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          perid, pername
+        from charity.permission
+        <where>
+            <if test="perid != null">
+                and perid = #{perid}
+            </if>
+            <if test="pername != null and pername != ''">
+                and pername = #{pername}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="" useGeneratedKeys="true">
+        insert into charity.permission(perid, pername)
+        values (#{perid}, #{pername})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.permission
+        <set>
+            <if test="perid != null">
+                perid = #{perid},
+            </if>
+            <if test="pername != null and pername != ''">
+                pername = #{pername},
+            </if>
+        </set>
+        where perid = #{perid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.permission where perid = #{perid}
+    </delete>
+
+</mapper>

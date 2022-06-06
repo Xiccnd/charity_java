@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.VolunteerProgramDetailsDao">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.charity_commons.pojo.VolunteerProgramDetails">
+        <!--@Table volunteer_program_details-->
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="pname" column="pname" jdbcType="VARCHAR"/>
+        <result property="posts" column="posts" jdbcType="INTEGER"/>
+        <result property="targetNumber" column="target_number" jdbcType="INTEGER"/>
+        <result property="enrolledNumber" column="enrolled_number" jdbcType="INTEGER"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
+        <result property="releaseDate" column="release_date" jdbcType="TIMESTAMP"/>
+        <result property="projectDate" column="project_date" jdbcType="TIMESTAMP"/>
+        <result property="serviceObject" column="service_object" jdbcType="VARCHAR"/>
+        <result property="volunteerUpport" column="volunteer_upport" jdbcType="VARCHAR"/>
+        <result property="recruitDate" column="recruit_date" jdbcType="TIMESTAMP"/>
+        <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
+        <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
+        <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          pid, pname, posts, target_number, enrolled_number, location, release_date, project_date, service_object, volunteer_upport, recruit_date, service_description, project_details, teamid, project_status
+        from charity.volunteer_program_details
+        where pid = #{pid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          pid, pname, posts, target_number, enrolled_number, location, release_date, project_date, service_object, volunteer_upport, recruit_date, service_description, project_details, teamid, project_status
+        from charity.volunteer_program_details
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          pid, pname, posts, target_number, enrolled_number, location, release_date, project_date, service_object, volunteer_upport, recruit_date, service_description, project_details, teamid, project_status
+        from charity.volunteer_program_details
+        <where>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+            <if test="pname != null and pname != ''">
+                and pname = #{pname}
+            </if>
+            <if test="posts != null">
+                and posts = #{posts}
+            </if>
+            <if test="targetNumber != null">
+                and target_number = #{targetNumber}
+            </if>
+            <if test="enrolledNumber != null">
+                and enrolled_number = #{enrolledNumber}
+            </if>
+            <if test="location != null and location != ''">
+                and location = #{location}
+            </if>
+            <if test="releaseDate != null">
+                and release_date = #{releaseDate}
+            </if>
+            <if test="projectDate != null">
+                and project_date = #{projectDate}
+            </if>
+            <if test="serviceObject != null and serviceObject != ''">
+                and service_object = #{serviceObject}
+            </if>
+            <if test="volunteerUpport != null and volunteerUpport != ''">
+                and volunteer_upport = #{volunteerUpport}
+            </if>
+            <if test="recruitDate != null">
+                and recruit_date = #{recruitDate}
+            </if>
+            <if test="serviceDescription != null and serviceDescription != ''">
+                and service_description = #{serviceDescription}
+            </if>
+            <if test="projectDetails != null and projectDetails != ''">
+                and project_details = #{projectDetails}
+            </if>
+            <if test="teamid != null">
+                and teamid = #{teamid}
+            </if>
+            <if test="projectStatus != null">
+                and project_status = #{projectStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="pid" useGeneratedKeys="true">
+        insert into charity.volunteer_program_details(pname, posts, target_number, enrolled_number, location, release_date, project_date, service_object, volunteer_upport, recruit_date, service_description, project_details, teamid, project_status)
+        values (#{pname}, #{posts}, #{targetNumber}, #{enrolledNumber}, #{location}, #{releaseDate}, #{projectDate}, #{serviceObject}, #{volunteerUpport}, #{recruitDate}, #{serviceDescription}, #{projectDetails}, #{teamid}, #{projectStatus})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.volunteer_program_details
+        <set>
+            <if test="pname != null and pname != ''">
+                pname = #{pname},
+            </if>
+            <if test="posts != null">
+                posts = #{posts},
+            </if>
+            <if test="targetNumber != null">
+                target_number = #{targetNumber},
+            </if>
+            <if test="enrolledNumber != null">
+                enrolled_number = #{enrolledNumber},
+            </if>
+            <if test="location != null and location != ''">
+                location = #{location},
+            </if>
+            <if test="releaseDate != null">
+                release_date = #{releaseDate},
+            </if>
+            <if test="projectDate != null">
+                project_date = #{projectDate},
+            </if>
+            <if test="serviceObject != null and serviceObject != ''">
+                service_object = #{serviceObject},
+            </if>
+            <if test="volunteerUpport != null and volunteerUpport != ''">
+                volunteer_upport = #{volunteerUpport},
+            </if>
+            <if test="recruitDate != null">
+                recruit_date = #{recruitDate},
+            </if>
+            <if test="serviceDescription != null and serviceDescription != ''">
+                service_description = #{serviceDescription},
+            </if>
+            <if test="projectDetails != null and projectDetails != ''">
+                project_details = #{projectDetails},
+            </if>
+            <if test="teamid != null">
+                teamid = #{teamid},
+            </if>
+            <if test="projectStatus != null">
+                project_status = #{projectStatus},
+            </if>
+        </set>
+        where pid = #{pid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.volunteer_program_details where pid = #{pid}
+    </delete>
+
+</mapper>

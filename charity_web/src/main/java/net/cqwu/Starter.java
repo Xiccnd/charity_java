@@ -1,4 +1,4 @@
-package net.cqwu.charity_web;
+package net.cqwu;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.PostNumDao">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.charity_commons.pojo.PostNum">
+        <!--@Table post_num-->
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="postid" column="postid" jdbcType="INTEGER"/>
+        <result property="targetNum" column="target_num" jdbcType="VARCHAR"/>
+        <result property="enrolledNum" column="enrolled_num" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          pid, postid, target_num, enrolled_num
+        from charity.post_num
+        where pid = #{pid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          pid, postid, target_num, enrolled_num
+        from charity.post_num
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          pid, postid, target_num, enrolled_num
+        from charity.post_num
+        <where>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+            <if test="postid != null">
+                and postid = #{postid}
+            </if>
+            <if test="targetNum != null and targetNum != ''">
+                and target_num = #{targetNum}
+            </if>
+            <if test="enrolledNum != null and enrolledNum != ''">
+                and enrolled_num = #{enrolledNum}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="" useGeneratedKeys="true">
+        insert into charity.post_num(pid, postid, target_num, enrolled_num)
+        values (#{pid}, #{postid}, #{targetNum}, #{enrolledNum})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.post_num
+        <set>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="postid != null">
+                postid = #{postid},
+            </if>
+            <if test="targetNum != null and targetNum != ''">
+                target_num = #{targetNum},
+            </if>
+            <if test="enrolledNum != null and enrolledNum != ''">
+                enrolled_num = #{enrolledNum},
+            </if>
+        </set>
+        where pid = #{pid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.post_num where pid = #{pid}
+    </delete>
+
+</mapper>

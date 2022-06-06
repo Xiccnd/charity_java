@@ -67,7 +67,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <classifier>execute</classifier>
-                    <mainClass>net.cqwu.charity_web.Starter</mainClass>
+                    <mainClass>net.cqwu.Starter</mainClass>
                 </configuration>
             </plugin>
         </plugins>
