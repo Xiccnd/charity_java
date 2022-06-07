@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("volunteerTeam")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class VolunteerTeamController {
     /**
      * 服务对象

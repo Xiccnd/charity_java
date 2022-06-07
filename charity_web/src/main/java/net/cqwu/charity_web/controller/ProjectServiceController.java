@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("projectService")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class ProjectServiceController {
     /**
      * 服务对象

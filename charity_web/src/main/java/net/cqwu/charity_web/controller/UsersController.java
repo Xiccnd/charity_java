@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("user")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class UsersController {
     /**
      * 服务对象

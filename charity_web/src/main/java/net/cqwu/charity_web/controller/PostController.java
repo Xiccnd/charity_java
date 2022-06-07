@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("post")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class PostController {
     /**
      * 服务对象

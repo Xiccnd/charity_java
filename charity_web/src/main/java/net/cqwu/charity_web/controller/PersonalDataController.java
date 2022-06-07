@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("personalData")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class PersonalDataController {
     /**
      * 服务对象

@@ -15,6 +15,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("permission")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class PermissionController {
     /**
      * 服务对象
