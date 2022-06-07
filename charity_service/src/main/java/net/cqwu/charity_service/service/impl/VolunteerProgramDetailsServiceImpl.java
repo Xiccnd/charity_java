@@ -76,4 +76,9 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     public boolean deleteById(Integer pid) {
         return this.volunteerProgramDetailsDao.deleteById(pid) > 0;
     }
+
+    @Override
+    public List<VolunteerProgramDetails> queryAll(VolunteerProgramDetails volunteerProgramDetails) {
+        return this.volunteerProgramDetailsDao.queryAll(volunteerProgramDetails);
+    }
 }

@@ -5,6 +5,7 @@ import net.cqwu.charity_service.service.VolunteerProgramDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (VolunteerProgramDetails)表控制层
@@ -32,5 +33,8 @@ public class VolunteerProgramDetailsController {
     public VolunteerProgramDetails selectOne(Integer id) {
         return this.volunteerProgramDetailsService.queryById(id);
     }
-
+    @RequestMapping("selectAll")
+    public List<VolunteerProgramDetails> selectAll(VolunteerProgramDetails volunteerProgramDetails) {
+        return this.volunteerProgramDetailsService.queryAll(volunteerProgramDetails);
+    }
 }

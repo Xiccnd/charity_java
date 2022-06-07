@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.TerritoryDao">
+
+    <resultMap id="BaseResultMap" type="net.cqwu.charity_commons.pojo.Territory">
+        <!--@Table territory-->
+        <result property="territoryid" column="territoryid" jdbcType="INTEGER"/>
+        <result property="territorydes" column="territorydes" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          territoryid, territorydes
+        from charity.territory
+        where territoryid = #{territoryid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          territoryid, territorydes
+        from charity.territory
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          territoryid, territorydes
+        from charity.territory
+        <where>
+            <if test="territoryid != null">
+                and territoryid = #{territoryid}
+            </if>
+            <if test="territorydes != null and territorydes != ''">
+                and territorydes = #{territorydes}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="territoryid" useGeneratedKeys="true">
+        insert into charity.territory(territorydes)
+        values (#{territorydes})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.territory
+        <set>
+            <if test="territorydes != null and territorydes != ''">
+                territorydes = #{territorydes},
+            </if>
+        </set>
+        where territoryid = #{territoryid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.territory where territoryid = #{territoryid}
+    </delete>
+
+</mapper>

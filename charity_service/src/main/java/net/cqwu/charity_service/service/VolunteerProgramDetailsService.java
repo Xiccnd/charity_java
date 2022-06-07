@@ -52,4 +52,5 @@ public interface VolunteerProgramDetailsService {
      */
     boolean deleteById(Integer pid);
 
+    List<VolunteerProgramDetails> queryAll(VolunteerProgramDetails volunteerProgramDetails);
 }

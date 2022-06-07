@@ -47,7 +47,7 @@
                 and pid = #{pid}
             </if>
             <if test="pname != null and pname != ''">
-                and pname = #{pname}
+                and pname like "%" #{pname} "%"
             </if>
             <if test="posts != null">
                 and posts = #{posts}
@@ -62,7 +62,7 @@
                 and location = #{location}
             </if>
             <if test="releaseDate != null">
-                and release_date = #{releaseDate}
+                and DATE_FORMAT(release_date,'%Y-%m-%d %H:%i:%s')like"%" #{releaseDate} "%"
             </if>
             <if test="projectDate != null">
                 and project_date = #{projectDate}
@@ -74,7 +74,7 @@
                 and volunteer_upport = #{volunteerUpport}
             </if>
             <if test="recruitDate != null">
-                and recruit_date = #{recruitDate}
+                and DATE_FORMAT(recruit_date,'%Y-%m-%d %H:%i:%s')like "%" #{recruitDate} "%"
             </if>
             <if test="serviceDescription != null and serviceDescription != ''">
                 and service_description = #{serviceDescription}

@@ -1,5 +1,7 @@
 package net.cqwu.charity_commons.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -23,16 +25,16 @@ public class VolunteerProgramDetails implements Serializable {
     private Integer enrolledNumber;
     
     private String location;
+
+    private String releaseDate;
     
-    private Date releaseDate;
-    
-    private Date projectDate;
+    private String projectDate;
     
     private String serviceObject;
     
     private String volunteerUpport;
-    
-    private Date recruitDate;
+
+    private String recruitDate;
     
     private String serviceDescription;
     
@@ -91,19 +93,19 @@ public class VolunteerProgramDetails implements Serializable {
         this.location = location;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Date getProjectDate() {
+    public String getProjectDate() {
         return projectDate;
     }
 
-    public void setProjectDate(Date projectDate) {
+    public void setProjectDate(String projectDate) {
         this.projectDate = projectDate;
     }
 
@@ -123,11 +125,11 @@ public class VolunteerProgramDetails implements Serializable {
         this.volunteerUpport = volunteerUpport;
     }
 
-    public Date getRecruitDate() {
+    public String getRecruitDate() {
         return recruitDate;
     }
 
-    public void setRecruitDate(Date recruitDate) {
+    public void setRecruitDate(String recruitDate) {
         this.recruitDate = recruitDate;
     }
 
