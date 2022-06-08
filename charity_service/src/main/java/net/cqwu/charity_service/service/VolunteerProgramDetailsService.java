@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service;
 
+import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
 import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
 import java.util.List;
 
@@ -53,4 +54,6 @@ public interface VolunteerProgramDetailsService {
     boolean deleteById(Integer pid);
 
     List<VolunteerProgramDetails> queryAll(VolunteerProgramDetails volunteerProgramDetails);
+
+    List<VolunteerAllMessge> selectVolunteerAllMessgeByID(Integer pid);
 }

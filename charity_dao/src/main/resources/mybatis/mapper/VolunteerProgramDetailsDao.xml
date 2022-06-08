@@ -21,6 +21,30 @@
         <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="VolunteerAllMessge" type="net.cqwu.charity_commons.pojo.VolunteerAllMessge">
+        <!--@Table volunteer_program_details-->
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="pname" column="pname" jdbcType="VARCHAR"/>
+        <result property="posts" column="posts" jdbcType="INTEGER"/>
+        <result property="targetNumber" column="target_number" jdbcType="INTEGER"/>
+        <result property="enrolledNumber" column="enrolled_number" jdbcType="INTEGER"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
+        <result property="releaseDate" column="release_date" jdbcType="TIMESTAMP"/>
+        <result property="projectDate" column="project_date" jdbcType="TIMESTAMP"/>
+        <result property="serviceObject" column="service_object" jdbcType="VARCHAR"/>
+        <result property="volunteerUpport" column="volunteer_upport" jdbcType="VARCHAR"/>
+        <result property="recruitDate" column="recruit_date" jdbcType="TIMESTAMP"/>
+        <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
+        <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
+        <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+        <result property="postid" column="postid" jdbcType="INTEGER"/>
+        <result property="targetNum" column="target_num" jdbcType="VARCHAR"/>
+        <result property="enrolledNum" column="enrolled_num" jdbcType="VARCHAR"/>
+        <result property="postDesc" column="post_desc" jdbcType="VARCHAR"/>
+        <result property="postCondition" column="post_condition" jdbcType="VARCHAR"/>
+        <result property="postName" column="post_name" jdbcType="VARCHAR"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
@@ -152,4 +176,9 @@
         delete from charity.volunteer_program_details where pid = #{pid}
     </delete>
 
+    <select id="selectVolunteerAllMessgeByID" resultMap="VolunteerAllMessge">
+        SELECT * FROM  volunteer_program_details,post INNER JOIN post_num
+            on post.postid=post_num.postid
+        WHERE post_num.pid=volunteer_program_details.pid and volunteer_program_details.pid=#{pid}
+    </select>
 </mapper>

@@ -15,6 +15,15 @@ public class VolunteersTeamid implements Serializable {
     
     private Integer teamid;
 
+    private String joinTime;
+
+    public String getJoinTime() {
+        return joinTime;
+    }
+
+    public void setJoinTime(String joinTime) {
+        this.joinTime = joinTime;
+    }
 
     public Integer getId() {
         return id;

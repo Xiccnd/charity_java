@@ -2,6 +2,7 @@ package net.cqwu.charity_web.controller;
 
 import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_service.service.UserService;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -33,4 +34,8 @@ public class UsersController {
         return this.userService.queryById(id);
     }
 
+    @PostMapping("Login")
+    public boolean Login(@RequestBody User user) {
+        return this.userService.Login(user);
+    }
 }

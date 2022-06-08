@@ -64,4 +64,6 @@ public interface UserDao {
      */
     int deleteById(Integer id);
 
+    User queryByName(String name);
+
 }

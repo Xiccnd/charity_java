@@ -27,6 +27,15 @@ public class PersonalData implements Serializable {
     
     private String profile;
 
+    private String sex;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public Integer getId() {
         return id;

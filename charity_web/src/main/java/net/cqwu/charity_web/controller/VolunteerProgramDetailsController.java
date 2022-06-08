@@ -1,5 +1,6 @@
 package net.cqwu.charity_web.controller;
 
+import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
 import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
 import net.cqwu.charity_service.service.VolunteerProgramDetailsService;
 import org.springframework.web.bind.annotation.*;
@@ -36,5 +37,9 @@ public class VolunteerProgramDetailsController {
     @RequestMapping("selectAll")
     public List<VolunteerProgramDetails> selectAll(VolunteerProgramDetails volunteerProgramDetails) {
         return this.volunteerProgramDetailsService.queryAll(volunteerProgramDetails);
+    }
+    @GetMapping("VolunteerAllMessage")
+    public List<VolunteerAllMessge> VolunteerAllMessge(Integer id) {
+        return this.volunteerProgramDetailsService.selectVolunteerAllMessgeByID(id);
     }
 }

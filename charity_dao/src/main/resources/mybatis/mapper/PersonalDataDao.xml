@@ -12,12 +12,13 @@
         <result property="nativeplace" column="nativePlace" jdbcType="VARCHAR"/>
         <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
         <result property="profile" column="profile" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, uname, idCard, nation, political, nativePlace, telephone, profile
+          id, uname, idCard, nation, political, nativePlace, telephone, profile ,sex
         from charity.personal_data
         where id = #{id}
     </select>
@@ -25,7 +26,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, uname, idCard, nation, political, nativePlace, telephone, profile
+          id, uname, idCard, nation, political, nativePlace, telephone, profile,sex
         from charity.personal_data
         limit #{offset}, #{limit}
     </select>
@@ -33,7 +34,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, uname, idCard, nation, political, nativePlace, telephone, profile
+          id, uname, idCard, nation, political, nativePlace, telephone, profile,sex
         from charity.personal_data
         <where>
             <if test="id != null">
@@ -60,13 +61,16 @@
             <if test="profile != null and profile != ''">
                 and profile = #{profile}
             </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into charity.personal_data(uname, idCard, nation, political, telephone, profile)
-        values (#{uname}, #{idcard}, #{nation}, #{political}, #{telephone}, #{profile})
+        insert into charity.personal_data(uname, idCard, nation, political, telephone, profile,sex)
+        values (#{uname}, #{idcard}, #{nation}, #{political}, #{telephone}, #{profile},#{sex})
     </insert>
 
     <!--通过主键修改数据-->
@@ -90,6 +94,9 @@
             </if>
             <if test="profile != null and profile != ''">
                 profile = #{profile},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
             </if>
         </set>
         where id = #{id}

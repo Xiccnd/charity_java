@@ -62,4 +62,14 @@ public class User implements Serializable {
         this.perid = perid;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", perid=" + perid +
+                '}';
+    }
 }

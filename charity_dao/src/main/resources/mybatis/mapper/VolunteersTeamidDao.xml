@@ -6,12 +6,13 @@
         <!--@Table volunteers_teamid-->
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="joinTime" column="joinTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, teamid
+          id, teamid , joinTime
         from charity.volunteers_teamid
         where id = #{id}
     </select>
@@ -19,7 +20,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, teamid
+          id, teamid, joinTime
         from charity.volunteers_teamid
         limit #{offset}, #{limit}
     </select>
@@ -27,7 +28,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, teamid
+          id, teamid, joinTime
         from charity.volunteers_teamid
         <where>
             <if test="id != null">
@@ -41,8 +42,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="" useGeneratedKeys="true">
-        insert into charity.volunteers_teamid(id, teamid)
-        values (#{id}, #{teamid})
+        insert into charity.volunteers_teamid(id, teamid, joinTime)
+        values (#{id}, #{teamid},#{joinTime})
     </insert>
 
     <!--通过主键修改数据-->
@@ -54,6 +55,9 @@
             </if>
             <if test="teamid != null">
                 teamid = #{teamid},
+            </if>
+            <if test="joinTime != null">
+                joinTime = #{joinTime},
             </if>
         </set>
         where id = #{id}

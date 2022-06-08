@@ -84,4 +84,10 @@
         delete from charity.user where id = #{id}
     </delete>
 
+    <select id="queryByName" resultMap="BaseResultMap">
+        select
+            id, name, password, telephone, perid
+        from charity.user
+        where name = #{name}
+    </select>
 </mapper>

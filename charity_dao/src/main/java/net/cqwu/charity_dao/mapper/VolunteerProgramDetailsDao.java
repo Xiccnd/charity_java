@@ -1,5 +1,6 @@
 package net.cqwu.charity_dao.mapper;
 
+import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
 import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -64,4 +65,5 @@ public interface VolunteerProgramDetailsDao {
      */
     int deleteById(Integer pid);
 
+    List<VolunteerAllMessge> selectVolunteerAllMessgeByID(Integer pid);
 }
