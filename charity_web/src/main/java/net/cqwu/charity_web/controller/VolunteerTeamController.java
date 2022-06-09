@@ -1,10 +1,13 @@
 package net.cqwu.charity_web.controller;
 
+import lombok.Data;
 import net.cqwu.charity_commons.pojo.VolunteerTeam;
 import net.cqwu.charity_service.service.VolunteerTeamService;
+import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (VolunteerTeam)表控制层
@@ -32,5 +35,13 @@ public class VolunteerTeamController {
     public VolunteerTeam selectOne(Integer id) {
         return this.volunteerTeamService.queryById(id);
     }
-
+    @GetMapping("selectOneByUserId")
+    public ResultUntil selectOneByUserId(Integer id) {
+        ResultUntil result = new ResultUntil(this.volunteerTeamService.queryByUserId(id));
+        return result;
+    }
+    @GetMapping("queryAll")
+    public List<VolunteerTeam> queryAll(VolunteerTeam volunteerTeam) {
+        return this.volunteerTeamService.queryAll(volunteerTeam);
+    }
 }

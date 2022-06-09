@@ -33,8 +33,8 @@ public class VolunteersTeamidController {
         return this.volunteersTeamidService.queryById(id);
     }
 
-    @PostMapping("Test")
-    public VolunteersTeamid test (@RequestBody VolunteersTeamid volunteersTeamid){
-        return this.volunteersTeamidService.insert(volunteersTeamid);
+    @GetMapping("selectAllNumByTid")
+    public Integer selectAllNumByTid(VolunteersTeamid volunteersTeamid){
+        return this.volunteersTeamidService.queryAll(volunteersTeamid).size();
     }
 }

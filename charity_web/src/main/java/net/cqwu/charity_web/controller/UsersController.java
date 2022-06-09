@@ -2,7 +2,7 @@ package net.cqwu.charity_web.controller;
 
 import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_service.service.UserService;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import net.cqwu.charity_web.until.AddUserUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,7 +35,12 @@ public class UsersController {
     }
 
     @PostMapping("Login")
-    public boolean Login(@RequestBody User user) {
+    public Integer Login(@RequestBody User user) {
         return this.userService.Login(user);
+    }
+
+    @PostMapping("Add")
+    public Integer Add(@RequestBody AddUserUntil addUser){
+        return this.userService.insert(addUser.getUser(),addUser.getPassword1());
     }
 }

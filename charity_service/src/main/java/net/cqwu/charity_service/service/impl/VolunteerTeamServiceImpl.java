@@ -30,6 +30,11 @@ public class VolunteerTeamServiceImpl implements VolunteerTeamService {
         return this.volunteerTeamDao.queryById(teamid);
     }
 
+    @Override
+    public VolunteerTeam queryByUserId(Integer id) {
+        return this.volunteerTeamDao.queryByUserId(id);
+    }
+
     /**
      * 查询多条数据
      *
@@ -75,5 +80,10 @@ public class VolunteerTeamServiceImpl implements VolunteerTeamService {
     @Override
     public boolean deleteById(Integer teamid) {
         return this.volunteerTeamDao.deleteById(teamid) > 0;
+    }
+
+    @Override
+    public List<VolunteerTeam> queryAll(VolunteerTeam volunteerTeam) {
+        return this.volunteerTeamDao.queryAll(volunteerTeam);
     }
 }

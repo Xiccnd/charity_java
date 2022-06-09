@@ -1,10 +1,13 @@
 package net.cqwu.charity_web.controller;
 
 import net.cqwu.charity_commons.pojo.PersonalData;
+import net.cqwu.charity_commons.pojo.TeamPersonal;
 import net.cqwu.charity_service.service.PersonalDataService;
+import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (PersonalData)表控制层
@@ -33,4 +36,13 @@ public class PersonalDataController {
         return this.personalDataService.queryById(id);
     }
 
+    @GetMapping("getAllMessages")
+    public List<TeamPersonal> messages(Integer teamid){
+        return this.personalDataService.teamPersonalMessgeByTeamId(teamid);
+    }
+    @GetMapping("end/getAllMessages")
+    public ResultUntil endMessages(Integer teamid){
+        ResultUntil resultUntil = new ResultUntil(this.personalDataService.teamPersonalMessgeByTeamId(teamid));
+        return resultUntil;
+    }
 }

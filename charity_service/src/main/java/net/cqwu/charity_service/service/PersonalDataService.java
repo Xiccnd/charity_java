@@ -1,13 +1,15 @@
 package net.cqwu.charity_service.service;
 
 import net.cqwu.charity_commons.pojo.PersonalData;
+import net.cqwu.charity_commons.pojo.TeamPersonal;
+
 import java.util.List;
 
 /**
  * (PersonalData)表服务接口
  *
  * @author makejava
- * @since 2022-06-06 16:32:57
+ * @since 2022-06-09 11:11:44
  */
 public interface PersonalDataService {
 
@@ -52,4 +54,5 @@ public interface PersonalDataService {
      */
     boolean deleteById(Integer id);
 
+    List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
 }

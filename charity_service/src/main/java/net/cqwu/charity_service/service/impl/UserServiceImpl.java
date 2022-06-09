@@ -49,9 +49,12 @@ public class UserServiceImpl implements UserService {
      * @return 实例对象
      */
     @Override
-    public User insert(User user) {
-        this.userDao.insert(user);
-        return user;
+    public Integer insert(User user,String password1) {
+        if ( !"".equals(user.getPassword()) && user.getPassword().equals(password1)){
+            this.userDao.insert(user);
+            return 2;
+        }
+        return -1;
     }
 
     /**
@@ -78,11 +81,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean Login(User user) {
+    public Integer Login(User user) {
         User u = this.userDao.queryByName(user.getName());
-        if (u == null) return false;
+        if (u == null) return -1;
         if (!"".equals(user.getPassword()) && !"".equals(u.getPassword()) && user.getPassword().equals(u.getPassword()))
-            return true;
-        return false;
+            return u.getPerid();
+        return -1;
     }
 }

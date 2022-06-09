@@ -2,6 +2,7 @@ package net.cqwu.charity_dao.mapper;
 
 import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
 import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetailsUntil;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -39,7 +40,7 @@ public interface VolunteerProgramDetailsDao {
      * @param volunteerProgramDetails 实例对象
      * @return 对象列表
      */
-    List<VolunteerProgramDetails> queryAll(VolunteerProgramDetails volunteerProgramDetails);
+    List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetails volunteerProgramDetails);
 
     /**
      * 新增数据

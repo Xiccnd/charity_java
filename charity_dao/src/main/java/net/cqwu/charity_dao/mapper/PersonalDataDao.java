@@ -1,7 +1,7 @@
 package net.cqwu.charity_dao.mapper;
 
 import net.cqwu.charity_commons.pojo.PersonalData;
-import org.apache.ibatis.annotations.Mapper;
+import net.cqwu.charity_commons.pojo.TeamPersonal;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -9,9 +9,8 @@ import java.util.List;
  * (PersonalData)表数据库访问层
  *
  * @author makejava
- * @since 2022-06-06 16:20:59
+ * @since 2022-06-09 11:11:43
  */
-@Mapper
 public interface PersonalDataDao {
 
     /**
@@ -63,5 +62,5 @@ public interface PersonalDataDao {
      * @return 影响行数
      */
     int deleteById(Integer id);
-
+    List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
 }

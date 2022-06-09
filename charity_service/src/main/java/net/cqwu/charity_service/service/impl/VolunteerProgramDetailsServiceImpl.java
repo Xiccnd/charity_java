@@ -2,6 +2,7 @@ package net.cqwu.charity_service.service.impl;
 
 import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
 import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetailsUntil;
 import net.cqwu.charity_dao.mapper.VolunteerProgramDetailsDao;
 import net.cqwu.charity_service.service.VolunteerProgramDetailsService;
 import org.springframework.stereotype.Service;
@@ -79,7 +80,7 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     }
 
     @Override
-    public List<VolunteerProgramDetails> queryAll(VolunteerProgramDetails volunteerProgramDetails) {
+    public List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetails volunteerProgramDetails) {
         return this.volunteerProgramDetailsDao.queryAll(volunteerProgramDetails);
     }
 

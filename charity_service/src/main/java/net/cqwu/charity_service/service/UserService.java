@@ -34,7 +34,7 @@ public interface UserService {
      * @param user 实例对象
      * @return 实例对象
      */
-    User insert(User user);
+    Integer insert(User user,String password1);
 
     /**
      * 修改数据
@@ -52,6 +52,6 @@ public interface UserService {
      */
     boolean deleteById(Integer id);
 
-    Boolean Login(User user);
+    Integer Login(User user);
 
 }

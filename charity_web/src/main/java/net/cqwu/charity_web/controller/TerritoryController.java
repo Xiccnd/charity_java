@@ -15,6 +15,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("territory")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class TerritoryController {
     /**
      * 服务对象
@@ -33,7 +34,7 @@ public class TerritoryController {
         return this.territoryService.queryById(id);
     }
     @GetMapping("selectAll")
-    public List<Territory> selectAll() {
-        return this.territoryService.queryAll(new Territory());
+    public List<Territory> selectAll(Territory territory) {
+        return this.territoryService.queryAll(territory);
     }
 }

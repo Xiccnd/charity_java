@@ -6,12 +6,14 @@ import java.io.Serializable;
  * (PersonalData)实体类
  *
  * @author makejava
- * @since 2022-06-06 16:17:58
+ * @since 2022-06-09 11:11:42
  */
 public class PersonalData implements Serializable {
-    private static final long serialVersionUID = 837780255584307601L;
+    private static final long serialVersionUID = -47845896515607177L;
     
     private Integer id;
+    
+    private String name;
     
     private String uname;
     
@@ -26,16 +28,25 @@ public class PersonalData implements Serializable {
     private String telephone;
     
     private String profile;
-
+    
     private String sex;
+    
+    private String country;
+    
+    private String mailbox;
+    
+    private String education;
+    
+    private String qq;
+    
+    private String weixin;
+    
+    private String address;
+    
+    private String employment;
+    
+    private String area;
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public Integer getId() {
         return id;
@@ -43,6 +54,14 @@ public class PersonalData implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUname() {
@@ -99,6 +118,78 @@ public class PersonalData implements Serializable {
 
     public void setProfile(String profile) {
         this.profile = profile;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getMailbox() {
+        return mailbox;
+    }
+
+    public void setMailbox(String mailbox) {
+        this.mailbox = mailbox;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWeixin() {
+        return weixin;
+    }
+
+    public void setWeixin(String weixin) {
+        this.weixin = weixin;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmployment() {
+        return employment;
+    }
+
+    public void setEmployment(String employment) {
+        this.employment = employment;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
 }

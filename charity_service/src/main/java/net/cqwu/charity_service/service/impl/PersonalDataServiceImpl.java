@@ -1,6 +1,7 @@
 package net.cqwu.charity_service.service.impl;
 
 import net.cqwu.charity_commons.pojo.PersonalData;
+import net.cqwu.charity_commons.pojo.TeamPersonal;
 import net.cqwu.charity_dao.mapper.PersonalDataDao;
 import net.cqwu.charity_service.service.PersonalDataService;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
  * (PersonalData)表服务实现类
  *
  * @author makejava
- * @since 2022-06-06 16:32:57
+ * @since 2022-06-09 11:11:44
  */
 @Service("personalDataService")
 public class PersonalDataServiceImpl implements PersonalDataService {
@@ -75,5 +76,10 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     @Override
     public boolean deleteById(Integer id) {
         return this.personalDataDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid) {
+        return this.personalDataDao.teamPersonalMessgeByTeamId(teamid);
     }
 }

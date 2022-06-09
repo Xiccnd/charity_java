@@ -51,5 +51,5 @@ public interface VolunteersTeamidService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
-
+    List<VolunteersTeamid> queryAll(VolunteersTeamid volunteersTeamid);
 }

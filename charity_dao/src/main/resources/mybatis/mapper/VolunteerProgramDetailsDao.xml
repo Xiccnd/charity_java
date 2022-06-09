@@ -20,7 +20,24 @@
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
         <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
     </resultMap>
-
+    <resultMap id="Volunteer" type="VolunteerProgramDetailsUntil" >
+        <result property="statusName" column="status_name" jdbcType="VARCHAR"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+        <result property="pname" column="pname" jdbcType="VARCHAR"/>
+        <result property="posts" column="posts" jdbcType="INTEGER"/>
+        <result property="targetNumber" column="target_number" jdbcType="INTEGER"/>
+        <result property="enrolledNumber" column="enrolled_number" jdbcType="INTEGER"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
+        <result property="releaseDate" column="release_date" jdbcType="TIMESTAMP"/>
+        <result property="projectDate" column="project_date" jdbcType="TIMESTAMP"/>
+        <result property="serviceObject" column="service_object" jdbcType="VARCHAR"/>
+        <result property="volunteerUpport" column="volunteer_upport" jdbcType="VARCHAR"/>
+        <result property="recruitDate" column="recruit_date" jdbcType="TIMESTAMP"/>
+        <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
+        <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
+        <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+    </resultMap>
     <resultMap id="VolunteerAllMessge" type="net.cqwu.charity_commons.pojo.VolunteerAllMessge">
         <!--@Table volunteer_program_details-->
         <result property="pid" column="pid" jdbcType="INTEGER"/>
@@ -62,11 +79,12 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="BaseResultMap">
+    <select id="queryAll" resultMap="Volunteer">
         select
-          pid, pname, posts, target_number, enrolled_number, location, release_date, project_date, service_object, volunteer_upport, recruit_date, service_description, project_details, teamid, project_status
-        from charity.volunteer_program_details
+            *
+        from charity.volunteer_program_details,charity.project_status
         <where>
+            volunteer_program_details.project_status=project_status.project_status
             <if test="pid != null">
                 and pid = #{pid}
             </if>

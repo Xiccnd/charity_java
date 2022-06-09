@@ -18,7 +18,7 @@ public interface VolunteerTeamService {
      * @return 实例对象
      */
     VolunteerTeam queryById(Integer teamid);
-
+    VolunteerTeam queryByUserId(Integer id);
     /**
      * 查询多条数据
      *
@@ -52,4 +52,5 @@ public interface VolunteerTeamService {
      */
     boolean deleteById(Integer teamid);
 
+    List<VolunteerTeam> queryAll(VolunteerTeam volunteerTeam);
 }

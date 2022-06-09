@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="net.cqwu.charity_commons.pojo.PersonalData">
         <!--@Table personal_data-->
         <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="uname" column="uname" jdbcType="VARCHAR"/>
         <result property="idcard" column="idCard" jdbcType="VARCHAR"/>
         <result property="nation" column="nation" jdbcType="VARCHAR"/>
@@ -13,12 +14,41 @@
         <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
         <result property="profile" column="profile" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="country" column="country" jdbcType="VARCHAR"/>
+        <result property="mailbox" column="mailbox" jdbcType="VARCHAR"/>
+        <result property="education" column="education" jdbcType="VARCHAR"/>
+        <result property="qq" column="QQ" jdbcType="VARCHAR"/>
+        <result property="weixin" column="WeiXin" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="employment" column="employment" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
     </resultMap>
-
+    <resultMap id="TeamPersonal" type="TeamPersonal">
+        <result property="joinTime" jdbcType="TIMESTAMP" column="joinTime"/>
+        <result property="teamid" column="teamid" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="uname" column="uname" jdbcType="VARCHAR"/>
+        <result property="idcard" column="idCard" jdbcType="VARCHAR"/>
+        <result property="nation" column="nation" jdbcType="VARCHAR"/>
+        <result property="political" column="political" jdbcType="VARCHAR"/>
+        <result property="nativeplace" column="nativePlace" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="profile" column="profile" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="country" column="country" jdbcType="VARCHAR"/>
+        <result property="mailbox" column="mailbox" jdbcType="VARCHAR"/>
+        <result property="education" column="education" jdbcType="VARCHAR"/>
+        <result property="qq" column="QQ" jdbcType="VARCHAR"/>
+        <result property="weixin" column="WeiXin" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="employment" column="employment" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, uname, idCard, nation, political, nativePlace, telephone, profile ,sex
+            id, name, uname, idCard, nation, political, nativePlace, telephone, profile, sex, country, mailbox, education, QQ, WeiXin, address, employment, area
         from charity.personal_data
         where id = #{id}
     </select>
@@ -26,19 +56,22 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, uname, idCard, nation, political, nativePlace, telephone, profile,sex
+            id, name, uname, idCard, nation, political, nativePlace, telephone, profile, sex, country, mailbox, education, QQ, WeiXin, address, employment, area
         from charity.personal_data
-        limit #{offset}, #{limit}
+                 limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, uname, idCard, nation, political, nativePlace, telephone, profile,sex
+        id, name, uname, idCard, nation, political, nativePlace, telephone, profile, sex, country, mailbox, education, QQ, WeiXin, address, employment, area
         from charity.personal_data
         <where>
             <if test="id != null">
                 and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
             </if>
             <if test="uname != null and uname != ''">
                 and uname = #{uname}
@@ -64,19 +97,46 @@
             <if test="sex != null and sex != ''">
                 and sex = #{sex}
             </if>
+            <if test="country != null and country != ''">
+                and country = #{country}
+            </if>
+            <if test="mailbox != null and mailbox != ''">
+                and mailbox = #{mailbox}
+            </if>
+            <if test="education != null and education != ''">
+                and education = #{education}
+            </if>
+            <if test="qq != null and qq != ''">
+                and QQ = #{qq}
+            </if>
+            <if test="weixin != null and weixin != ''">
+                and WeiXin = #{weixin}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="employment != null and employment != ''">
+                and employment = #{employment}
+            </if>
+            <if test="area != null and area != ''">
+                and area = #{area}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into charity.personal_data(uname, idCard, nation, political, telephone, profile,sex)
-        values (#{uname}, #{idcard}, #{nation}, #{political}, #{telephone}, #{profile},#{sex})
+        insert into charity.personal_data(name, uname, idCard, nation, political, nativePlace, telephone, profile, sex, country, mailbox, education, QQ, WeiXin, address, employment, area)
+        values (#{name}, #{uname}, #{idcard}, #{nation}, #{political}, #{nativeplace}, #{telephone}, #{profile}, #{sex}, #{country}, #{mailbox}, #{education}, #{qq}, #{weixin}, #{address}, #{employment}, #{area})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update charity.personal_data
         <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
             <if test="uname != null and uname != ''">
                 uname = #{uname},
             </if>
@@ -89,6 +149,9 @@
             <if test="political != null and political != ''">
                 political = #{political},
             </if>
+            <if test="nativeplace != null and nativeplace != ''">
+                nativePlace = #{nativeplace},
+            </if>
             <if test="telephone != null and telephone != ''">
                 telephone = #{telephone},
             </if>
@@ -98,6 +161,30 @@
             <if test="sex != null and sex != ''">
                 sex = #{sex},
             </if>
+            <if test="country != null and country != ''">
+                country = #{country},
+            </if>
+            <if test="mailbox != null and mailbox != ''">
+                mailbox = #{mailbox},
+            </if>
+            <if test="education != null and education != ''">
+                education = #{education},
+            </if>
+            <if test="qq != null and qq != ''">
+                QQ = #{qq},
+            </if>
+            <if test="weixin != null and weixin != ''">
+                WeiXin = #{weixin},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="employment != null and employment != ''">
+                employment = #{employment},
+            </if>
+            <if test="area != null and area != ''">
+                area = #{area},
+            </if>
         </set>
         where id = #{id}
     </update>
@@ -106,5 +193,8 @@
     <delete id="deleteById">
         delete from charity.personal_data where id = #{id}
     </delete>
-
+    <select id="teamPersonalMessgeByTeamId" resultMap="TeamPersonal">
+        SELECT * FROM `volunteers_teamid`,personal_data
+        where volunteers_teamid.id=personal_data.id and volunteers_teamid.teamid=#{teamid}
+    </select>
 </mapper>

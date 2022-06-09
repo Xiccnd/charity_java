@@ -21,7 +21,7 @@ public interface VolunteerTeamDao {
      * @return 实例对象
      */
     VolunteerTeam queryById(Integer teamid);
-
+    VolunteerTeam queryByUserId(Integer id);
     /**
      * 查询指定行数据
      *

@@ -24,7 +24,10 @@
         from charity.volunteer_team
         where teamid = #{teamid}
     </select>
-
+    <select id="queryByUserId" resultMap="BaseResultMap">
+        SELECT * FROM `volunteers_teamid`,volunteer_team
+        where volunteers_teamid.teamid=volunteer_team.teamid and volunteers_teamid.id=#{id}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
@@ -123,5 +126,6 @@
     <delete id="deleteById">
         delete from charity.volunteer_team where teamid = #{teamid}
     </delete>
+
 
 </mapper>
