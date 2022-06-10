@@ -31,6 +31,16 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return this.personalDataDao.queryById(id);
     }
 
+    @Override
+    public PersonalData getMyMessages(String uname) {
+        return this.personalDataDao.getMyMessages(uname);
+    }
+
+    @Override
+    public List<PersonalData> endQueryAll(PersonalData personalData) {
+        return this.personalDataDao.endQueryAll(personalData);
+    }
+
     /**
      * 查询多条数据
      *

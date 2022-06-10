@@ -6,8 +6,8 @@ import lombok.Data;
 public class ResultUntil {
     private Integer code= 200;
     private String message = "请求成功";
+    private String accessToken="admin-accessToken";
     private Object data;
-
     public ResultUntil(Object data) {
         this.data = data;
     }

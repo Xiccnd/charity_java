@@ -53,5 +53,5 @@ public interface UserService {
     boolean deleteById(Integer id);
 
     Integer Login(User user);
-
+    User RegistrationVerification(String name);
 }

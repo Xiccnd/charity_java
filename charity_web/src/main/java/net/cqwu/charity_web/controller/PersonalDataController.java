@@ -45,4 +45,22 @@ public class PersonalDataController {
         ResultUntil resultUntil = new ResultUntil(this.personalDataService.teamPersonalMessgeByTeamId(teamid));
         return resultUntil;
     }
+    @PostMapping("end/getMyMessages")
+    public ResultUntil endGetMyMessages(@RequestBody PersonalData personalData){
+        ResultUntil resultUntil = new ResultUntil(this.personalDataService.endQueryAll(personalData));
+        return resultUntil;
+    }
+    @PostMapping("end/deleteById")
+    public ResultUntil deleteById(@RequestBody PersonalData personalData){
+        ResultUntil resultUntil= new ResultUntil(this.personalDataService.deleteById(personalData.getId()));
+        return resultUntil;
+    }
+    @PostMapping("/getMyMessages")
+    public PersonalData getMyMessages(@RequestBody PersonalData personalData){
+        return this.personalDataService.getMyMessages(personalData.getUname());
+    }
+    @PostMapping("upData")
+    public void upDate(@RequestBody PersonalData personalData){
+        System.out.println(this.personalDataService.update(personalData));
+    }
 }

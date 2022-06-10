@@ -88,4 +88,9 @@ public class UserServiceImpl implements UserService {
             return u.getPerid();
         return -1;
     }
+
+    @Override
+    public User RegistrationVerification(String name) {
+        return this.userDao.RegistrationVerification(name);
+    }
 }

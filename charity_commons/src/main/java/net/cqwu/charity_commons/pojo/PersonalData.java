@@ -47,6 +47,15 @@ public class PersonalData implements Serializable {
     
     private String area;
 
+    private Integer teamid;
+
+    public Integer getTeamid() {
+        return teamid;
+    }
+
+    public void setTeamid(Integer teamid) {
+        this.teamid = teamid;
+    }
 
     public Integer getId() {
         return id;
@@ -192,4 +201,28 @@ public class PersonalData implements Serializable {
         this.area = area;
     }
 
+    @Override
+    public String toString() {
+        return "PersonalData{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", uname='" + uname + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", nation='" + nation + '\'' +
+                ", political='" + political + '\'' +
+                ", nativeplace='" + nativeplace + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", profile='" + profile + '\'' +
+                ", sex='" + sex + '\'' +
+                ", country='" + country + '\'' +
+                ", mailbox='" + mailbox + '\'' +
+                ", education='" + education + '\'' +
+                ", qq='" + qq + '\'' +
+                ", weixin='" + weixin + '\'' +
+                ", address='" + address + '\'' +
+                ", employment='" + employment + '\'' +
+                ", area='" + area + '\'' +
+                ", teamid=" + teamid +
+                '}';
+    }
 }

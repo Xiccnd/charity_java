@@ -38,7 +38,7 @@ public interface PersonalDataDao {
      * @return 对象列表
      */
     List<PersonalData> queryAll(PersonalData personalData);
-
+    List<PersonalData> endQueryAll(PersonalData personalData);
     /**
      * 新增数据
      *
@@ -63,4 +63,5 @@ public interface PersonalDataDao {
      */
     int deleteById(Integer id);
     List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
+    PersonalData getMyMessages(String uname);
 }

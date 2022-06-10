@@ -7,7 +7,7 @@
     <resultMap id="BaseResultMap" type="User">
         <!--@Table user-->
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="name" column="uname" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
         <result property="perid" column="perid" jdbcType="INTEGER"/>
@@ -16,7 +16,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, name, password, telephone, perid
+          id, uname, password, telephone, perid
         from charity.user
         where id = #{id}
     </select>
@@ -24,7 +24,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, name, password, telephone, perid
+          id, uname, password, telephone, perid
         from charity.user
         limit #{offset}, #{limit}
     </select>
@@ -32,14 +32,14 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, name, password, telephone, perid
+          id, uname, password, telephone, perid
         from charity.user
         <where>
             <if test="id != null">
                 and id = #{id}
             </if>
             <if test="name != null and name != ''">
-                and name = #{name}
+                and uname = #{name}
             </if>
             <if test="password != null and password != ''">
                 and password = #{password}
@@ -64,7 +64,7 @@
         update charity.user
         <set>
             <if test="name != null and name != ''">
-                name = #{name},
+                uname = #{name},
             </if>
             <if test="password != null and password != ''">
                 password = #{password},
@@ -86,8 +86,12 @@
 
     <select id="queryByName" resultMap="BaseResultMap">
         select
-            id, name, password, telephone, perid
+            id, uname, password, telephone, perid
         from charity.user
-        where name = #{name}
+        where uname = #{name}
+    </select>
+    <select id="RegistrationVerification" resultMap="BaseResultMap">
+        select id,uname from charity.user
+        where uname = #{name}
     </select>
 </mapper>

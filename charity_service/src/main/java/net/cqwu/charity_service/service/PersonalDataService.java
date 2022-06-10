@@ -20,7 +20,8 @@ public interface PersonalDataService {
      * @return 实例对象
      */
     PersonalData queryById(Integer id);
-
+    PersonalData getMyMessages(String uname);
+    List<PersonalData> endQueryAll(PersonalData personalData);
     /**
      * 查询多条数据
      *
