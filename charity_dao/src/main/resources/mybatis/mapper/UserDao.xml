@@ -91,7 +91,14 @@
         where uname = #{name}
     </select>
     <select id="RegistrationVerification" resultMap="BaseResultMap">
-        select id,uname from charity.user
-        where uname = #{name}
+        select id,uname,telephone from charity.user
+        <where>
+            <if test="name != null and name != ''">
+                and uname = #{name}
+            </if>
+            <if test="telephone != null and telephone != ''">
+                and telephone = #{telephone}
+            </if>
+        </where>
     </select>
 </mapper>

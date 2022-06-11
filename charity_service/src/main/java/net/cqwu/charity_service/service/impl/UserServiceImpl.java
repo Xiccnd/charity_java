@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
      * @return 实例对象
      */
     @Override
-    public User update(User user) {
-        this.userDao.update(user);
-        return this.queryById(user.getId());
+    public Integer update(User user) {
+
+        return this.userDao.update(user);
     }
 
     /**
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User RegistrationVerification(String name) {
-        return this.userDao.RegistrationVerification(name);
+    public User RegistrationVerification(User user) {
+        return this.userDao.RegistrationVerification(user);
     }
 }

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.VolunteerTeamcensorDao">
+
+    <resultMap id="BaseResultMap" type="VolunteerTeamcensor">
+        <!--@Table volunteer_teamcensor-->
+        <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="contact" column="contact" jdbcType="VARCHAR"/>
+        <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="regisDepartment" column="regis_department" jdbcType="VARCHAR"/>
+        <result property="registrationAuthority" column="registration_authority" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="registerDate" column="register_date" jdbcType="TIMESTAMP"/>
+        <result property="detailedAddress" column="detailed_address" jdbcType="VARCHAR"/>
+        <result property="liaisonOrganization" column="liaison_organization" jdbcType="VARCHAR"/>
+        <result property="teamProfile" column="team_profile" jdbcType="VARCHAR"/>
+        <result property="uname" column="uname" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="sid" column="sid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          teamid, contact, team_name, address, regis_department, registration_authority, telephone, register_date, detailed_address, liaison_organization, team_profile, uname, password, status, sid
+        from charity.volunteer_teamcensor
+        where teamid = #{teamid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          teamid, contact, team_name, address, regis_department, registration_authority, telephone, register_date, detailed_address, liaison_organization, team_profile, uname, password, status, sid
+        from charity.volunteer_teamcensor
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          teamid, contact, team_name, address, regis_department, registration_authority, telephone, register_date, detailed_address, liaison_organization, team_profile, uname, password, status, sid
+        from charity.volunteer_teamcensor
+        <where>
+            <if test="teamid != null">
+                and teamid = #{teamid}
+            </if>
+            <if test="contact != null and contact != ''">
+                and contact = #{contact}
+            </if>
+            <if test="teamName != null and teamName != ''">
+                and team_name = #{teamName}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="regisDepartment != null and regisDepartment != ''">
+                and regis_department = #{regisDepartment}
+            </if>
+            <if test="registrationAuthority != null and registrationAuthority != ''">
+                and registration_authority = #{registrationAuthority}
+            </if>
+            <if test="telephone != null and telephone != ''">
+                and telephone = #{telephone}
+            </if>
+            <if test="registerDate != null">
+                and register_date = #{registerDate}
+            </if>
+            <if test="detailedAddress != null and detailedAddress != ''">
+                and detailed_address = #{detailedAddress}
+            </if>
+            <if test="liaisonOrganization != null and liaisonOrganization != ''">
+                and liaison_organization = #{liaisonOrganization}
+            </if>
+            <if test="teamProfile != null and teamProfile != ''">
+                and team_profile = #{teamProfile}
+            </if>
+            <if test="uname != null and uname != ''">
+                and uname = #{uname}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="sid != null and sid != ''">
+                and sid = #{sid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="teamid" useGeneratedKeys="true">
+        insert into charity.volunteer_teamcensor(contact, team_name, address, regis_department, registration_authority, telephone, register_date, detailed_address, liaison_organization, team_profile, uname, password, status, sid)
+        values (#{contact}, #{teamName}, #{address}, #{regisDepartment}, #{registrationAuthority}, #{telephone}, #{registerDate}, #{detailedAddress}, #{liaisonOrganization}, #{teamProfile}, #{uname}, #{password}, #{status}, #{sid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.volunteer_teamcensor
+        <set>
+            <if test="contact != null and contact != ''">
+                contact = #{contact},
+            </if>
+            <if test="teamName != null and teamName != ''">
+                team_name = #{teamName},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="regisDepartment != null and regisDepartment != ''">
+                regis_department = #{regisDepartment},
+            </if>
+            <if test="registrationAuthority != null and registrationAuthority != ''">
+                registration_authority = #{registrationAuthority},
+            </if>
+            <if test="telephone != null and telephone != ''">
+                telephone = #{telephone},
+            </if>
+            <if test="registerDate != null">
+                register_date = #{registerDate},
+            </if>
+            <if test="detailedAddress != null and detailedAddress != ''">
+                detailed_address = #{detailedAddress},
+            </if>
+            <if test="liaisonOrganization != null and liaisonOrganization != ''">
+                liaison_organization = #{liaisonOrganization},
+            </if>
+            <if test="teamProfile != null and teamProfile != ''">
+                team_profile = #{teamProfile},
+            </if>
+            <if test="uname != null and uname != ''">
+                uname = #{uname},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="sid != null and sid != ''">
+                sid = #{sid},
+            </if>
+        </set>
+        where teamid = #{teamid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.volunteer_teamcensor where teamid = #{teamid}
+    </delete>
+
+</mapper>

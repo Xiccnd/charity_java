@@ -42,7 +42,7 @@ public interface UserService {
      * @param user 实例对象
      * @return 实例对象
      */
-    User update(User user);
+    Integer update(User user);
 
     /**
      * 通过主键删除数据
@@ -53,5 +53,5 @@ public interface UserService {
     boolean deleteById(Integer id);
 
     Integer Login(User user);
-    User RegistrationVerification(String name);
+    User RegistrationVerification(User name);
 }

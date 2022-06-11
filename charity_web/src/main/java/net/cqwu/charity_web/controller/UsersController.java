@@ -4,6 +4,7 @@ import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_service.service.UserService;
 import net.cqwu.charity_web.until.AddUserUntil;
 import net.cqwu.charity_web.until.ResultUntil;
+import net.cqwu.charity_web.until.UserUpNewPassWordUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,7 +37,16 @@ public class UsersController {
     public User selectOne(Integer id) {
         return this.userService.queryById(id);
     }
-
+    @PostMapping("update")
+    public Integer update (@RequestBody UserUpNewPassWordUntil user){
+        Integer i = this.Login(user.getUser());
+        if (i==-1) return -1;
+        User u = new User();
+        u.setId(i);
+        u.setPassword(user.getNewPasswordValue());
+        if (this.userService.update(u)==0) return 0;
+        else return 1;
+    }
     @PostMapping("Login")
     public Integer Login(@RequestBody User user) {
         return this.userService.Login(user);
@@ -66,9 +76,8 @@ public class UsersController {
         return map;
     }
     @PostMapping("RegistrationVerification")
-    public Boolean RegistrationVerification(@RequestBody User user){
-        if (this.userService.RegistrationVerification(user.getName())==null)  return false;
-        return true;
+    public User RegistrationVerification(@RequestBody User user){
+        return this.userService.RegistrationVerification(user);
     }
     @PostMapping("Add")
     public Integer Add(@RequestBody AddUserUntil addUser){
