@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service.impl;
 
+import net.cqwu.charity_commons.pojo.MyProject;
 import net.cqwu.charity_commons.pojo.VolunteersProject;
 import net.cqwu.charity_dao.mapper.VolunteersProjectDao;
 import net.cqwu.charity_service.service.VolunteersProjectService;
@@ -19,12 +20,7 @@ public class VolunteersProjectServiceImpl implements VolunteersProjectService {
     @Resource
     private VolunteersProjectDao volunteersProjectDao;
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param
-     * @return 实例对象
-     */
+
     @Override
     public VolunteersProject queryById(Integer id) {
         return this.volunteersProjectDao.queryById(id);
@@ -54,26 +50,24 @@ public class VolunteersProjectServiceImpl implements VolunteersProjectService {
         return volunteersProject;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param volunteersProject 实例对象
-     * @return 实例对象
-     */
+
     @Override
-    public VolunteersProject update(VolunteersProject volunteersProject) {
+    public void update(VolunteersProject volunteersProject) {
         this.volunteersProjectDao.update(volunteersProject);
-        return this.queryById(volunteersProject.getId());
     }
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param id
-     * @return 是否成功
-     */
+
     @Override
-    public boolean deleteById(Integer id) {
+    public boolean deleteById(VolunteersProject id) {
         return this.volunteersProjectDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<MyProject> myProject(Integer id) {
+        return this.volunteersProjectDao.myProject(id);
+    }
+    @Override
+    public List<MyProject> myJoinInProject(Integer id){
+        return this.volunteersProjectDao.myJoinInProject(id);
     }
 }

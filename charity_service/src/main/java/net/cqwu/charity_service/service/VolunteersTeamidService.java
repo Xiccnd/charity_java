@@ -1,5 +1,7 @@
 package net.cqwu.charity_service.service;
 
+import net.cqwu.charity_commons.pojo.MyTeam;
+import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersTeamid;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public interface VolunteersTeamidService {
      * @return 实例对象
      */
     VolunteersTeamid queryById(Integer id);
-
+    List<MyTeam> selectMyTeam(User user);
     /**
      * 查询多条数据
      *
@@ -42,7 +44,7 @@ public interface VolunteersTeamidService {
      * @param volunteersTeamid 实例对象
      * @return 实例对象
      */
-    VolunteersTeamid update(VolunteersTeamid volunteersTeamid);
+    void update(VolunteersTeamid volunteersTeamid);
 
     /**
      * 通过主键删除数据
@@ -50,6 +52,6 @@ public interface VolunteersTeamidService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
+    boolean deleteById(VolunteersTeamid id);
     List<VolunteersTeamid> queryAll(VolunteersTeamid volunteersTeamid);
 }

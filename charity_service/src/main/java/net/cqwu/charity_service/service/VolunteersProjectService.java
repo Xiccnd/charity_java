@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service;
 
+import net.cqwu.charity_commons.pojo.MyProject;
 import net.cqwu.charity_commons.pojo.VolunteersProject;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public interface VolunteersProjectService {
      * @param volunteersProject 实例对象
      * @return 实例对象
      */
-    VolunteersProject update(VolunteersProject volunteersProject);
+    void update(VolunteersProject volunteersProject);
 
     /**
      * 通过主键删除数据
@@ -50,6 +51,7 @@ public interface VolunteersProjectService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer id);
-
+    boolean deleteById(VolunteersProject id);
+    List<MyProject>myProject(Integer id);
+    List<MyProject>myJoinInProject(Integer id);
 }

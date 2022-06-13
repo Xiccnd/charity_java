@@ -39,6 +39,7 @@ public interface PersonalDataDao {
      */
     List<PersonalData> queryAll(PersonalData personalData);
     List<PersonalData> endQueryAll(PersonalData personalData);
+    List<PersonalData> endQueryJoinAll(PersonalData personalData);
     /**
      * 新增数据
      *
@@ -62,6 +63,9 @@ public interface PersonalDataDao {
      * @return 影响行数
      */
     int deleteById(Integer id);
+    int agreeById(Integer id);
+    int refuseById(Integer id,Integer teamid);
     List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
+    List<TeamPersonal> getAllJoinMessages(Integer teamid);
     PersonalData getMyMessages(String uname);
 }

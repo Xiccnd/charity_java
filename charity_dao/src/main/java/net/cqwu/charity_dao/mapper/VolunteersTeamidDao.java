@@ -1,5 +1,7 @@
 package net.cqwu.charity_dao.mapper;
 
+import net.cqwu.charity_commons.pojo.MyTeam;
+import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersTeamid;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,7 +23,7 @@ public interface VolunteersTeamidDao {
      * @return 实例对象
      */
     VolunteersTeamid queryById(Integer id);
-
+    List<MyTeam> selectMyTeam(User user);
     /**
      * 查询指定行数据
      *
@@ -62,6 +64,6 @@ public interface VolunteersTeamidDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int deleteById(VolunteersTeamid id);
 
 }

@@ -54,4 +54,5 @@ public interface UserService {
 
     Integer Login(User user);
     User RegistrationVerification(User name);
+    User queryByName(String name);
 }

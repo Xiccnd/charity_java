@@ -1,10 +1,15 @@
 package net.cqwu.charity_web.controller;
 
+import net.cqwu.charity_commons.pojo.MyProject;
+import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersProject;
+import net.cqwu.charity_service.service.UserService;
 import net.cqwu.charity_service.service.VolunteersProjectService;
+import net.cqwu.charity_web.until.MyProtectStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (VolunteersProject)表控制层
@@ -22,6 +27,8 @@ public class VolunteersProjectController {
     @Resource
     private VolunteersProjectService volunteersProjectService;
 
+    @Resource
+    private UserService userService;
     /**
      * 通过主键查询单条数据
      *
@@ -33,4 +40,29 @@ public class VolunteersProjectController {
         return this.volunteersProjectService.queryById(id);
     }
 
+    @PostMapping("myProject")
+    public List<MyProject> myProject(@RequestBody User user){
+        return MyProtectStatus.upDate(this.volunteersProjectService.myProject(this.userService.queryByName(user.getName()).getId()));
+    }
+    @PostMapping("myJoinInProject")
+    public List<MyProject> myJoinInProject(@RequestBody User user){
+        return MyProtectStatus.upDate(this.volunteersProjectService.myJoinInProject(this.userService.queryByName(user.getName()).getId()));
+    }
+    @GetMapping("upData")
+    public void upData(String name, Integer pid,String mark){
+
+        User u = this.userService.queryByName(name);
+        VolunteersProject volunteersProject = new VolunteersProject();
+        volunteersProject.setId(u.getId());
+        volunteersProject.setPid(pid);
+        if ("1".equals(mark)){
+            volunteersProject.setStatus("-1");
+        } else if("-1".equals(mark)){
+            volunteersProject.setStatus("1");
+        } else if("0".equals(mark)){
+            this.volunteersProjectService.deleteById(volunteersProject);
+            return;
+        }
+        this.volunteersProjectService.update(volunteersProject);
+    }
 }

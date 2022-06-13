@@ -1,5 +1,8 @@
 package net.cqwu.charity_service.service.impl;
 
+import com.sun.org.apache.bcel.internal.generic.LUSHR;
+import net.cqwu.charity_commons.pojo.MyTeam;
+import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersTeamid;
 import net.cqwu.charity_dao.mapper.VolunteersTeamidDao;
 import net.cqwu.charity_service.service.VolunteersTeamidService;
@@ -28,6 +31,11 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
     @Override
     public VolunteersTeamid queryById(Integer id) {
         return this.volunteersTeamidDao.queryById(id);
+    }
+
+    @Override
+    public List<MyTeam> selectMyTeam(User user) {
+        return this.volunteersTeamidDao.selectMyTeam(user);
     }
 
     /**
@@ -61,9 +69,8 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
      * @return 实例对象
      */
     @Override
-    public VolunteersTeamid update(VolunteersTeamid volunteersTeamid) {
+    public void update(VolunteersTeamid volunteersTeamid) {
         this.volunteersTeamidDao.update(volunteersTeamid);
-        return this.queryById(volunteersTeamid.getId());
     }
 
     /**
@@ -73,7 +80,7 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
+    public boolean deleteById(VolunteersTeamid id) {
         return this.volunteersTeamidDao.deleteById(id) > 0;
     }
 

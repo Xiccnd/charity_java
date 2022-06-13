@@ -22,6 +22,7 @@
         <result property="address" column="address" jdbcType="VARCHAR"/>
         <result property="employment" column="employment" jdbcType="VARCHAR"/>
         <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="mark" column="mark" jdbcType="VARCHAR"/>
     </resultMap>
     <resultMap id="TeamPersonal" type="TeamPersonal">
         <result property="joinTime" jdbcType="TIMESTAMP" column="joinTime"/>
@@ -129,6 +130,70 @@
         <where>
             volunteers_teamid.teamid=#{teamid}
             and mark=1
+            and volunteers_teamid.id=charity.personal_data.id
+            <if test="id != null">
+                and charity.personal_data.id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like "%" #{name} "%"
+            </if>
+            <if test="uname != null and uname != ''">
+                and uname = #{uname}
+            </if>
+            <if test="idcard != null and idcard != ''">
+                and idCard = #{idcard}
+            </if>
+            <if test="nation != null and nation != ''">
+                and nation = #{nation}
+            </if>
+            <if test="political != null and political != ''">
+                and political = #{political}
+            </if>
+            <if test="nativeplace != null and nativeplace != ''">
+                and nativePlace = #{nativeplace}
+            </if>
+            <if test="telephone != null and telephone != ''">
+                and telephone = #{telephone}
+            </if>
+            <if test="profile != null and profile != ''">
+                and profile = #{profile}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="country != null and country != ''">
+                and country = #{country}
+            </if>
+            <if test="mailbox != null and mailbox != ''">
+                and mailbox = #{mailbox}
+            </if>
+            <if test="education != null and education != ''">
+                and education = #{education}
+            </if>
+            <if test="qq != null and qq != ''">
+                and QQ = #{qq}
+            </if>
+            <if test="weixin != null and weixin != ''">
+                and WeiXin = #{weixin}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="employment != null and employment != ''">
+                and employment = #{employment}
+            </if>
+            <if test="area != null and area != ''">
+                and area = #{area}
+            </if>
+        </where>
+    </select>
+    <select id="endQueryJoinAll" resultMap="BaseResultMap">
+        select DISTINCT charity.personal_data.*,mark
+        from charity.personal_data,`volunteers_teamid`
+        <where>
+            volunteers_teamid.teamid=#{teamid}
+            and mark in (-1,0)
+            and volunteers_teamid.id=charity.personal_data.id
             <if test="id != null">
                 and charity.personal_data.id = #{id}
             </if>
@@ -248,9 +313,19 @@
     <delete id="deleteById">
         update `volunteers_teamid` set mark=0 where id = #{id}
     </delete>
+    <delete id="agreeById">
+        update `volunteers_teamid` set mark=1 where id = #{id}
+    </delete>
+    <delete id="refuseById">
+        delete from `volunteers_teamid` where id = #{id} and teamid = #{teamid}
+    </delete>
     <select id="teamPersonalMessgeByTeamId" resultMap="TeamPersonal">
         SELECT * FROM `volunteers_teamid`,personal_data
         where volunteers_teamid.id=personal_data.id and mark=1 and volunteers_teamid.teamid=#{teamid}
+    </select>
+    <select id="getAllJoinMessages" resultMap="TeamPersonal">
+        SELECT * FROM `volunteers_teamid`,personal_data
+        where volunteers_teamid.id=personal_data.id and mark=2 and volunteers_teamid.teamid=#{teamid}
     </select>
     <select id="getMyMessages" resultMap="BaseResultMap">
         select * from charity.personal_data

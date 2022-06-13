@@ -1,8 +1,6 @@
 package net.cqwu.charity_service.service.impl;
 
-import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
-import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
-import net.cqwu.charity_commons.pojo.VolunteerProgramDetailsUntil;
+import net.cqwu.charity_commons.pojo.*;
 import net.cqwu.charity_dao.mapper.VolunteerProgramDetailsDao;
 import net.cqwu.charity_service.service.VolunteerProgramDetailsService;
 import org.springframework.stereotype.Service;
@@ -32,6 +30,11 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
         return this.volunteerProgramDetailsDao.queryById(pid);
     }
 
+    @Override
+    public List<VolunteerProgramDetails> queryByTeamId(Integer teamID) {
+        return this.volunteerProgramDetailsDao.queryByTeamId(teamID);
+    }
+
     /**
      * 查询多条数据
      *
@@ -42,6 +45,11 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     @Override
     public List<VolunteerProgramDetails> queryAllByLimit(int offset, int limit) {
         return this.volunteerProgramDetailsDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public List<VolunteerProgramDetailsUntil> queryAllByTeamIdANDName(VolunteerProgramDetails volunteerProgramDetails) {
+        return this.volunteerProgramDetailsDao.queryAllByTeamIdANDName(volunteerProgramDetails);
     }
 
     /**
@@ -77,6 +85,16 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     @Override
     public boolean deleteById(Integer pid) {
         return this.volunteerProgramDetailsDao.deleteById(pid) > 0;
+    }
+
+    @Override
+    public List<VolunterProgramPost> volunteerProgramPost(Integer id) {
+        return this.volunteerProgramDetailsDao.volunteerProgramPost(id);
+    }
+
+    @Override
+    public List<ClassOfService> volunteerProgramClass(Integer id) {
+        return this.volunteerProgramDetailsDao.volunteerProgramClass(id);
     }
 
     @Override

@@ -22,6 +22,7 @@ public interface PersonalDataService {
     PersonalData queryById(Integer id);
     PersonalData getMyMessages(String uname);
     List<PersonalData> endQueryAll(PersonalData personalData);
+    List<PersonalData> endQueryJoinAll(PersonalData personalData);
     /**
      * 查询多条数据
      *
@@ -54,6 +55,9 @@ public interface PersonalDataService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
-
+    boolean agreeById(Integer id);
+    boolean refuseById(Integer id,Integer teamid);
     List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
+
+    List<TeamPersonal> getAllJoinMessages(Integer teamid);
 }

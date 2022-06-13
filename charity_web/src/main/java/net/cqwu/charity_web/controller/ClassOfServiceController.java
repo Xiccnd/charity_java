@@ -37,7 +37,7 @@ public class ClassOfServiceController {
         return this.classOfServiceService.queryById(id);
     }
     @GetMapping("queryAll")
-    public List<ClassOfService> queryAll (){
+    public List<ClassOfService> queryAll(){
         return this.classOfServiceService.queryAll(new ClassOfService());
     }
 }

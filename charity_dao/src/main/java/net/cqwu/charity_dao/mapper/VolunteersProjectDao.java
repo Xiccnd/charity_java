@@ -1,5 +1,6 @@
 package net.cqwu.charity_dao.mapper;
 
+import net.cqwu.charity_commons.pojo.MyProject;
 import net.cqwu.charity_commons.pojo.VolunteersProject;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -62,6 +63,7 @@ public interface VolunteersProjectDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
-
+    int deleteById(VolunteersProject id);
+    List<MyProject>myProject(Integer id);
+    List<MyProject>myJoinInProject(Integer id);
 }

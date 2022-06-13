@@ -1,8 +1,6 @@
 package net.cqwu.charity_service.service;
 
-import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
-import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
-import net.cqwu.charity_commons.pojo.VolunteerProgramDetailsUntil;
+import net.cqwu.charity_commons.pojo.*;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ public interface VolunteerProgramDetailsService {
      * @return 实例对象
      */
     VolunteerProgramDetails queryById(Integer pid);
-
+    List<VolunteerProgramDetails> queryByTeamId(Integer teamID);
     /**
      * 查询多条数据
      *
@@ -30,7 +28,7 @@ public interface VolunteerProgramDetailsService {
      * @return 对象列表
      */
     List<VolunteerProgramDetails> queryAllByLimit(int offset, int limit);
-
+    List<VolunteerProgramDetailsUntil> queryAllByTeamIdANDName(VolunteerProgramDetails volunteerProgramDetails);
     /**
      * 新增数据
      *
@@ -55,7 +53,14 @@ public interface VolunteerProgramDetailsService {
      */
     boolean deleteById(Integer pid);
 
+    /**
+     *
+     */
+    List<VolunterProgramPost> volunteerProgramPost(Integer id);
+    /**
+     *
+     */
+    List<ClassOfService> volunteerProgramClass(Integer id);
     List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetails volunteerProgramDetails);
-
-    List<VolunteerAllMessge> selectVolunteerAllMessgeByID(Integer pid);
+    List<VolunteerAllMessge>selectVolunteerAllMessgeByID(Integer id);
 }

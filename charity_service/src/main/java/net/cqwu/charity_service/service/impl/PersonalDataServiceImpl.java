@@ -41,6 +41,11 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return this.personalDataDao.endQueryAll(personalData);
     }
 
+    @Override
+    public List<PersonalData> endQueryJoinAll(PersonalData personalData) {
+        return this.personalDataDao.endQueryJoinAll(personalData);
+    }
+
     /**
      * 查询多条数据
      *
@@ -87,9 +92,21 @@ public class PersonalDataServiceImpl implements PersonalDataService {
     public boolean deleteById(Integer id) {
         return this.personalDataDao.deleteById(id) > 0;
     }
-
+    @Override
+    public boolean agreeById(Integer id) {
+        return this.personalDataDao.agreeById(id) > 0;
+    }
+    @Override
+    public boolean refuseById(Integer id,Integer teamid) {
+        return this.personalDataDao.refuseById(id,teamid) > 0;
+    }
     @Override
     public List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid) {
         return this.personalDataDao.teamPersonalMessgeByTeamId(teamid);
+    }
+
+    @Override
+    public List<TeamPersonal> getAllJoinMessages(Integer teamid) {
+        return this.personalDataDao.getAllJoinMessages(teamid);
     }
 }

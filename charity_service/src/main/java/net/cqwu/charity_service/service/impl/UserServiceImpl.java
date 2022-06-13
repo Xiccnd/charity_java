@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer Login(User user) {
         User u = this.userDao.queryByName(user.getName());
-        if (u == null) return -1;
+        if (null==u ) return -2;
         if (!"".equals(user.getPassword()) && !"".equals(u.getPassword()) && user.getPassword().equals(u.getPassword()))
             return u.getPerid();
         return -1;
@@ -92,5 +92,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User RegistrationVerification(User user) {
         return this.userDao.RegistrationVerification(user);
+    }
+
+    @Override
+    public User queryByName(String name) {
+        return this.userDao.queryByName(name);
     }
 }

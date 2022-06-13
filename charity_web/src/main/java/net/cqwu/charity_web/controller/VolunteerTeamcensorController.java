@@ -17,6 +17,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("volunteerTeamcensor")
+@CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class VolunteerTeamcensorController {
     /**
      * 服务对象

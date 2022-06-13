@@ -45,14 +45,36 @@ public class PersonalDataController {
         ResultUntil resultUntil = new ResultUntil(this.personalDataService.teamPersonalMessgeByTeamId(teamid));
         return resultUntil;
     }
+    @GetMapping("end/getAllJoinMessages")
+    public ResultUntil getAllJoinMessages(Integer teamid){
+        ResultUntil resultUntil = new ResultUntil(this.personalDataService.getAllJoinMessages(teamid));
+        return resultUntil;
+    }
     @PostMapping("end/getMyMessages")
     public ResultUntil endGetMyMessages(@RequestBody PersonalData personalData){
         ResultUntil resultUntil = new ResultUntil(this.personalDataService.endQueryAll(personalData));
         return resultUntil;
     }
+    @PostMapping("end/getMyJoinMessages")
+    public ResultUntil getMyJoinMessages(@RequestBody PersonalData personalData){
+        ResultUntil resultUntil = new ResultUntil(this.personalDataService.endQueryJoinAll(personalData));
+        return resultUntil;
+    }
     @PostMapping("end/deleteById")
     public ResultUntil deleteById(@RequestBody PersonalData personalData){
         ResultUntil resultUntil= new ResultUntil(this.personalDataService.deleteById(personalData.getId()));
+        return resultUntil;
+    }
+    @PostMapping("end/agreeById")
+    public ResultUntil agreeById(@RequestBody PersonalData personalData){
+        ResultUntil resultUntil= new ResultUntil(this.personalDataService.agreeById(personalData.getId()));
+        return resultUntil;
+    }
+    //拒绝志愿者加入队伍
+    @PostMapping("end/refuseById")
+    public ResultUntil refuseById(@RequestBody PersonalData personalData){
+        ResultUntil resultUntil= new ResultUntil(this.personalDataService.refuseById(personalData.getId(),personalData.getTeamid()));
+        System.out.println(resultUntil);
         return resultUntil;
     }
     @PostMapping("/getMyMessages")

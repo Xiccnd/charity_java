@@ -8,6 +8,8 @@ import net.cqwu.charity_web.until.UserUpNewPassWordUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,6 +74,29 @@ public class UsersController {
         map1.put("avatar","Test.gif");
         map2.put("0","admin");
         map1.put("permissions",map2);
+        map.put("data",map1);
+        return map;
+    }
+    @PostMapping("TeamLogin")
+    public Integer TeamLogin(@RequestBody User user, HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        if(this.userService.Login(user)>0){
+            session.setAttribute("accessToken","admin-accessToken");
+        }else {
+            session.setAttribute("accessToken","123");
+        }
+        return this.userService.Login(user);
+    }
+    @GetMapping("LoginTeam")
+    public Map<String,Object> LoginTeam(HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        Map<String,Object> map =  new HashMap<>();
+        Map<String,Object> map1 =  new HashMap<>();
+        String  accessToken = (String) session.getAttribute("accessToken");
+        System.out.println(accessToken);
+        map.put("code",200);
+        map.put("msg","success");
+        map1.put("accessToken",accessToken);
         map.put("data",map1);
         return map;
     }

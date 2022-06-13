@@ -7,8 +7,20 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
         <result property="joinTime" column="joinTime" jdbcType="TIMESTAMP"/>
+        <result property="mark" column="mark" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="MyTeam" type="MyTeam">
+        <result property="teamId" column="teamid" jdbcType="INTEGER"/>
+        <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="joinTime" column="joinTime" jdbcType="TIMESTAMP"/>
+        <result property="mark" column="mark" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="selectMyTeam" resultMap="MyTeam">
+        SELECT * FROM `user` a,volunteers_teamid b,volunteer_team c
+        where a.uname=#{name} and a.id=b.id and b.teamid=c.teamid
+    </select>
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
@@ -59,13 +71,16 @@
             <if test="joinTime != null">
                 joinTime = #{joinTime},
             </if>
+            <if test="mark != null">
+                mark = #{mark},
+            </if>
         </set>
-        where id = #{id}
+        where id = #{id} and teamid=#{teamid}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from charity.volunteers_teamid where id = #{id}
+        delete from charity.volunteers_teamid where id = #{id} and teamid=#{teamid}
     </delete>
 
 </mapper>
