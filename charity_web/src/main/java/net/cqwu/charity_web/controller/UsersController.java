@@ -2,8 +2,10 @@ package net.cqwu.charity_web.controller;
 
 import net.cqwu.charity_commons.pojo.PersonalData;
 import net.cqwu.charity_commons.pojo.User;
+import net.cqwu.charity_commons.pojo.VolunteersTeamid;
 import net.cqwu.charity_service.service.PersonalDataService;
 import net.cqwu.charity_service.service.UserService;
+import net.cqwu.charity_service.service.VolunteersTeamidService;
 import net.cqwu.charity_web.until.AddUserUntil;
 import net.cqwu.charity_web.until.ResultUntil;
 import net.cqwu.charity_web.until.UserStatus;
@@ -11,7 +13,10 @@ import net.cqwu.charity_web.until.UserUpNewPassWordUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +36,8 @@ public class UsersController {
     private UserService userService;
     @Resource
     private PersonalDataService personalDataService;
+    @Resource
+    private VolunteersTeamidService volunteersTeamidService;
     /**
      * 通过主键查询单条数据
      *
@@ -83,9 +90,15 @@ public class UsersController {
     }
     @PostMapping("TeamLogin") //第一步请求
     public Integer TeamLogin(@RequestBody User user) {
-        if(this.userService.Login(user)>0){
-            System.out.println("user.getId(): 1");
-            this.userService.updateLoginMessage(1);
+        if(this.userService.Login(user) == 1){
+            System.out.println("perid:"+this.userService.Login(user));
+            this.userService.updateLoginMessage(999);
+        }else if(this.userService.Login(user) == 3){
+                      System.out.println("=======");
+           int id = this.userService.queryByName(user.getName()).getId();
+            List<VolunteersTeamid> vo = this.volunteersTeamidService.queryById(id);
+            System.out.println(vo.get(0).getTeamid());
+            this.userService.updateLoginMessage(vo.get(0).getTeamid());
         }
         return this.userService.Login(user);
     }

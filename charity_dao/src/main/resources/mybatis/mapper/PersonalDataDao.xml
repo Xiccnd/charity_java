@@ -260,6 +260,9 @@
     <update id="update">
         update charity.personal_data
         <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
             <if test="idcard != null and idcard != ''">
                 idCard = #{idcard},
             </if>

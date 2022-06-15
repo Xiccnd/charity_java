@@ -98,4 +98,9 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
     public List<VolunteersTeamid> queryAll(VolunteersTeamid volunteersTeamid) {
         return this.volunteersTeamidDao.queryAll(volunteersTeamid);
     }
+
+    @Override
+    public List<VolunteersTeamid> selectTeamidByid(int id) {
+        return this.volunteersTeamidDao.queryById(id);
+    }
 }

@@ -98,7 +98,7 @@
     </update>
     <update id="updateLoginMessage">
         update charity.teamLogin
-        set teamid = 1,status = 1
+        set teamid = #{teamid},status = 1
     </update>
 
     <!--通过主键修改数据-->

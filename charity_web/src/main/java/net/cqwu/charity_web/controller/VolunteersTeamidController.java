@@ -77,4 +77,9 @@ public class VolunteersTeamidController {
         }
         this.volunteersTeamidService.update(volunteersTeamid);
     }
+    //通过id获取teamid
+    @GetMapping("selectTeamidByid")
+    public List<VolunteersTeamid> selectTeamidByid(int id){
+        return this.volunteersTeamidService.selectTeamidByid(id);
+    }
 }
