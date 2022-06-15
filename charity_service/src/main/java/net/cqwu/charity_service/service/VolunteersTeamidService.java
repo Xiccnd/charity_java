@@ -19,8 +19,9 @@ public interface VolunteersTeamidService {
      * @param  id 主键
      * @return 实例对象
      */
-    VolunteersTeamid queryById(Integer id);
+    List<VolunteersTeamid> queryById(Integer id);
     List<MyTeam> selectMyTeam(User user);
+    List<MyTeam> selectMyJoinInTeam(User user);
     /**
      * 查询多条数据
      *
@@ -37,7 +38,7 @@ public interface VolunteersTeamidService {
      * @return 实例对象
      */
     VolunteersTeamid insert(VolunteersTeamid volunteersTeamid);
-
+    VolunteersTeamid queryByIdAndTeamID(VolunteersTeamid volunteersTeamid);
     /**
      * 修改数据
      *

@@ -9,6 +9,7 @@ import net.cqwu.charity_web.until.MyProtectStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,9 +45,25 @@ public class VolunteersProjectController {
     public List<MyProject> myProject(@RequestBody User user){
         return MyProtectStatus.upDate(this.volunteersProjectService.myProject(this.userService.queryByName(user.getName()).getId()));
     }
+    @PostMapping("Project")
+    public List<VolunteersProject> Project(@RequestBody User user){
+        return this.volunteersProjectService.queryByIdList(this.userService.queryByName(user.getName()).getId());
+    }
     @PostMapping("myJoinInProject")
     public List<MyProject> myJoinInProject(@RequestBody User user){
         return MyProtectStatus.upDate(this.volunteersProjectService.myJoinInProject(this.userService.queryByName(user.getName()).getId()));
+    }
+    @GetMapping("inserter")
+    public VolunteersProject inserter(String name,Integer postid,Integer pid){
+        VolunteersProject volunteersProject=new VolunteersProject();
+        volunteersProject.setId(this.userService.queryByName(name).getId());
+        volunteersProject.setPid(pid);
+        volunteersProject.setPostid(postid);
+        if (null!=this.volunteersProjectService.queryByIdAndPid(volunteersProject))
+            return null;
+        volunteersProject.setJoinTime(new Date(System.currentTimeMillis()));
+        volunteersProject.setStatus("0");
+        return this.volunteersProjectService.insert(volunteersProject);
     }
     @GetMapping("upData")
     public void upData(String name, Integer pid,String mark){

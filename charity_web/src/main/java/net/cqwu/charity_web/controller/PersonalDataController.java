@@ -32,8 +32,8 @@ public class PersonalDataController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public PersonalData selectOne(Integer id) {
-        return this.personalDataService.queryById(id);
+    public ResultUntil selectOne(Integer id) {
+        return new ResultUntil(this.personalDataService.queryById(id));
     }
 
     @GetMapping("getAllMessages")
@@ -83,6 +83,7 @@ public class PersonalDataController {
     }
     @PostMapping("upData")
     public void upDate(@RequestBody PersonalData personalData){
+        System.out.println(personalData);
         System.out.println(this.personalDataService.update(personalData));
     }
 }

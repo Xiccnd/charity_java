@@ -4,6 +4,7 @@ import net.cqwu.charity_commons.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (User)表数据库访问层
@@ -39,7 +40,7 @@ public interface UserDao {
      * @return 对象列表
      */
     List<User> queryAll(User user);
-
+    List<User> EndQueryAll(User user);
     /**
      * 新增数据
      *
@@ -66,4 +67,10 @@ public interface UserDao {
 
     User queryByName(String name);
     User RegistrationVerification(User user);
+
+    //新增方法
+    Map<Object,Object> getTeamLoginMessage();
+    void updateLoginMessage(Integer teamid);
+    void addTeamLoginMessage(Integer teamid,Integer status);
+    void deleteTeamLoginMessage();
 }

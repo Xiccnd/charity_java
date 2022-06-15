@@ -50,10 +50,20 @@ public class VolunteersProjectServiceImpl implements VolunteersProjectService {
         return volunteersProject;
     }
 
+    @Override
+    public VolunteersProject queryByIdAndPid(VolunteersProject volunteersProject) {
+        return this.volunteersProjectDao.queryByIdAndPid(volunteersProject);
+    }
+
 
     @Override
     public void update(VolunteersProject volunteersProject) {
         this.volunteersProjectDao.update(volunteersProject);
+    }
+
+    @Override
+    public List<VolunteersProject> queryByIdList(Integer id) {
+        return this.volunteersProjectDao.queryByIdList(id);
     }
 
 

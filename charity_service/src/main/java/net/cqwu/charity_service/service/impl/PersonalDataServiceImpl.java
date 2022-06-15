@@ -78,7 +78,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
      */
     @Override
     public PersonalData update(PersonalData personalData) {
-        this.personalDataDao.update(personalData);
+        System.out.println(this.personalDataDao.update(personalData));
         return this.queryById(personalData.getId());
     }
 

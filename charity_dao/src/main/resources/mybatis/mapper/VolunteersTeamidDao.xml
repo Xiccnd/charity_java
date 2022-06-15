@@ -19,14 +19,24 @@
     </resultMap>
     <select id="selectMyTeam" resultMap="MyTeam">
         SELECT * FROM `user` a,volunteers_teamid b,volunteer_team c
-        where a.uname=#{name} and a.id=b.id and b.teamid=c.teamid
+        where a.uname=#{name} and a.id=b.id and b.teamid=c.teamid and mark=1
+    </select>
+    <select id="selectMyJoinInTeam" resultMap="MyTeam">
+        SELECT * FROM `user` a,volunteers_teamid b,volunteer_team c
+        where a.uname=#{name} and a.id=b.id and b.teamid=c.teamid and mark in (0,-1)
     </select>
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, teamid , joinTime
+          id, teamid , joinTime , mark
         from charity.volunteers_teamid
         where id = #{id}
+    </select>
+    <select id="queryByIdAndTeamID" resultMap="BaseResultMap">
+        select
+            id, teamid , joinTime
+        from charity.volunteers_teamid
+        where id = #{id} and teamid=#{teamid}
     </select>
 
     <!--查询指定行数据-->
@@ -54,8 +64,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="" useGeneratedKeys="true">
-        insert into charity.volunteers_teamid(id, teamid, joinTime)
-        values (#{id}, #{teamid},#{joinTime})
+        insert into charity.volunteers_teamid(id, teamid, joinTime,mark)
+        values (#{id}, #{teamid},#{joinTime},#{mark})
     </insert>
 
     <!--通过主键修改数据-->

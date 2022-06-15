@@ -1,8 +1,10 @@
 package net.cqwu.charity_commons.pojo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (VolunteersTeamid)实体类
@@ -17,16 +19,22 @@ public class VolunteersTeamid implements Serializable {
     private Integer id;
     
     private Integer teamid;
-
-    private String joinTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date joinTime;
     private String mark;
-    public String getJoinTime() {
-        return joinTime;
-    }
 
-    public void setJoinTime(String joinTime) {
+    public void setJoinTime(Date joinTime) {
         this.joinTime = joinTime;
     }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
 
     public Integer getId() {
         return id;

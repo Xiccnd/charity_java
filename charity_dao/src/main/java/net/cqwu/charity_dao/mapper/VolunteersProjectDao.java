@@ -22,7 +22,8 @@ public interface VolunteersProjectDao {
      * @return 实例对象
      */
     VolunteersProject queryById(Integer id);
-
+    List<VolunteersProject> queryByIdList(Integer id);
+    VolunteersProject queryByIdAndPid(VolunteersProject volunteersProject);
     /**
      * 查询指定行数据
      *

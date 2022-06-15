@@ -2,6 +2,7 @@ package net.cqwu.charity_service.service;
 
 import net.cqwu.charity_commons.pojo.User;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (User)表服务接口
@@ -27,7 +28,7 @@ public interface UserService {
      * @return 对象列表
      */
     List<User> queryAllByLimit(int offset, int limit);
-
+    List<User> EndQueryAll(User user);
     /**
      * 新增数据
      *
@@ -55,4 +56,10 @@ public interface UserService {
     Integer Login(User user);
     User RegistrationVerification(User name);
     User queryByName(String name);
+
+    //新增方法
+    Map<Object,Object> getTeamLoginMessage();
+    void updateLoginMessage(Integer teamid);
+    void addTeamLoginMessage(Integer teamid,Integer status);
+    void deleteTeamLoginMessage();
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (User)表服务实现类
@@ -40,6 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> queryAllByLimit(int offset, int limit) {
         return this.userDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public List<User> EndQueryAll(User user) {
+        return this.userDao.EndQueryAll(user);
     }
 
     /**
@@ -97,5 +103,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public User queryByName(String name) {
         return this.userDao.queryByName(name);
+    }
+
+
+    //新增方法
+    @Override
+    public Map<Object,Object> getTeamLoginMessage() {
+        return this.userDao.getTeamLoginMessage();
+    }
+
+    @Override
+    public void updateLoginMessage(Integer teamid) {
+        this.userDao.updateLoginMessage(teamid);
+    }
+
+    @Override
+    public void addTeamLoginMessage(Integer teamid,Integer status) {
+        this.userDao.addTeamLoginMessage(teamid,status);
+    }
+
+    @Override
+    public void deleteTeamLoginMessage() {
+        this.userDao.deleteTeamLoginMessage();
     }
 }

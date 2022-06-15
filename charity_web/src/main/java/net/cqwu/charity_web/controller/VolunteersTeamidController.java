@@ -10,6 +10,7 @@ import net.cqwu.charity_web.until.MyTeamStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,24 +32,34 @@ public class VolunteersTeamidController {
     @Resource
     private UserService userService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
+
     @GetMapping("selectOne")
-    public VolunteersTeamid selectOne(Integer id) {
-        return this.volunteersTeamidService.queryById(id);
+    public List<VolunteersTeamid> selectOne(String name) {
+        return this.volunteersTeamidService.queryById(this.userService.queryByName(name).getId());
     }
 
     @GetMapping("selectAllNumByTid")
     public Integer selectAllNumByTid(VolunteersTeamid volunteersTeamid){
         return this.volunteersTeamidService.queryAll(volunteersTeamid).size();
     }
+    @PostMapping("selectMyJoinInTeam")
+    public List<MyTeam> selectMyJoinInTeam(@RequestBody User user){
+        return MyTeamStatus.upDate(this.volunteersTeamidService.selectMyJoinInTeam(user));
+    }
     @PostMapping("selectMyTeam")
     public List<MyTeam> selectMyTeam(@RequestBody User user){
         return MyTeamStatus.upDate(this.volunteersTeamidService.selectMyTeam(user));
+    }
+    @GetMapping("inserter")
+    public VolunteersTeamid inserter(String name,Integer teamid){
+        VolunteersTeamid volunteersTeamid =new VolunteersTeamid();
+        volunteersTeamid.setId(this.userService.queryByName(name).getId());
+        volunteersTeamid.setTeamid(teamid);
+        if (null!=this.volunteersTeamidService.queryByIdAndTeamID(volunteersTeamid))
+            return null;
+        volunteersTeamid.setJoinTime(new Date(System.currentTimeMillis()));
+        volunteersTeamid.setMark("0");
+        return this.volunteersTeamidService.insert(volunteersTeamid);
     }
     @GetMapping("upData")
     public void upData(String name, Integer teamId,String mark){

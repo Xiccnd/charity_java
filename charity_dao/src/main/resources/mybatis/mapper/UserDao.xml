@@ -13,6 +13,7 @@
         <result property="perid" column="perid" jdbcType="INTEGER"/>
     </resultMap>
 
+
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
@@ -52,12 +53,53 @@
             </if>
         </where>
     </select>
-
+    <select id="EndQueryAll" resultMap="BaseResultMap">
+        select
+        id, uname, telephone, perid
+        from charity.user
+        <where>
+            perid  &lt;&gt; 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and uname like "%" #{name} "%"
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="telephone != null and telephone != ''">
+                and telephone = #{telephone}
+            </if>
+            <if test="perid != null">
+                and perid = #{perid}
+            </if>
+        </where>
+    </select>
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into charity.user(name, password, telephone, perid)
+        insert into charity.user(uname, password, telephone, perid)
         values (#{name}, #{password}, #{telephone}, #{perid})
     </insert>
+
+    <!-- 新增方法   -->
+    <insert id="addTeamLoginMessage">
+        insert into charity.teamLogin(teamid, status)
+        values (#{teamid}, #{status})
+    </insert>
+    <select id="getTeamLoginMessage" resultType="java.util.Map">
+        select
+            teamid,status
+        from charity.teamLogin
+    </select>
+    <update id="deleteTeamLoginMessage">
+        update charity.teamLogin
+        set teamid = 0 , status = 0
+    </update>
+    <update id="updateLoginMessage">
+        update charity.teamLogin
+        set teamid = 1,status = 1
+    </update>
 
     <!--通过主键修改数据-->
     <update id="update">
@@ -78,6 +120,7 @@
         </set>
         where id = #{id}
     </update>
+
 
     <!--通过主键删除-->
     <delete id="deleteById">
@@ -101,4 +144,7 @@
             </if>
         </where>
     </select>
+
+
+
 </mapper>

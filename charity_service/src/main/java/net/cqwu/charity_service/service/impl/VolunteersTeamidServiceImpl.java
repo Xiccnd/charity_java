@@ -29,13 +29,18 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
      * @return 实例对象
      */
     @Override
-    public VolunteersTeamid queryById(Integer id) {
+    public List<VolunteersTeamid> queryById(Integer id) {
         return this.volunteersTeamidDao.queryById(id);
     }
 
     @Override
     public List<MyTeam> selectMyTeam(User user) {
         return this.volunteersTeamidDao.selectMyTeam(user);
+    }
+
+    @Override
+    public List<MyTeam> selectMyJoinInTeam(User user) {
+        return this.volunteersTeamidDao.selectMyJoinInTeam(user);
     }
 
     /**
@@ -60,6 +65,11 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
     public VolunteersTeamid insert(VolunteersTeamid volunteersTeamid) {
         this.volunteersTeamidDao.insert(volunteersTeamid);
         return volunteersTeamid;
+    }
+
+    @Override
+    public VolunteersTeamid queryByIdAndTeamID(VolunteersTeamid volunteersTeamid) {
+        return this.volunteersTeamidDao.queryByIdAndTeamID(volunteersTeamid);
     }
 
     /**

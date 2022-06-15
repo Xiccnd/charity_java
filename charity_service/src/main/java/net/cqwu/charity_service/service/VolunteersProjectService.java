@@ -36,7 +36,7 @@ public interface VolunteersProjectService {
      * @return 实例对象
      */
     VolunteersProject insert(VolunteersProject volunteersProject);
-
+    VolunteersProject queryByIdAndPid(VolunteersProject volunteersProject);
     /**
      * 修改数据
      *
@@ -51,6 +51,7 @@ public interface VolunteersProjectService {
      * @param id 主键
      * @return 是否成功
      */
+    List<VolunteersProject> queryByIdList(Integer id);
     boolean deleteById(VolunteersProject id);
     List<MyProject>myProject(Integer id);
     List<MyProject>myJoinInProject(Integer id);

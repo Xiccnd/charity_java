@@ -31,7 +31,7 @@ public class VolunteerTeamServiceImpl implements VolunteerTeamService {
     }
 
     @Override
-    public VolunteerTeam queryByUserId(Integer id) {
+    public List<VolunteerTeam> queryByUserId(Integer id) {
         return this.volunteerTeamDao.queryByUserId(id);
     }
 

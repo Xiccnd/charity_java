@@ -1,5 +1,7 @@
 package net.cqwu.charity_commons.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2022-06-06 16:17:58
  */
+@Data
 public class User implements Serializable {
     private static final long serialVersionUID = -80843583600933409L;
     
@@ -20,6 +23,8 @@ public class User implements Serializable {
     private String telephone;
     
     private Integer perid;
+
+    private String perName;
 
 
     public Integer getId() {

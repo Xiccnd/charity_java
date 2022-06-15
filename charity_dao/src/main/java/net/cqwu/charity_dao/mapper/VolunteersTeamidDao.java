@@ -22,8 +22,10 @@ public interface VolunteersTeamidDao {
      * @param  id 主键
      * @return 实例对象
      */
-    VolunteersTeamid queryById(Integer id);
+    List<VolunteersTeamid> queryById(Integer id);
+    VolunteersTeamid queryByIdAndTeamID(VolunteersTeamid volunteersTeamid);
     List<MyTeam> selectMyTeam(User user);
+    List<MyTeam> selectMyJoinInTeam(User user);
     /**
      * 查询指定行数据
      *

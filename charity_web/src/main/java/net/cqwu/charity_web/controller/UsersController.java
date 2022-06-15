@@ -1,9 +1,12 @@
 package net.cqwu.charity_web.controller;
 
+import net.cqwu.charity_commons.pojo.PersonalData;
 import net.cqwu.charity_commons.pojo.User;
+import net.cqwu.charity_service.service.PersonalDataService;
 import net.cqwu.charity_service.service.UserService;
 import net.cqwu.charity_web.until.AddUserUntil;
 import net.cqwu.charity_web.until.ResultUntil;
+import net.cqwu.charity_web.until.UserStatus;
 import net.cqwu.charity_web.until.UserUpNewPassWordUntil;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,7 +32,8 @@ public class UsersController {
      */
     @Resource
     private UserService userService;
-
+    @Resource
+    private PersonalDataService personalDataService;
     /**
      * 通过主键查询单条数据
      *
@@ -41,11 +46,13 @@ public class UsersController {
     }
     @PostMapping("update")
     public Integer update (@RequestBody UserUpNewPassWordUntil user){
+        System.out.println("update:"+user);
         Integer i = this.Login(user.getUser());
         if (i==-1) return -1;
         User u = new User();
-        u.setId(i);
+        u.setId(this.userService.queryByName(user.getUser().getName()).getId());
         u.setPassword(user.getNewPasswordValue());
+        System.out.println("newUser:"+u);
         if (this.userService.update(u)==0) return 0;
         else return 1;
     }
@@ -77,26 +84,34 @@ public class UsersController {
         map.put("data",map1);
         return map;
     }
-    @PostMapping("TeamLogin")
-    public Integer TeamLogin(@RequestBody User user, HttpServletRequest request) {
-        HttpSession session = request.getSession(true);
+    @PostMapping("TeamLogin") //第一步请求
+    public Integer TeamLogin(@RequestBody User user) {
         if(this.userService.Login(user)>0){
-            session.setAttribute("accessToken","admin-accessToken");
-        }else {
-            session.setAttribute("accessToken","123");
+            System.out.println("user.getId(): 1");
+            this.userService.updateLoginMessage(1);
         }
         return this.userService.Login(user);
     }
     @GetMapping("LoginTeam")
-    public Map<String,Object> LoginTeam(HttpServletRequest request){
-        HttpSession session = request.getSession(true);
+    public Map<String,Object> LoginTeam(){
         Map<String,Object> map =  new HashMap<>();
         Map<String,Object> map1 =  new HashMap<>();
-        String  accessToken = (String) session.getAttribute("accessToken");
-        System.out.println(accessToken);
         map.put("code",200);
         map.put("msg","success");
-        map1.put("accessToken",accessToken);
+        System.out.println("getTeamLoginMessage:");
+//        System.out.println(this.userService.getTeamLoginMessage().get("status"));
+        int status = Integer.parseInt((String) this.userService.getTeamLoginMessage().get("status"));
+        if(status==1){
+            System.out.println("成功进入！！！！！！！！！！");
+            int teamid = (int) this.userService.getTeamLoginMessage().get("teamid");
+            System.out.println(teamid);
+            map1.put("accessToken",teamid);
+            this.userService.deleteTeamLoginMessage();
+        }else {
+            System.out.println("判断为空");
+            map1.put("accessToken",null);
+        }
+
         map.put("data",map1);
         return map;
     }
@@ -106,6 +121,22 @@ public class UsersController {
     }
     @PostMapping("Add")
     public Integer Add(@RequestBody AddUserUntil addUser){
-        return this.userService.insert(addUser.getUser(),addUser.getPassword1());
+        if (this.userService.insert(addUser.getUser(),addUser.getPassword1())==2){
+            PersonalData personalData = new PersonalData();
+            User user = addUser.getUser();
+            personalData.setId(this.userService.queryByName(user.getName()).getId());
+            personalData.setName(user.getName());
+            personalData.setUname(user.getName());
+            personalData.setTelephone(user.getTelephone());
+            personalData.setArea("");
+            this.personalDataService.insert(personalData);
+            return 2;
+        }
+        return -1;
+    }
+    @PostMapping("usersUpData")
+    public ResultUntil usersUpData(@RequestBody User user){
+        System.out.println(user);
+        return new ResultUntil(UserStatus.upData(this.userService.EndQueryAll(user)));
     }
 }

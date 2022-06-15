@@ -18,7 +18,7 @@ public interface VolunteerTeamService {
      * @return 实例对象
      */
     VolunteerTeam queryById(Integer teamid);
-    VolunteerTeam queryByUserId(Integer id);
+    List<VolunteerTeam> queryByUserId(Integer id);
     /**
      * 查询多条数据
      *
