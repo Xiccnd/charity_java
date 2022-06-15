@@ -23,6 +23,7 @@ public interface PersonalDataService {
     PersonalData getMyMessages(String uname);
     List<PersonalData> endQueryAll(PersonalData personalData);
     List<PersonalData> endQueryJoinAll(PersonalData personalData);
+    List<PersonalData> endTeamJoinIn(String teamid);
     /**
      * 查询多条数据
      *

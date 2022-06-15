@@ -16,4 +16,13 @@ public class UserStatus {
         }
         return users;
     }
+    public static User laoData(User user){
+        if ("普通用户".equals(user.getPerName())){
+            user.setPerid(2);
+        }
+        if ("队伍管理员".equals(user.getPerName())){
+            user.setPerid(3);
+        }
+        return user;
+    }
 }

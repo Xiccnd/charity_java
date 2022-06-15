@@ -35,7 +35,10 @@ public class PersonalDataController {
     public ResultUntil selectOne(Integer id) {
         return new ResultUntil(this.personalDataService.queryById(id));
     }
-
+    @GetMapping("end/getJoinIn")
+    public ResultUntil endGetJoinIn(String teamid){
+        return new ResultUntil(this.personalDataService.endTeamJoinIn(teamid));
+    }
     @GetMapping("getAllMessages")
     public List<TeamPersonal> messages(Integer teamid){
         return this.personalDataService.teamPersonalMessgeByTeamId(teamid);

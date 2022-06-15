@@ -92,5 +92,4 @@
     <delete id="deleteById">
         delete from charity.volunteers_teamid where id = #{id} and teamid=#{teamid}
     </delete>
-
 </mapper>

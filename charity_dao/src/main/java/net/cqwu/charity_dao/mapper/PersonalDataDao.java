@@ -68,4 +68,5 @@ public interface PersonalDataDao {
     List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
     List<TeamPersonal> getAllJoinMessages(Integer teamid);
     PersonalData getMyMessages(String uname);
+    List<PersonalData> endTeamJoinIn(String teamid);
 }

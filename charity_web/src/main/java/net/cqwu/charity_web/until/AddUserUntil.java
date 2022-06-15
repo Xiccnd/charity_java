@@ -1,7 +1,8 @@
 package net.cqwu.charity_web.until;
 
+import lombok.Data;
 import net.cqwu.charity_commons.pojo.User;
-
+@Data
 public class AddUserUntil {
     private User user;
     private String password1;

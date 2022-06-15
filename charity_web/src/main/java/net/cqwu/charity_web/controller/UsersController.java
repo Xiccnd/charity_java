@@ -11,10 +11,7 @@ import net.cqwu.charity_web.until.UserUpNewPassWordUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -119,6 +116,12 @@ public class UsersController {
     public User RegistrationVerification(@RequestBody User user){
         return this.userService.RegistrationVerification(user);
     }
+    @PostMapping("end/addUser")
+    public ResultUntil addUser(@RequestBody User user){
+        AddUserUntil addUserUntil = new AddUserUntil();
+        addUserUntil.setUser(user);addUserUntil.setPassword1(user.getPassword());
+        return new ResultUntil(Add(addUserUntil));
+    }
     @PostMapping("Add")
     public Integer Add(@RequestBody AddUserUntil addUser){
         if (this.userService.insert(addUser.getUser(),addUser.getPassword1())==2){
@@ -138,5 +141,16 @@ public class UsersController {
     public ResultUntil usersUpData(@RequestBody User user){
         System.out.println(user);
         return new ResultUntil(UserStatus.upData(this.userService.EndQueryAll(user)));
+    }
+    @PostMapping("deleteUser")
+    public ResultUntil deleteUser(@RequestBody User user){
+        user=UserStatus.laoData(user);
+        if (user.getPerid()==2){
+            return new ResultUntil(this.userService.deleteById(user.getId()));
+        }
+        if (user.getPerid()==3){
+            return new ResultUntil(this.userService.deleteById(user.getId()));
+        }
+        return new ResultUntil(false);
     }
 }

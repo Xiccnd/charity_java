@@ -46,6 +46,11 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return this.personalDataDao.endQueryJoinAll(personalData);
     }
 
+    @Override
+    public List<PersonalData> endTeamJoinIn(String teamid) {
+        return this.personalDataDao.endTeamJoinIn(teamid);
+    }
+
     /**
      * 查询多条数据
      *

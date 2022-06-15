@@ -32,8 +32,8 @@ public class VolunteerTeamController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public VolunteerTeam selectOne(Integer id) {
-        return this.volunteerTeamService.queryById(id);
+    public ResultUntil selectOne(Integer id) {
+        return new ResultUntil(this.volunteerTeamService.queryById(id));
     }
     @GetMapping("selectOneByUserId")
     public ResultUntil selectOneByUserId(Integer id) {

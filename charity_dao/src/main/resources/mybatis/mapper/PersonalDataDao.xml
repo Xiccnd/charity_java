@@ -331,4 +331,8 @@
         select * from charity.personal_data
         where uname = #{uname}
     </select>
+    <select id="endTeamJoinIn" resultMap="BaseResultMap">
+        SELECT * FROM `volunteers_teamid` a,personal_data b
+        where a.id=b.id and a.teamid=#{teamid} and a.mark in (0,-1)
+    </select>
 </mapper>

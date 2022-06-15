@@ -16,7 +16,7 @@ public class MyProtectStatus {
         }
         return myProjects;
     }
-    public static MyProject upData(MyProject myProjects){
+    public static MyProject laoData(MyProject myProjects){
             if ("退出审核".equals(myProjects.getStatusName())){
                 myProjects.setMark("-1");
             }

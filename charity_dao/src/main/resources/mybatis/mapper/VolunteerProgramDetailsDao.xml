@@ -143,7 +143,6 @@
         from charity.volunteer_program_details,charity.project_status
         <where>
             volunteer_program_details.project_status=project_status.project_status
-            and teamid=#{teamid}
             <if test="pid != null">
                 and pid = #{pid}
             </if>
