@@ -70,7 +70,7 @@ public interface UserDao {
 
     //新增方法
     Map<Object,Object> getTeamLoginMessage();
-    void updateLoginMessage(Integer teamid);
+    void updateLoginMessage(User user);
     void addTeamLoginMessage(Integer teamid,Integer status);
     void deleteTeamLoginMessage();
 }

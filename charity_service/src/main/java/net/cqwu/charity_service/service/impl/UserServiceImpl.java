@@ -113,8 +113,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateLoginMessage(Integer teamid) {
-        this.userDao.updateLoginMessage(teamid);
+    public void updateLoginMessage(User user) {
+        this.userDao.updateLoginMessage(user);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service;
 
+import net.cqwu.charity_commons.pojo.EndAllTeamMessage;
 import net.cqwu.charity_commons.pojo.MyTeam;
 import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersTeamid;
@@ -22,6 +23,7 @@ public interface VolunteersTeamidService {
     List<VolunteersTeamid> queryById(Integer id);
     List<MyTeam> selectMyTeam(User user);
     List<MyTeam> selectMyJoinInTeam(User user);
+    List<EndAllTeamMessage> endAllTeamMessage();
     /**
      * 查询多条数据
      *

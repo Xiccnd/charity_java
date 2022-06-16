@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.PostcensorDao">
+
+    <resultMap id="BaseResultMap" type="Postcensor">
+        <!--@Table postcensor-->
+        <result property="postid" column="postid" jdbcType="INTEGER"/>
+        <result property="postDesc" column="post_desc" jdbcType="VARCHAR"/>
+        <result property="postCondition" column="post_condition" jdbcType="VARCHAR"/>
+        <result property="postName" column="post_name" jdbcType="VARCHAR"/>
+        <result property="targetNum" column="target_num" jdbcType="VARCHAR"/>
+        <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          postid, post_desc, post_condition, post_name, target_num, teamid, pid
+        from charity.postcensor
+        where postid = #{postid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          postid, post_desc, post_condition, post_name, target_num, teamid, pid
+        from charity.postcensor
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          postid, post_desc, post_condition, post_name, target_num, teamid, pid
+        from charity.postcensor
+        <where>
+            <if test="postid != null">
+                and postid = #{postid}
+            </if>
+            <if test="postDesc != null and postDesc != ''">
+                and post_desc = #{postDesc}
+            </if>
+            <if test="postCondition != null and postCondition != ''">
+                and post_condition = #{postCondition}
+            </if>
+            <if test="postName != null and postName != ''">
+                and post_name = #{postName}
+            </if>
+            <if test="targetNum != null and targetNum != ''">
+                and target_num = #{targetNum}
+            </if>
+            <if test="teamid != null">
+                and teamid = #{teamid}
+            </if>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="postid" useGeneratedKeys="true">
+        insert into charity.postcensor(post_desc, post_condition, post_name, target_num, teamid, pid)
+        values (#{postDesc}, #{postCondition}, #{postName}, #{targetNum}, #{teamid}, #{pid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.postcensor
+        <set>
+            <if test="postDesc != null and postDesc != ''">
+                post_desc = #{postDesc},
+            </if>
+            <if test="postCondition != null and postCondition != ''">
+                post_condition = #{postCondition},
+            </if>
+            <if test="postName != null and postName != ''">
+                post_name = #{postName},
+            </if>
+            <if test="targetNum != null and targetNum != ''">
+                target_num = #{targetNum},
+            </if>
+            <if test="teamid != null">
+                teamid = #{teamid},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+        </set>
+        where postid = #{postid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.postcensor where postid = #{postid}
+    </delete>
+
+</mapper>

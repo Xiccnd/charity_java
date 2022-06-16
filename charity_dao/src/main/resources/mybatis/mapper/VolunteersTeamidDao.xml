@@ -9,7 +9,30 @@
         <result property="joinTime" column="joinTime" jdbcType="TIMESTAMP"/>
         <result property="mark" column="mark" jdbcType="INTEGER"/>
     </resultMap>
-
+    <resultMap id="endAllTeam" type="EndAllTeamMessage">
+        <collection property="user" ofType="User">
+            <result property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="uname" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="volunteersTeamid" ofType="VolunteersTeamid">
+            <result property="joinTime" column="joinTime" jdbcType="TIMESTAMP"/>
+            <result property="mark" column="mark" jdbcType="INTEGER"/>
+        </collection>
+        <collection property="volunteerTeam" ofType="VolunteerTeam">
+            <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+            <result property="contact" column="contact" jdbcType="VARCHAR"/>
+            <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="regisDepartment" column="regis_department" jdbcType="VARCHAR"/>
+            <result property="registrationAuthority" column="registration_authority" jdbcType="VARCHAR"/>
+            <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+            <result property="registerDate" column="register_date" jdbcType="TIMESTAMP"/>
+            <result property="detailedAddress" column="detailed_address" jdbcType="VARCHAR"/>
+            <result property="liaisonOrganization" column="liaison_organization" jdbcType="VARCHAR"/>
+            <result property="teamProfile" column="team_profile" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
     <resultMap id="MyTeam" type="MyTeam">
         <result property="teamId" column="teamid" jdbcType="INTEGER"/>
         <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
@@ -94,12 +117,10 @@
     </delete>
 
 
-    <select id="queryByteamId" resultMap="BaseResultMap">
-        select
-          id, teamid
-        from charity.volunteers_teamid
-        where teamid = #{teamid}
+    <select id="endAllTeamMessage" resultMap="endAllTeam">
+        SELECT a.id,a.teamid,a.joinTime,b.uname,b.`password`,c.*
+        FROM `volunteers_teamid` a,`user` b,volunteer_team c
+        where a.id=b.id and b.perid=3 and c.teamid = a.teamid
     </select>
-
 
 </mapper>

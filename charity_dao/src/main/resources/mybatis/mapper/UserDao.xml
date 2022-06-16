@@ -58,7 +58,7 @@
         id, uname, telephone, perid
         from charity.user
         <where>
-            perid  &lt;&gt; 1
+            perid = 2
             <if test="id != null">
                 and id = #{id}
             </if>
@@ -89,7 +89,7 @@
     </insert>
     <select id="getTeamLoginMessage" resultType="java.util.Map">
         select
-            teamid,status
+            teamid,status,uname
         from charity.teamLogin
     </select>
     <update id="deleteTeamLoginMessage">
@@ -98,7 +98,7 @@
     </update>
     <update id="updateLoginMessage">
         update charity.teamLogin
-        set teamid = #{teamid},status = 1
+        set teamid = #{id},status = 1,uname=#{name}
     </update>
 
     <!--通过主键修改数据-->

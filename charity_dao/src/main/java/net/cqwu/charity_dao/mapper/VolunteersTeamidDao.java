@@ -1,5 +1,6 @@
 package net.cqwu.charity_dao.mapper;
 
+import net.cqwu.charity_commons.pojo.EndAllTeamMessage;
 import net.cqwu.charity_commons.pojo.MyTeam;
 import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersTeamid;
@@ -67,6 +68,6 @@ public interface VolunteersTeamidDao {
      * @return 影响行数
      */
     int deleteById(VolunteersTeamid id);
-
+    List<EndAllTeamMessage> endAllTeamMessage();
 
 }

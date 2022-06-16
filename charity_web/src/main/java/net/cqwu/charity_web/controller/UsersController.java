@@ -93,15 +93,20 @@ public class UsersController {
     @Synchronized
     @PostMapping("TeamLogin") //第一步请求
     public Integer TeamLogin(@RequestBody User user) {
+        User u = new User();
         if(this.userService.Login(user) == 1){
             System.out.println("perid:"+this.userService.Login(user));
-            this.userService.updateLoginMessage(999);
+            u.setId(999);
+            System.out.println("当前用户数据："+u);
+            this.userService.updateLoginMessage(u);
         }else if(this.userService.Login(user) == 3){
-                      System.out.println("=======");
-           int id = this.userService.queryByName(user.getName()).getId();
-            List<VolunteersTeamid> vo = this.volunteersTeamidService.queryById(id);
+            System.out.println("=======");
+            u = this.userService.queryByName(user.getName());
+            List<VolunteersTeamid> vo = this.volunteersTeamidService.queryById(u.getId());
             System.out.println(vo.get(0).getTeamid());
-            this.userService.updateLoginMessage(vo.get(0).getTeamid());
+            u.setId(vo.get(0).getTeamid());
+            System.out.println("当前用户数据："+u);
+            this.userService.updateLoginMessage(u);
         }
         return this.userService.Login(user);
     }
@@ -112,20 +117,21 @@ public class UsersController {
         map.put("code",200);
         map.put("msg","success");
         System.out.println("getTeamLoginMessage:");
-//        System.out.println(this.userService.getTeamLoginMessage().get("status"));
-        int status = Integer.parseInt((String) this.userService.getTeamLoginMessage().get("status"));
+        Map<Object,Object> m = this.userService.getTeamLoginMessage();
+        int status = Integer.parseInt((String) m.get("status"));
         if(status==1){
             System.out.println("成功进入！！！！！！！！！！");
-            int teamid = (int) this.userService.getTeamLoginMessage().get("teamid");
+            int teamid = (int) m.get("teamid");
             System.out.println(teamid);
             map1.put("accessToken",teamid);
+            map1.put("uname",m.get("uname"));
             this.userService.deleteTeamLoginMessage();
         }else {
             System.out.println("判断为空");
             map1.put("accessToken",null);
         }
-
         map.put("data",map1);
+        System.out.println(map);
         return map;
     }
     @PostMapping("RegistrationVerification")
@@ -155,7 +161,6 @@ public class UsersController {
     }
     @PostMapping("usersUpData")
     public ResultUntil usersUpData(@RequestBody User user){
-        System.out.println(user);
         return new ResultUntil(UserStatus.upData(this.userService.EndQueryAll(user)));
     }
     @PostMapping("deleteUser")

@@ -7,7 +7,6 @@ import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * (VolunteerProgramDetailscensor)表控制层
@@ -38,5 +37,10 @@ public class VolunteerProgramDetailscensorController {
     @GetMapping("getAll")
     public ResultUntil getAll(){
         return new ResultUntil(this.volunteerProgramDetailscensorService.queryAll(new VolunteerProgramDetailscensor()));
+    }
+    @PostMapping("addTeamProject")
+    public ResultUntil addTeamProject(@RequestBody VolunteerProgramDetailscensor volunteerProgramDetailscensor){
+        this.volunteerProgramDetailscensorService.insert(volunteerProgramDetailscensor);
+        return new ResultUntil("");
     }
 }

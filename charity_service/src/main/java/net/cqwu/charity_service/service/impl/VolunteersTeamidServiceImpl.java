@@ -1,6 +1,7 @@
 package net.cqwu.charity_service.service.impl;
 
 import com.sun.org.apache.bcel.internal.generic.LUSHR;
+import net.cqwu.charity_commons.pojo.EndAllTeamMessage;
 import net.cqwu.charity_commons.pojo.MyTeam;
 import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_commons.pojo.VolunteersTeamid;
@@ -41,6 +42,11 @@ public class VolunteersTeamidServiceImpl implements VolunteersTeamidService {
     @Override
     public List<MyTeam> selectMyJoinInTeam(User user) {
         return this.volunteersTeamidDao.selectMyJoinInTeam(user);
+    }
+
+    @Override
+    public List<EndAllTeamMessage> endAllTeamMessage() {
+        return this.volunteersTeamidDao.endAllTeamMessage();
     }
 
     /**

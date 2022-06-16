@@ -7,6 +7,7 @@ import net.cqwu.charity_dao.mapper.UserDao;
 import net.cqwu.charity_service.service.UserService;
 import net.cqwu.charity_service.service.VolunteersTeamidService;
 import net.cqwu.charity_web.until.MyTeamStatus;
+import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,7 +33,10 @@ public class VolunteersTeamidController {
     @Resource
     private UserService userService;
 
-
+    @GetMapping("endGetAllTeam")
+    public ResultUntil endGetAllTeam(){
+        return new ResultUntil(this.volunteersTeamidService.endAllTeamMessage());
+    }
     @GetMapping("selectOne")
     public List<VolunteersTeamid> selectOne(String name) {
         return this.volunteersTeamidService.queryById(this.userService.queryByName(name).getId());
