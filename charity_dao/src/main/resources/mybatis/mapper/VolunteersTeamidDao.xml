@@ -92,4 +92,14 @@
     <delete id="deleteById">
         delete from charity.volunteers_teamid where id = #{id} and teamid=#{teamid}
     </delete>
+
+
+    <select id="queryByteamId" resultMap="BaseResultMap">
+        select
+          id, teamid
+        from charity.volunteers_teamid
+        where teamid = #{teamid}
+    </select>
+
+
 </mapper>

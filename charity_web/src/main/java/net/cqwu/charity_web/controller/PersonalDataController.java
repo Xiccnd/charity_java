@@ -46,6 +46,7 @@ public class PersonalDataController {
     @GetMapping("end/getAllMessages")
     public ResultUntil endMessages(Integer teamid){
         ResultUntil resultUntil = new ResultUntil(this.personalDataService.teamPersonalMessgeByTeamId(teamid));
+
         return resultUntil;
     }
     @GetMapping("end/getAllJoinMessages")

@@ -55,4 +55,6 @@ public interface VolunteersTeamidService {
      */
     boolean deleteById(VolunteersTeamid id);
     List<VolunteersTeamid> queryAll(VolunteersTeamid volunteersTeamid);
+
+    List<VolunteersTeamid> selectTeamidByid(int id);
 }
