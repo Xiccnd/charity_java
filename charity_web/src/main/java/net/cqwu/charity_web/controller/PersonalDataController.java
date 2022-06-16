@@ -45,34 +45,27 @@ public class PersonalDataController {
     }
     @GetMapping("end/getAllMessages")
     public ResultUntil endMessages(Integer teamid){
-        ResultUntil resultUntil = new ResultUntil(this.personalDataService.teamPersonalMessgeByTeamId(teamid));
-
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.teamPersonalMessgeByTeamId(teamid));
     }
     @GetMapping("end/getAllJoinMessages")
     public ResultUntil getAllJoinMessages(Integer teamid){
-        ResultUntil resultUntil = new ResultUntil(this.personalDataService.getAllJoinMessages(teamid));
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.getAllJoinMessages(teamid));
     }
     @PostMapping("end/getMyMessages")
     public ResultUntil endGetMyMessages(@RequestBody PersonalData personalData){
-        ResultUntil resultUntil = new ResultUntil(this.personalDataService.endQueryAll(personalData));
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.endQueryAll(personalData));
     }
     @PostMapping("end/getMyJoinMessages")
     public ResultUntil getMyJoinMessages(@RequestBody PersonalData personalData){
-        ResultUntil resultUntil = new ResultUntil(this.personalDataService.endQueryJoinAll(personalData));
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.endQueryJoinAll(personalData));
     }
     @PostMapping("end/deleteById")
     public ResultUntil deleteById(@RequestBody PersonalData personalData){
-        ResultUntil resultUntil= new ResultUntil(this.personalDataService.deleteById(personalData.getId()));
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.deleteById(personalData.getId()));
     }
     @PostMapping("end/agreeById")
     public ResultUntil agreeById(@RequestBody PersonalData personalData){
-        ResultUntil resultUntil= new ResultUntil(this.personalDataService.agreeById(personalData.getId()));
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.agreeById(personalData.getId()));
     }
     //拒绝志愿者加入队伍
     @PostMapping("end/refuseById")
