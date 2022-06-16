@@ -189,11 +189,11 @@
     </select>
     <select id="endQueryJoinAll" resultMap="BaseResultMap">
         select DISTINCT charity.personal_data.*,mark
-        from charity.personal_data,`volunteers_teamid`
+        from charity.personal_data a,`volunteers_teamid` b
         <where>
-            volunteers_teamid.teamid=#{teamid}
+            b.teamid=#{teamid}
             and mark in (-1,0)
-            and volunteers_teamid.id=charity.personal_data.id
+            and a.id=b.id
             <if test="id != null">
                 and charity.personal_data.id = #{id}
             </if>
@@ -325,7 +325,7 @@
     </select>
     <select id="getAllJoinMessages" resultMap="TeamPersonal">
         SELECT * FROM `volunteers_teamid`,personal_data
-        where volunteers_teamid.id=personal_data.id and mark=2 and volunteers_teamid.teamid=#{teamid}
+        where volunteers_teamid.id=personal_data.id and mark in (0,-1) and volunteers_teamid.teamid=#{teamid}
     </select>
     <select id="getMyMessages" resultMap="BaseResultMap">
         select * from charity.personal_data

@@ -1,5 +1,6 @@
 package net.cqwu.charity_web.controller;
 
+import lombok.Synchronized;
 import net.cqwu.charity_commons.pojo.PersonalData;
 import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_service.service.PersonalDataService;
@@ -11,7 +12,9 @@ import net.cqwu.charity_web.until.UserUpNewPassWordUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,6 +84,7 @@ public class UsersController {
         map.put("data",map1);
         return map;
     }
+    @Synchronized
     @PostMapping("TeamLogin") //第一步请求
     public Integer TeamLogin(@RequestBody User user) {
         if(this.userService.Login(user)>0){
@@ -152,5 +156,14 @@ public class UsersController {
             return new ResultUntil(this.userService.deleteById(user.getId()));
         }
         return new ResultUntil(false);
+    }
+    @GetMapping("getMapData")
+    public List<Object> getMapData(){
+        List<Object> list = new ArrayList<>();
+        Map<Object,Object> map1 = new HashMap<>();
+        map1.put("name","永川区");
+        map1.put("value",1234);
+        list.add(map1);
+        return list;
     }
 }
