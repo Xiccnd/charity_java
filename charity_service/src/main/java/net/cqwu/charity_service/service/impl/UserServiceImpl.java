@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     public Integer insert(User user,String password1) {
         if ( !"".equals(user.getPassword()) && user.getPassword().equals(password1)){
             this.userDao.insert(user);
-            return 2;
+            return this.userDao.queryByName(user.getName()).getId();
         }
         return -1;
     }

@@ -39,7 +39,7 @@ public class NewsController {
         return this.newsService.queryAll(news);
     }
     @GetMapping("queryOne")
-    public List<News> queryOne(Integer newsid) {
-        return this.newsService.queryOneByNewsId(newsid);
+    public List<News> queryOne(News news) {
+        return this.newsService.queryOneByNewsId(news);
     }
 }

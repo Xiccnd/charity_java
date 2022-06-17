@@ -62,5 +62,5 @@ public interface NewsDao {
      */
     int deleteById(Integer newsid);
 
-    List<News> queryOneByNewsId(Integer newsid);
+    List<News> queryOneByNewsId(News news);
 }

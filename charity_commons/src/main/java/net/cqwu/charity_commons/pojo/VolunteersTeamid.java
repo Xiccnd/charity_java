@@ -23,10 +23,6 @@ public class VolunteersTeamid implements Serializable {
     private Date joinTime;
     private String mark;
 
-    public void setJoinTime(Date joinTime) {
-        this.joinTime = joinTime;
-    }
-
     public String getMark() {
         return mark;
     }

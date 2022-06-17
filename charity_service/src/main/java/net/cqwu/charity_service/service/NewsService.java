@@ -19,7 +19,7 @@ public interface NewsService {
      */
     News queryById(Integer newsid);
     List<News> queryAll(News news);
-    List<News> queryOneByNewsId(Integer newsid);
+    List<News> queryOneByNewsId(News news);
     /**
      * 查询多条数据
      *

@@ -36,6 +36,8 @@ public class VolunteerTeamcensorController {
     private VolunteerTeamService volunteerTeamService;
     @Resource
     private UserService userService;
+    @Resource
+    private TeamServiceService teamServiceService;
     /**
      * 通过主键查询单条数据
      *
@@ -71,19 +73,28 @@ public class VolunteerTeamcensorController {
         InsertTeam insertTeam = this.volunteerTeamcensorService.getOneOfToInsert(volunteerTeamcensor.getTeamid());
 
         User u = insertTeam.getUser();
+        u.setPerid(3);
         u.setTelephone(insertTeam.getVolunteerTeam().getTelephone());
         Integer uid = this.userService.insert(u,insertTeam.getUser().getPassword());
 
         VolunteerTeam volunteerTeam = this.volunteerTeamService.insert(insertTeam.getVolunteerTeam());
 
-        VolunteersTeamid v = insertTeam.getVolunteersTeamid();
-        v.setJoinTime(new Date(System.currentTimeMillis()));
+        VolunteersTeamid v = new VolunteersTeamid();
+        v.setJoinTime(new Date());
         v.setMark("3");
         v.setId(uid);
         v.setTeamid(volunteerTeam.getTeamid());
-        VolunteersTeamid volunteersTeamid = this.volunteersTeamidService.insert(v);
+        this.Test(v);
+
+        TeamService teamService = new TeamService();
+        teamService.setTeamid(v.getTeamid());
+        teamService.setSid(Integer.parseInt(this.volunteerTeamcensorService.queryById(volunteerTeamcensor.getTeamid()).getSid()));
+        this.teamServiceService.insert(teamService);
 
         volunteerTeamcensor.setStatus("审核通过");
-        return new ResultUntil(this.volunteerTeamcensorService.update(volunteerTeamcensor));
+        return new ResultUntil(this.volunteerTeamcensorService.deleteById(volunteerTeamcensor.getTeamid()));
+    }
+    public void Test(VolunteersTeamid volunteersTeamid){
+        this.volunteersTeamidService.insert(volunteersTeamid);
     }
 }

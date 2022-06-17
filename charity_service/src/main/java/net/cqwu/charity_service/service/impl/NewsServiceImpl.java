@@ -36,8 +36,8 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> queryOneByNewsId(Integer newsid) {
-        return this.newsDao.queryOneByNewsId(newsid);
+    public List<News> queryOneByNewsId(News news) {
+        return this.newsDao.queryOneByNewsId(news);
     }
 
     /**
