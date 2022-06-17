@@ -113,7 +113,15 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from charity.volunteers_teamid where id = #{id} and teamid=#{teamid}
+        delete from charity.volunteers_teamid
+        <where>
+            <if test="id != null and id != ''">
+                and id=#{id}
+            </if>
+            <if test="teamid != null and teamid != ''">
+                and teamid=#{teamid}
+            </if>
+        </where>
     </delete>
 
 

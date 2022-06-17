@@ -18,7 +18,7 @@ public interface ProjectStatusService {
      * @return 实例对象
      */
     ProjectStatus queryById(Integer projectStatus);
-
+    List<ProjectStatus> queryAll(ProjectStatus projectStatus);
     /**
      * 查询多条数据
      *

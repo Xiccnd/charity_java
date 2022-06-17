@@ -34,7 +34,7 @@ public class TerritoryController {
         return this.territoryService.queryById(id);
     }
     @GetMapping("selectAll")
-    public List<Territory> selectAll(Territory territory) {
-        return this.territoryService.queryAll(territory);
+    public List<Territory> selectAll() {
+        return this.territoryService.queryAll(new Territory());
     }
 }

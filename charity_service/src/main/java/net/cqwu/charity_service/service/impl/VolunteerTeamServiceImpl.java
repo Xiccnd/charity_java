@@ -1,6 +1,7 @@
 package net.cqwu.charity_service.service.impl;
 
 import net.cqwu.charity_commons.pojo.VolunteerTeam;
+import net.cqwu.charity_commons.pojo.VolunteerTeamUntil;
 import net.cqwu.charity_dao.mapper.VolunteerTeamDao;
 import net.cqwu.charity_service.service.VolunteerTeamService;
 import org.springframework.stereotype.Service;
@@ -83,7 +84,7 @@ public class VolunteerTeamServiceImpl implements VolunteerTeamService {
     }
 
     @Override
-    public List<VolunteerTeam> queryAll(VolunteerTeam volunteerTeam) {
+    public List<VolunteerTeamUntil> queryAll(VolunteerTeamUntil volunteerTeam) {
         return this.volunteerTeamDao.queryAll(volunteerTeam);
     }
 }

@@ -1,5 +1,6 @@
 package net.cqwu.charity_dao.mapper;
 
+import net.cqwu.charity_commons.pojo.InsertTeam;
 import net.cqwu.charity_commons.pojo.VolunteerTeamcensor;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface VolunteerTeamcensorDao {
      * @return 实例对象
      */
     VolunteerTeamcensor queryById(Integer teamid);
-
+    InsertTeam getOneOfToInsert(Integer teamid);
     /**
      * 查询指定行数据
      *

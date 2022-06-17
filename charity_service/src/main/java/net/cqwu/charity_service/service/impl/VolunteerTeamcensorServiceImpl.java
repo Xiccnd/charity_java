@@ -1,6 +1,7 @@
 package net.cqwu.charity_service.service.impl;
 
 
+import net.cqwu.charity_commons.pojo.InsertTeam;
 import net.cqwu.charity_commons.pojo.VolunteerTeamcensor;
 import net.cqwu.charity_dao.mapper.VolunteerTeamcensorDao;
 import net.cqwu.charity_service.service.VolunteerTeamcensorService;
@@ -43,6 +44,11 @@ public class VolunteerTeamcensorServiceImpl implements VolunteerTeamcensorServic
         return this.volunteerTeamcensorDao.queryAllByLimit(offset, limit);
     }
 
+    @Override
+    public List<VolunteerTeamcensor> queryAll(VolunteerTeamcensor volunteerTeamcensor) {
+        return this.volunteerTeamcensorDao.queryAll(volunteerTeamcensor);
+    }
+
     /**
      * 新增数据
      *
@@ -65,6 +71,11 @@ public class VolunteerTeamcensorServiceImpl implements VolunteerTeamcensorServic
     public VolunteerTeamcensor update(VolunteerTeamcensor volunteerTeamcensor) {
         this.volunteerTeamcensorDao.update(volunteerTeamcensor);
         return this.queryById(volunteerTeamcensor.getTeamid());
+    }
+
+    @Override
+    public InsertTeam getOneOfToInsert(Integer teamid) {
+        return this.volunteerTeamcensorDao.getOneOfToInsert(teamid);
     }
 
     /**

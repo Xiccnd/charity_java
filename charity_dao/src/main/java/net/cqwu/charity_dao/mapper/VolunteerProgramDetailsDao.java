@@ -39,7 +39,7 @@ public interface VolunteerProgramDetailsDao {
      * @param volunteerProgramDetails 实例对象
      * @return 对象列表
      */
-    List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetails volunteerProgramDetails);
+    List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetailsUntil volunteerProgramDetails);
     List<VolunteerProgramDetailsUntil> queryAllByTeamIdANDName(VolunteerProgramDetails volunteerProgramDetails);
     /**
      * 新增数据

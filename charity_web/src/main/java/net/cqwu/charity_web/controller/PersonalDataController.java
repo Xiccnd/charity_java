@@ -1,8 +1,11 @@
 package net.cqwu.charity_web.controller;
 
+import net.cqwu.charity_commons.pojo.EndPersonalDataUntil;
 import net.cqwu.charity_commons.pojo.PersonalData;
 import net.cqwu.charity_commons.pojo.TeamPersonal;
+import net.cqwu.charity_commons.pojo.User;
 import net.cqwu.charity_service.service.PersonalDataService;
+import net.cqwu.charity_service.service.UserService;
 import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +27,8 @@ public class PersonalDataController {
      */
     @Resource
     private PersonalDataService personalDataService;
-
+    @Resource
+    private UserService userService;
     /**
      * 通过主键查询单条数据
      *
@@ -33,7 +37,13 @@ public class PersonalDataController {
      */
     @GetMapping("selectOne")
     public ResultUntil selectOne(Integer id) {
-        return new ResultUntil(this.personalDataService.queryById(id));
+        EndPersonalDataUntil endPersonalDataUntil = new EndPersonalDataUntil();
+        endPersonalDataUntil.setPersonalData(this.personalDataService.queryById(id));
+        User u = this.userService.queryByName(endPersonalDataUntil.getPersonalData().getUname());
+        endPersonalDataUntil.setUid(u.getId());
+        endPersonalDataUntil.setPassword(u.getPassword());
+        endPersonalDataUntil.setName(u.getName());
+        return new ResultUntil(endPersonalDataUntil);
     }
     @GetMapping("end/getJoinIn")
     public ResultUntil endGetJoinIn(String teamid){
@@ -70,9 +80,7 @@ public class PersonalDataController {
     //拒绝志愿者加入队伍
     @PostMapping("end/refuseById")
     public ResultUntil refuseById(@RequestBody PersonalData personalData){
-        ResultUntil resultUntil= new ResultUntil(this.personalDataService.refuseById(personalData.getId(),personalData.getTeamid()));
-        System.out.println(resultUntil);
-        return resultUntil;
+        return new ResultUntil(this.personalDataService.refuseById(personalData.getId(),personalData.getTeamid()));
     }
     @PostMapping("/getMyMessages")
     public PersonalData getMyMessages(@RequestBody PersonalData personalData){
@@ -80,7 +88,17 @@ public class PersonalDataController {
     }
     @PostMapping("upData")
     public void upDate(@RequestBody PersonalData personalData){
+        this.personalDataService.update(personalData);
+    }
+
+    @PostMapping("end/upData")
+    public ResultUntil endUpDate(@RequestBody EndPersonalDataUntil personalData){
         System.out.println(personalData);
-        System.out.println(this.personalDataService.update(personalData));
+        User user = new User();
+        user.setPassword(personalData.getPassword());
+        user.setName(personalData.getUname());
+        user.setId(personalData.getUid());
+        this.userService.update(user);
+        return new ResultUntil(this.personalDataService.update(personalData));
     }
 }

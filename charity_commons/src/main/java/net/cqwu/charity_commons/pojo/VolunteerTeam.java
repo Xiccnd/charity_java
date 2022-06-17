@@ -1,5 +1,7 @@
 package net.cqwu.charity_commons.pojo;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2022-06-06 16:17:58
  */
+@Data
 public class VolunteerTeam implements Serializable {
     private static final long serialVersionUID = 216341070279251076L;
     

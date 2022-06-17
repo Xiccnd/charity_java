@@ -98,7 +98,7 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     }
 
     @Override
-    public List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetails volunteerProgramDetails) {
+    public List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetailsUntil volunteerProgramDetails) {
         return this.volunteerProgramDetailsDao.queryAll(volunteerProgramDetails);
     }
 

@@ -5,6 +5,7 @@ import net.cqwu.charity_service.service.ProjectStatusService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (ProjectStatus)表控制层
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
  * @since 2022-06-06 16:53:01
  */
 @RestController
-@RequestMapping("projectStatus")
+        @RequestMapping("projectStatus")
 @CrossOrigin(allowedHeaders="*",value="*",originPatterns="*")
 public class ProjectStatusController {
     /**
@@ -31,6 +32,10 @@ public class ProjectStatusController {
     @GetMapping("selectOne")
     public ProjectStatus selectOne(Integer id) {
         return this.projectStatusService.queryById(id);
+    }
+    @GetMapping("queryAll")
+    public List<ProjectStatus> queryAll(){
+        return this.projectStatusService.queryAll(new ProjectStatus());
     }
 
 }

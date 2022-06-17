@@ -1,14 +1,17 @@
 package net.cqwu.charity_web.controller;
 
 
-import net.cqwu.charity_commons.pojo.VolunteerTeamcensor;
-import net.cqwu.charity_service.service.ClassOfServiceService;
-import net.cqwu.charity_service.service.VolunteerTeamcensorService;
+import javafx.geometry.Pos;
+import net.cqwu.charity_commons.pojo.*;
+import net.cqwu.charity_service.service.*;
 import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * (VolunteerTeamcensor)表控制层
@@ -27,7 +30,12 @@ public class VolunteerTeamcensorController {
     private ClassOfServiceService classOfServiceService;
     @Resource
     private VolunteerTeamcensorService volunteerTeamcensorService;
-
+    @Resource
+    private VolunteersTeamidService volunteersTeamidService;
+    @Resource
+    private VolunteerTeamService volunteerTeamService;
+    @Resource
+    private UserService userService;
     /**
      * 通过主键查询单条数据
      *
@@ -48,5 +56,34 @@ public class VolunteerTeamcensorController {
         volunteerTeamcensor.setSid(sid.toString());
         volunteerTeamcensor.setStatus("1");
         this.volunteerTeamcensorService.insert(volunteerTeamcensor);
+    }
+    @GetMapping("queryAll")
+    public ResultUntil queryAll(VolunteerTeamcensor volunteerTeamcensor) {
+        return new ResultUntil(this.volunteerTeamcensorService.queryAll(volunteerTeamcensor));
+    }
+    @GetMapping("delete")
+    public ResultUntil delete(VolunteerTeamcensor volunteerTeamcensor) {
+        volunteerTeamcensor.setStatus("审核未通过");
+        return new ResultUntil(this.volunteerTeamcensorService.update(volunteerTeamcensor));
+    }
+    @GetMapping("update")
+    public ResultUntil update(VolunteerTeamcensor volunteerTeamcensor) throws ParseException {
+        InsertTeam insertTeam = this.volunteerTeamcensorService.getOneOfToInsert(volunteerTeamcensor.getTeamid());
+
+        User u = insertTeam.getUser();
+        u.setTelephone(insertTeam.getVolunteerTeam().getTelephone());
+        Integer uid = this.userService.insert(u,insertTeam.getUser().getPassword());
+
+        VolunteerTeam volunteerTeam = this.volunteerTeamService.insert(insertTeam.getVolunteerTeam());
+
+        VolunteersTeamid v = insertTeam.getVolunteersTeamid();
+        v.setJoinTime(new Date(System.currentTimeMillis()));
+        v.setMark("3");
+        v.setId(uid);
+        v.setTeamid(volunteerTeam.getTeamid());
+        VolunteersTeamid volunteersTeamid = this.volunteersTeamidService.insert(v);
+
+        volunteerTeamcensor.setStatus("审核通过");
+        return new ResultUntil(this.volunteerTeamcensorService.update(volunteerTeamcensor));
     }
 }

@@ -29,7 +29,10 @@ public class ProjectStatusServiceImpl implements ProjectStatusService {
     public ProjectStatus queryById(Integer projectStatus) {
         return this.projectStatusDao.queryById(projectStatus);
     }
-
+    @Override
+    public List<ProjectStatus> queryAll(ProjectStatus projectStatus){
+        return this.projectStatusDao.queryAll(projectStatus);
+    }
     /**
      * 查询多条数据
      *

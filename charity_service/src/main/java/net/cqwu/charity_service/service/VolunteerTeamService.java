@@ -1,6 +1,8 @@
 package net.cqwu.charity_service.service;
 
 import net.cqwu.charity_commons.pojo.VolunteerTeam;
+import net.cqwu.charity_commons.pojo.VolunteerTeamUntil;
+
 import java.util.List;
 
 /**
@@ -52,5 +54,5 @@ public interface VolunteerTeamService {
      */
     boolean deleteById(Integer teamid);
 
-    List<VolunteerTeam> queryAll(VolunteerTeam volunteerTeam);
+    List<VolunteerTeamUntil> queryAll(VolunteerTeamUntil volunteerTeam);
 }

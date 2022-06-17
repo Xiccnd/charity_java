@@ -20,7 +20,24 @@
         <result property="status" column="status" jdbcType="VARCHAR"/>
         <result property="sid" column="sid" jdbcType="VARCHAR"/>
     </resultMap>
-
+    <resultMap id="InsertTeam" type="InsertTeam">
+        <collection property="user" ofType="User">
+            <result property="name" column="uname" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="volunteerTeam" ofType="VolunteerTeam">
+            <result property="contact" column="contact" jdbcType="VARCHAR"/>
+            <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="regisDepartment" column="regis_department" jdbcType="VARCHAR"/>
+            <result property="registrationAuthority" column="registration_authority" jdbcType="VARCHAR"/>
+            <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+            <result property="registerDate" column="register_date" jdbcType="TIMESTAMP"/>
+            <result property="detailedAddress" column="detailed_address" jdbcType="VARCHAR"/>
+            <result property="liaisonOrganization" column="liaison_organization" jdbcType="VARCHAR"/>
+            <result property="teamProfile" column="team_profile" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
@@ -28,7 +45,11 @@
         from charity.volunteer_teamcensor
         where teamid = #{teamid}
     </select>
-
+    <select id="getOneOfToInsert" resultMap="InsertTeam">
+        select *
+        from volunteer_teamcensor
+        where teamid=#{teamid}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
@@ -50,7 +71,7 @@
                 and contact = #{contact}
             </if>
             <if test="teamName != null and teamName != ''">
-                and team_name = #{teamName}
+                and team_name like "%" #{teamName} "%"
             </if>
             <if test="address != null and address != ''">
                 and address = #{address}

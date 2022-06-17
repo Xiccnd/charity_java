@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service;
 
+import net.cqwu.charity_commons.pojo.InsertTeam;
 import net.cqwu.charity_commons.pojo.VolunteerTeamcensor;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public interface VolunteerTeamcensorService {
      * @return 对象列表
      */
     List<VolunteerTeamcensor> queryAllByLimit(int offset, int limit);
-
+    List<VolunteerTeamcensor> queryAll(VolunteerTeamcensor volunteerTeamcensor);
     /**
      * 新增数据
      *
@@ -45,6 +46,7 @@ public interface VolunteerTeamcensorService {
      */
     VolunteerTeamcensor update(VolunteerTeamcensor volunteerTeamcensor);
 
+    InsertTeam getOneOfToInsert(Integer teamid);
     /**
      * 通过主键删除数据
      *

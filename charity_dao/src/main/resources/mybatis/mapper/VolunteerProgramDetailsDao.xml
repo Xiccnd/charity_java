@@ -37,6 +37,7 @@
         <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
         <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+        <result property="serviceName" column="service_name" jdbcType="VARCHAR"/>
     </resultMap>
     <resultMap id="VolunteerAllMessge" type="net.cqwu.charity_commons.pojo.VolunteerAllMessge">
         <!--@Table volunteer_program_details-->
@@ -87,11 +88,16 @@
     <select id="queryAll" resultMap="Volunteer">
         select
             *
-        from charity.volunteer_program_details,charity.project_status
+        from charity.volunteer_program_details,charity.project_status,class_of_service,project_service
         <where>
             volunteer_program_details.project_status=project_status.project_status
-            <if test="pid != null">
-                and pid = #{pid}
+            and project_service.pid=volunteer_program_details.pid
+            and class_of_service.sid=project_service.sid
+            <if test="serviceName != null and serviceName != ''">
+               and class_of_service.service_name=#{serviceName}
+            </if>
+            <if test="pid != null and pid != ''">
+                and volunteer_program_details.pid = #{pid}
             </if>
             <if test="pname != null and pname != ''">
                 and pname like "%" #{pname} "%"
@@ -132,8 +138,8 @@
             <if test="teamid != null">
                 and teamid = #{teamid}
             </if>
-            <if test="projectStatus != null">
-                and project_status = #{projectStatus}
+            <if test="projectStatus != null and projectStatus != ''">
+                and volunteer_program_details.project_status = #{projectStatus}
             </if>
         </where>
     </select>

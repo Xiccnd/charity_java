@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service;
 
+import net.cqwu.charity_commons.pojo.EndPersonalDataUntil;
 import net.cqwu.charity_commons.pojo.PersonalData;
 import net.cqwu.charity_commons.pojo.TeamPersonal;
 
@@ -48,6 +49,7 @@ public interface PersonalDataService {
      * @return 实例对象
      */
     PersonalData update(PersonalData personalData);
+    EndPersonalDataUntil endUpdate(EndPersonalDataUntil personalData);
 
     /**
      * 通过主键删除数据

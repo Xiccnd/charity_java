@@ -195,7 +195,7 @@
             and mark in (-1,0)
             and a.id=b.id
             <if test="id != null">
-                and charity.personal_data.id = #{id}
+                and a.id = #{id}
             </if>
             <if test="name != null and name != ''">
                 and name like "%" #{name} "%"
@@ -309,7 +309,14 @@
                 area = #{area},
             </if>
         </set>
-        where uname = #{uname}
+        <where>
+            <if test="uname != null and uname !=''">
+                and uname = #{uname}
+            </if>
+            <if test="id != null and id !=''">
+                and id = #{id}
+            </if>
+        </where>
     </update>
 
     <!--通过主键删除-->

@@ -52,7 +52,7 @@
                 and pid = #{pid}
             </if>
             <if test="pname != null and pname != ''">
-                and pname = #{pname}
+                and pname like "%" #{pname} "%"
             </if>
             <if test="posts != null">
                 and posts = #{posts}

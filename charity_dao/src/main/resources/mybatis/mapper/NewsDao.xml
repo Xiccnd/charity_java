@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.cqwu.charity_dao.mapper.NewsDao">
+
+    <resultMap id="BaseResultMap" type="News">
+        <!--@Table news-->
+        <result property="newsid" column="newsID" jdbcType="INTEGER"/>
+        <result property="newstitle" column="newsTitle" jdbcType="VARCHAR"/>
+        <result property="newstext" column="newsText" jdbcType="VARCHAR"/>
+        <result property="newstime" column="newsTime" jdbcType="TIMESTAMP"/>
+        <result property="newssource" column="newsSource" jdbcType="VARCHAR"/>
+        <result property="newstype" column="newsType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          newsID, newsTitle, newsText, newsTime, newsSource, newsType
+        from charity.news
+        where newsID = #{newsid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          newsID, newsTitle, newsText, newsTime, newsSource, newsType
+        from charity.news
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          newsID, newsTitle, newsTime, newsType
+        from charity.news
+        <where>
+            <if test="newsid != null">
+                and newsID = #{newsid}
+            </if>
+            <if test="newstype != null and newstype != ''">
+                and newsType = #{newstype}
+            </if>
+        </where>
+    </select>
+    <select id="queryOneByNewsId" resultMap="BaseResultMap">
+        select
+        newsTitle,newsTime, newsSource,newsText
+        from charity.news
+        <where>
+            <if test="newsid != null">
+                and newsID = #{newsid}
+            </if>
+            <if test="newstype != null and newstype != ''">
+                and newsType = #{newstype}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="newsid" useGeneratedKeys="true">
+        insert into charity.news(newsTitle, newsText, newsTime, newsSource, newsType)
+        values (#{newstitle}, #{newstext}, #{newstime}, #{newssource}, #{newstype})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update charity.news
+        <set>
+            <if test="newstitle != null and newstitle != ''">
+                newsTitle = #{newstitle},
+            </if>
+            <if test="newstext != null and newstext != ''">
+                newsText = #{newstext},
+            </if>
+            <if test="newstime != null">
+                newsTime = #{newstime},
+            </if>
+            <if test="newssource != null and newssource != ''">
+                newsSource = #{newssource},
+            </if>
+            <if test="newstype != null and newstype != ''">
+                newsType = #{newstype},
+            </if>
+        </set>
+        where newsID = #{newsid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from charity.news where newsID = #{newsid}
+    </delete>
+
+</mapper>

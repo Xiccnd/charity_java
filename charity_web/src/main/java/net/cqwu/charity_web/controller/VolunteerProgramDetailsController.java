@@ -1,11 +1,9 @@
 package net.cqwu.charity_web.controller;
 
-import net.cqwu.charity_commons.pojo.ClassOfService;
-import net.cqwu.charity_commons.pojo.VolunteerAllMessge;
-import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
-import net.cqwu.charity_commons.pojo.VolunterProgramPost;
+import net.cqwu.charity_commons.pojo.*;
+import net.cqwu.charity_service.service.PostService;
 import net.cqwu.charity_service.service.VolunteerProgramDetailsService;
-import net.cqwu.charity_commons.pojo.VolunteerProgramDetailsUntil;
+import net.cqwu.charity_service.service.VolunteersProjectService;
 import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +25,10 @@ public class VolunteerProgramDetailsController {
      */
     @Resource
     private VolunteerProgramDetailsService volunteerProgramDetailsService;
-
+    @Resource
+    private VolunteersProjectService volunteersProjectService;
+    @Resource
+    private PostService postService;
     /**
      * 通过主键查询单条数据
      *
@@ -57,13 +58,27 @@ public class VolunteerProgramDetailsController {
     public List<ClassOfService> classOfServices(Integer id){
         return this.volunteerProgramDetailsService.volunteerProgramClass(id);
     }
-    @RequestMapping("selectAll")
-    public List<VolunteerProgramDetailsUntil> selectAll(VolunteerProgramDetails volunteerProgramDetails) {
+    @GetMapping("selectAll")
+    public List<VolunteerProgramDetailsUntil> selectAll(VolunteerProgramDetailsUntil volunteerProgramDetails) {
         return this.volunteerProgramDetailsService.queryAll(volunteerProgramDetails);
+    }
+    @GetMapping("end/selectAll")
+    public ResultUntil endSelectAll(VolunteerProgramDetailsUntil volunteerProgramDetails) {
+        return new ResultUntil(this.volunteerProgramDetailsService.queryAll(volunteerProgramDetails));
     }
     @GetMapping("VolunteerAllMessage")
     public List<VolunteerAllMessge> VolunteerAllMessge(Integer id) {
         return this.volunteerProgramDetailsService.selectVolunteerAllMessgeByID(id);
+    }
+    @GetMapping("end/DeleteProject")
+    public ResultUntil endDeleteProject(Integer pid){
+        List<VolunteersProject> volunteersProjects=this.volunteersProjectService.queryByIdList(pid);
+        VolunteersProject volunteersProject= new VolunteersProject();volunteersProject.setPid(pid);
+        this.volunteersProjectService.deleteById(volunteersProject);
+        for (VolunteersProject p: volunteersProjects) {
+            this.postService.deleteById(p.getPostid());
+        }
+        return new ResultUntil(this.volunteerProgramDetailsService.deleteById(pid));
     }
 
 }

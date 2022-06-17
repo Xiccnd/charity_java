@@ -58,7 +58,6 @@
         id, uname, telephone, perid
         from charity.user
         <where>
-            perid = 2
             <if test="id != null">
                 and id = #{id}
             </if>

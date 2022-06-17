@@ -1,5 +1,6 @@
 package net.cqwu.charity_service.service.impl;
 
+import net.cqwu.charity_commons.pojo.EndPersonalDataUntil;
 import net.cqwu.charity_commons.pojo.PersonalData;
 import net.cqwu.charity_commons.pojo.TeamPersonal;
 import net.cqwu.charity_dao.mapper.PersonalDataDao;
@@ -83,8 +84,13 @@ public class PersonalDataServiceImpl implements PersonalDataService {
      */
     @Override
     public PersonalData update(PersonalData personalData) {
-        System.out.println(this.personalDataDao.update(personalData));
+        this.personalDataDao.update(personalData);
         return this.queryById(personalData.getId());
+    }
+
+    @Override
+    public EndPersonalDataUntil endUpdate(EndPersonalDataUntil personalData) {
+        return null;
     }
 
     /**

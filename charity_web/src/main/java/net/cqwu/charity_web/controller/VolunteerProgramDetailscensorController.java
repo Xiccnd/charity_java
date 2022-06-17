@@ -1,5 +1,7 @@
 package net.cqwu.charity_web.controller;
 
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetails;
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetailsUntil;
 import net.cqwu.charity_commons.pojo.VolunteerProgramDetailscensor;
 
 import net.cqwu.charity_service.service.VolunteerProgramDetailscensorService;
@@ -35,8 +37,8 @@ public class VolunteerProgramDetailscensorController {
         return this.volunteerProgramDetailscensorService.queryById(id);
     }
     @GetMapping("getAll")
-    public ResultUntil getAll(){
-        return new ResultUntil(this.volunteerProgramDetailscensorService.queryAll(new VolunteerProgramDetailscensor()));
+    public ResultUntil getAll(VolunteerProgramDetailscensor volunteerProgramDetailscensor){
+        return new ResultUntil(this.volunteerProgramDetailscensorService.queryAll(volunteerProgramDetailscensor));
     }
     @PostMapping("addTeamProject")
     public ResultUntil addTeamProject(@RequestBody VolunteerProgramDetailscensor volunteerProgramDetailscensor){

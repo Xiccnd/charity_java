@@ -16,6 +16,22 @@
         <result property="liaisonOrganization" column="liaison_organization" jdbcType="VARCHAR"/>
         <result property="teamProfile" column="team_profile" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="Team" type="net.cqwu.charity_commons.pojo.VolunteerTeamUntil">
+        <!--@Table volunteer_team-->
+        <result property="teamid" column="teamid" jdbcType="INTEGER"/>
+        <result property="contact" column="contact" jdbcType="VARCHAR"/>
+        <result property="teamName" column="team_name" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="regisDepartment" column="regis_department" jdbcType="VARCHAR"/>
+        <result property="registrationAuthority" column="registration_authority" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="registerDate" column="register_date" jdbcType="TIMESTAMP"/>
+        <result property="detailedAddress" column="detailed_address" jdbcType="VARCHAR"/>
+        <result property="liaisonOrganization" column="liaison_organization" jdbcType="VARCHAR"/>
+        <result property="teamProfile" column="team_profile" jdbcType="VARCHAR"/>
+        <result property="sid" column="sid" jdbcType="INTEGER"/>
+        <result property="serviceName" column="service_name" jdbcType="VARCHAR"/>
+    </resultMap>
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
@@ -36,19 +52,20 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="BaseResultMap">
+    <select id="queryAll" resultMap="Team">
         select
-          teamid, contact, team_name, address, regis_department, registration_authority, telephone, register_date, detailed_address, liaison_organization, team_profile
-        from charity.volunteer_team
+            *
+        from charity.volunteer_team a,team_service b,class_of_service c
         <where>
+                a.teamid=b.teamid and b.sid=c.sid
             <if test="teamid != null">
-                and teamid = #{teamid}
+                and a.teamid = #{teamid}
             </if>
             <if test="contact != null and contact != ''">
                 and contact = #{contact}
             </if>
             <if test="teamName != null and teamName != ''">
-                and team_name = #{teamName}
+                and team_name like "%" #{teamName} "%"
             </if>
             <if test="address != null and address != ''">
                 and address = #{address}
@@ -73,6 +90,12 @@
             </if>
             <if test="teamProfile != null and teamProfile != ''">
                 and team_profile = #{teamProfile}
+            </if>
+            <if test="sid != null">
+                and c.sid = #{sid}
+            </if>
+            <if test="serviceName != null and serviceName != ''">
+                and c.service_name = #{serviceName}
             </if>
         </where>
     </select>

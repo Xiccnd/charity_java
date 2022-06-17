@@ -61,6 +61,6 @@ public interface VolunteerProgramDetailsService {
      *
      */
     List<ClassOfService> volunteerProgramClass(Integer id);
-    List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetails volunteerProgramDetails);
+    List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetailsUntil volunteerProgramDetails);
     List<VolunteerAllMessge>selectVolunteerAllMessgeByID(Integer id);
 }

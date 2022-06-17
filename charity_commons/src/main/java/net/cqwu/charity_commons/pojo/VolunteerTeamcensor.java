@@ -1,5 +1,7 @@
 package net.cqwu.charity_commons.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -25,7 +27,7 @@ public class VolunteerTeamcensor implements Serializable {
     private String registrationAuthority;
     
     private String telephone;
-    
+
     private Date registerDate;
     
     private String detailedAddress;

@@ -161,6 +161,12 @@ public class UsersController {
     }
     @PostMapping("usersUpData")
     public ResultUntil usersUpData(@RequestBody User user){
+        user.setPerid(2);
+        return new ResultUntil(UserStatus.upData(this.userService.EndQueryAll(user)));
+    }
+    @PostMapping("TeamUsersUpData")
+    public ResultUntil TeamUsersUpData(@RequestBody User user){
+        user.setPerid(3);
         return new ResultUntil(UserStatus.upData(this.userService.EndQueryAll(user)));
     }
     @PostMapping("deleteUser")
