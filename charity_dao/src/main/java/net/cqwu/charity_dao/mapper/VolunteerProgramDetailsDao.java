@@ -4,6 +4,7 @@ import net.cqwu.charity_commons.pojo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteerProgramDetails)表数据库访问层
@@ -68,5 +69,5 @@ public interface VolunteerProgramDetailsDao {
     List<VolunteerAllMessge> selectVolunteerAllMessgeByID(Integer pid);
     List<VolunterProgramPost>volunteerProgramPost(Integer id);
     List<ClassOfService>volunteerProgramClass(Integer id);
-
+    List<Map<Object,Object>>shengHeJoin(Integer teamid);
 }

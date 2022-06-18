@@ -53,4 +53,5 @@ public interface NewsService {
      */
     boolean deleteById(Integer newsid);
 
+    List<News> findHotNews(News news);
 }

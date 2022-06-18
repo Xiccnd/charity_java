@@ -89,5 +89,9 @@
     <delete id="deleteById">
         delete from charity.news where newsID = #{newsid}
     </delete>
-
+    <select id="findHotNews" resultMap="BaseResultMap">
+        select
+            newsID, newsTitle
+        from charity.news order by newsNum desc LIMIT 8;
+    </select>
 </mapper>

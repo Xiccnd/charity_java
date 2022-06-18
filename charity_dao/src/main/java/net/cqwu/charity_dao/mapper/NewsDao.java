@@ -63,4 +63,6 @@ public interface NewsDao {
     int deleteById(Integer newsid);
 
     List<News> queryOneByNewsId(News news);
+
+    List<News> findHotNews();
 }

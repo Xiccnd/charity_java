@@ -80,5 +80,9 @@ public class VolunteerProgramDetailsController {
         }
         return new ResultUntil(this.volunteerProgramDetailsService.deleteById(pid));
     }
+    @GetMapping("end/selectJoinProjiect")
+    public ResultUntil endSelectJoinProjiect(Integer teamid){
+        return new ResultUntil(this.volunteerProgramDetailsService.shengHeJoin(teamid));
+    }
 
 }

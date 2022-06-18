@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteersProject)表服务实现类
@@ -24,6 +25,11 @@ public class VolunteersProjectServiceImpl implements VolunteersProjectService {
     @Override
     public VolunteersProject queryById(Integer id) {
         return this.volunteersProjectDao.queryById(id);
+    }
+
+    @Override
+    public List<Map<Object, Object>> countNunber(Integer pid) {
+        return this.volunteersProjectDao.countNunber(pid);
     }
 
     /**

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteerProgramDetails)表服务实现类
@@ -33,6 +34,11 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     @Override
     public List<VolunteerProgramDetails> queryByTeamId(Integer teamID) {
         return this.volunteerProgramDetailsDao.queryByTeamId(teamID);
+    }
+
+    @Override
+    public  List<Map<Object,Object>> shengHeJoin(Integer teamid) {
+        return this.volunteerProgramDetailsDao.shengHeJoin(teamid);
     }
 
     /**

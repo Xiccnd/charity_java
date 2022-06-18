@@ -6,11 +6,13 @@ import net.cqwu.charity_commons.pojo.VolunteersProject;
 import net.cqwu.charity_service.service.UserService;
 import net.cqwu.charity_service.service.VolunteersProjectService;
 import net.cqwu.charity_web.until.MyProtectStatus;
+import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteersProject)表控制层
@@ -81,5 +83,14 @@ public class VolunteersProjectController {
             return;
         }
         this.volunteersProjectService.update(volunteersProject);
+    }
+    @GetMapping("countNunber")
+    public ResultUntil countNunber(Integer pid){
+        return new ResultUntil(this.volunteersProjectService.countNunber(pid));
+    }
+    @GetMapping("deleteProjectNum")
+    public ResultUntil deleteProjectNum(VolunteersProject volunteersProject){
+        this.volunteersProjectService.deleteById(volunteersProject);
+        return new ResultUntil(this.volunteersProjectService.countNunber(volunteersProject.getPid()));
     }
 }

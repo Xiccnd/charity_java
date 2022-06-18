@@ -5,6 +5,7 @@ import net.cqwu.charity_commons.pojo.VolunteersProject;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteersProject)表数据库访问层
@@ -67,4 +68,5 @@ public interface VolunteersProjectDao {
     int deleteById(VolunteersProject id);
     List<MyProject>myProject(Integer id);
     List<MyProject>myJoinInProject(Integer id);
+    List<Map<Object,Object>>countNunber(Integer pid);
 }

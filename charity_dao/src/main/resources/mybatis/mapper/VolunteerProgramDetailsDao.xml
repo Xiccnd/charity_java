@@ -271,4 +271,11 @@
     <select id="volunteerProgramClass" resultType="net.cqwu.charity_commons.pojo.ClassOfService">
         SELECT class_of_service.service_name from class_of_service,project_service where project_service.pid=#{id} AND class_of_service.sid = project_service.sid
     </select>
+    <select id="shengHeJoin" resultType="java.util.Map">
+        select *
+        from volunteer_program_details a,post b,personal_data c,volunteers_project d
+        where a.teamid=#{teamid}
+        and a.pid=d.pid and d.postid=b.postid and c.id=d.id
+        and `status` &lt;&gt; "已通过"
+    </select>
 </mapper>

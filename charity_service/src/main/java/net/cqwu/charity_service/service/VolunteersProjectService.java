@@ -3,6 +3,7 @@ package net.cqwu.charity_service.service;
 import net.cqwu.charity_commons.pojo.MyProject;
 import net.cqwu.charity_commons.pojo.VolunteersProject;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteersProject)表服务接口
@@ -19,6 +20,7 @@ public interface VolunteersProjectService {
      * @return 实例对象
      */
     VolunteersProject queryById(Integer id);
+    List<Map<Object,Object>>countNunber(Integer pid);
 
     /**
      * 查询多条数据

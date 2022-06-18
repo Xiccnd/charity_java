@@ -117,4 +117,9 @@
         where a.pid=b.pid and a.postid=c.postid  and e.teamid=b.teamid and a.id=#{id}
         and status &lt;&gt; 1
     </select>
+    <select id="countNunber" resultType="java.util.Map">
+        select a.id,name,telephone,area
+        from volunteers_project a,personal_data b
+        where a.pid=#{pid} and a.id=b.id and a.status &lt;&gt; "加入申请中"
+    </select>
 </mapper>

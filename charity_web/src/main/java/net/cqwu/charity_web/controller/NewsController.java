@@ -42,4 +42,9 @@ public class NewsController {
     public List<News> queryOne(News news) {
         return this.newsService.queryOneByNewsId(news);
     }
+
+    @GetMapping("findHotNews")
+    public List<News> findHotNews(News news) {
+        return this.newsService.findHotNews(news);
+    }
 }

@@ -3,6 +3,7 @@ package net.cqwu.charity_service.service;
 import net.cqwu.charity_commons.pojo.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (VolunteerProgramDetails)表服务接口
@@ -20,6 +21,8 @@ public interface VolunteerProgramDetailsService {
      */
     VolunteerProgramDetails queryById(Integer pid);
     List<VolunteerProgramDetails> queryByTeamId(Integer teamID);
+
+    List<Map<Object,Object>>shengHeJoin(Integer teamid);
     /**
      * 查询多条数据
      *
