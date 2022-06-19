@@ -44,13 +44,13 @@ public class VolunteerTeamcensor implements Serializable {
     
     private String sid;
 
-    private Integer[] sids;
+    private Integer sids;
 
-    public Integer[] getSids() {
+    public Integer getSids() {
         return sids;
     }
 
-    public void setSids(Integer[] sids) {
+    public void setSids(Integer sids) {
         this.sids = sids;
     }
 

@@ -50,12 +50,8 @@ public class VolunteerTeamcensorController {
     }
     @PostMapping("Add")
     public void add(@RequestBody VolunteerTeamcensor volunteerTeamcensor){
-        StringBuffer sid = new StringBuffer();
-        for (int i = 0; i < volunteerTeamcensor.getSids().length; i++) {
-            sid.append(this.classOfServiceService.queryById(volunteerTeamcensor.getSids()[i]).getServiceName()+" ");
-        }
         volunteerTeamcensor.setRegisterDate(new Date(System.currentTimeMillis()));
-        volunteerTeamcensor.setSid(sid.toString());
+        volunteerTeamcensor.setSid(this.classOfServiceService.queryById(volunteerTeamcensor.getSids()).getServiceName());
         volunteerTeamcensor.setStatus("1");
         this.volunteerTeamcensorService.insert(volunteerTeamcensor);
     }
