@@ -84,7 +84,9 @@ public class VolunteerTeamcensorController {
 
         TeamService teamService = new TeamService();
         teamService.setTeamid(v.getTeamid());
-        teamService.setSid(Integer.parseInt(this.volunteerTeamcensorService.queryById(volunteerTeamcensor.getTeamid()).getSid()));
+        ClassOfService classOfService = new ClassOfService();
+        classOfService.setServiceName(this.volunteerTeamcensorService.queryById(volunteerTeamcensor.getTeamid()).getSid());
+        teamService.setSid(this.classOfServiceService.queryAll(classOfService).get(0).getSid());
         this.teamServiceService.insert(teamService);
 
         volunteerTeamcensor.setStatus("审核通过");
