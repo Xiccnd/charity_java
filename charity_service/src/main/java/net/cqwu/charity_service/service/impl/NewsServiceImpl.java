@@ -91,4 +91,19 @@ public class NewsServiceImpl implements NewsService {
     public List<News> findHotNews(News news) {
         return this.newsDao.findHotNews();
     }
+
+    @Override
+    public Integer getAccessNum() {
+        return this.newsDao.getAccessNum();
+    }
+
+    @Override
+    public void setAccessNum() {
+        this.newsDao.setAccessNum();
+    }
+
+    @Override
+    public void addNewsNum(News news) {
+        this.newsDao.addNewsNum(news);
+    }
 }

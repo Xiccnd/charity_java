@@ -65,4 +65,10 @@ public interface NewsDao {
     List<News> queryOneByNewsId(News news);
 
     List<News> findHotNews();
+
+    Integer getAccessNum();
+
+    void setAccessNum();
+
+    void addNewsNum(News news);
 }

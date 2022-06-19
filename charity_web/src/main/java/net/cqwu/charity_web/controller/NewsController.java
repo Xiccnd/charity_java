@@ -40,11 +40,22 @@ public class NewsController {
     }
     @GetMapping("queryOne")
     public List<News> queryOne(News news) {
+        this.newsService.addNewsNum(news);
+        return this.newsService.queryOneByNewsId(news);
+    }
+
+    @GetMapping("queryHotOne")
+    public List<News> queryHotOne(News news) {
         return this.newsService.queryOneByNewsId(news);
     }
 
     @GetMapping("findHotNews")
     public List<News> findHotNews(News news) {
         return this.newsService.findHotNews(news);
+    }
+    @GetMapping("getAccessNum")
+    public Integer getAccessNum() {
+        this.newsService.setAccessNum();
+        return this.newsService.getAccessNum();
     }
 }

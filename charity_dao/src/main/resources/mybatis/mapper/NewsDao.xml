@@ -62,6 +62,12 @@
         values (#{newstitle}, #{newstext}, #{newstime}, #{newssource}, #{newstype})
     </insert>
 
+    <update id="addNewsNum">
+        update charity.news
+        set newsNum = newsNum+1
+        where newsID = #{newsid}
+    </update>
+
     <!--通过主键修改数据-->
     <update id="update">
         update charity.news
@@ -85,6 +91,11 @@
         where newsID = #{newsid}
     </update>
 
+    <update id="setAccessNum">
+        update charity.access
+        set accessNum = accessNum+1
+    </update>
+
     <!--通过主键删除-->
     <delete id="deleteById">
         delete from charity.news where newsID = #{newsid}
@@ -92,6 +103,11 @@
     <select id="findHotNews" resultMap="BaseResultMap">
         select
             newsID, newsTitle
-        from charity.news order by newsNum desc LIMIT 8;
+        from charity.news order by newsNum desc LIMIT 6;
+    </select>
+    <select id="getAccessNum" resultType="java.lang.Integer">
+        select
+            accessNum
+        from charity.access;
     </select>
 </mapper>
