@@ -18,7 +18,7 @@
         <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
         <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
-        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="VARCHAR"/>
         <result property="postDesc" column="post_desc" jdbcType="VARCHAR"/>
         <result property="postCondition" column="post_condition" jdbcType="VARCHAR"/>
         <result property="postName" column="post_name" jdbcType="VARCHAR"/>

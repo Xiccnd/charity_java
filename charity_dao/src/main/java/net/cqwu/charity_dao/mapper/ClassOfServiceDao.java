@@ -21,7 +21,7 @@ public interface ClassOfServiceDao {
      * @return 实例对象
      */
     ClassOfService queryById(Integer sid);
-
+    ClassOfService queryByName(String name);
     /**
      * 查询指定行数据
      *

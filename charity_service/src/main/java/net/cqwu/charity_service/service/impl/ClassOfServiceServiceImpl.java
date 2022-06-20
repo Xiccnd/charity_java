@@ -49,9 +49,13 @@ public class ClassOfServiceServiceImpl implements ClassOfServiceService {
      * @return 实例对象
      */
     @Override
-    public ClassOfService insert(ClassOfService classOfService) {
-        this.classOfServiceDao.insert(classOfService);
-        return classOfService;
+    public Integer insert(ClassOfService classOfService) {
+        return this.classOfServiceDao.insert(classOfService);
+    }
+
+    @Override
+    public ClassOfService queryByName(String name) {
+        return this.classOfServiceDao.queryByName(name);
     }
 
     /**

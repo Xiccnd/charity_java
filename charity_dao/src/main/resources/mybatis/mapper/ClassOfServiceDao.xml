@@ -15,7 +15,12 @@
         from charity.class_of_service
         where sid = #{sid}
     </select>
-
+    <select id="queryByName" resultMap="BaseResultMap">
+        select
+            sid, service_name
+        from charity.class_of_service
+        where service_name = #{name}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select

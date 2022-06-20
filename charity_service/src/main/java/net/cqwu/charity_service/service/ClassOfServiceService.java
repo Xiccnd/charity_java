@@ -34,7 +34,8 @@ public interface ClassOfServiceService {
      * @param classOfService 实例对象
      * @return 实例对象
      */
-    ClassOfService insert(ClassOfService classOfService);
+    Integer insert(ClassOfService classOfService);
+    ClassOfService queryByName(String name);
 
     /**
      * 修改数据

@@ -18,7 +18,7 @@
         <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
         <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
-        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="VARCHAR"/>
     </resultMap>
     <resultMap id="Volunteer" type="VolunteerProgramDetailsUntil" >
         <result property="statusName" column="status_name" jdbcType="VARCHAR"/>
@@ -36,7 +36,7 @@
         <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
         <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
-        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="VARCHAR"/>
         <result property="serviceName" column="service_name" jdbcType="VARCHAR"/>
     </resultMap>
     <resultMap id="VolunteerAllMessge" type="net.cqwu.charity_commons.pojo.VolunteerAllMessge">
@@ -55,7 +55,7 @@
         <result property="serviceDescription" column="service_description" jdbcType="VARCHAR"/>
         <result property="projectDetails" column="project_details" jdbcType="VARCHAR"/>
         <result property="teamid" column="teamid" jdbcType="INTEGER"/>
-        <result property="projectStatus" column="project_status" jdbcType="INTEGER"/>
+        <result property="projectStatus" column="project_status" jdbcType="VARCHAR"/>
         <result property="postid" column="postid" jdbcType="INTEGER"/>
         <result property="targetNum" column="target_num" jdbcType="VARCHAR"/>
         <result property="enrolledNum" column="enrolled_num" jdbcType="VARCHAR"/>
@@ -88,10 +88,9 @@
     <select id="queryAll" resultMap="Volunteer">
         select
             *
-        from charity.volunteer_program_details,charity.project_status,class_of_service,project_service
+        from charity.volunteer_program_details,class_of_service,project_service
         <where>
-            volunteer_program_details.project_status=project_status.project_status
-            and project_service.pid=volunteer_program_details.pid
+            project_service.pid=volunteer_program_details.pid
             and class_of_service.sid=project_service.sid
             <if test="serviceName != null and serviceName != ''">
                and class_of_service.service_name=#{serviceName}
@@ -300,7 +299,5 @@
             and a.pid=d.pid and d.postid=b.postid and c.id=d.id
             and `status` &lt;&gt; "已通过"
         </where>
-
-
     </select>
 </mapper>
