@@ -64,7 +64,9 @@ public interface PersonalDataDao {
      */
     int deleteById(Integer id);
     int agreeById(Integer id);
+    int agreequit(Integer id,Integer teamid);
     int refuseById(Integer id,Integer teamid);
+    int refusequit(Integer id,Integer teamid);
     List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
     List<TeamPersonal> getAllJoinMessages(Integer teamid);
     PersonalData getMyMessages(String uname);

@@ -6,6 +6,15 @@ import net.cqwu.charity_commons.pojo.User;
 public class AddUserUntil {
     private User user;
     private String password1;
+    private String realname;
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
 
     public User getUser() {
         return user;

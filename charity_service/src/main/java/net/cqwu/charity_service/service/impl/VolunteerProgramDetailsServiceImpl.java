@@ -112,4 +112,13 @@ public class VolunteerProgramDetailsServiceImpl implements VolunteerProgramDetai
     public List<VolunteerAllMessge> selectVolunteerAllMessgeByID(Integer pid) {
         return this.volunteerProgramDetailsDao.selectVolunteerAllMessgeByID(pid);
     }
+
+    @Override
+    public int agreeinsert(VolunteerProgramDetailscensor volunteerProgramDetailscensor) {
+        return this.volunteerProgramDetailsDao.agreeinsert(volunteerProgramDetailscensor);
+    }
+    @Override
+    public  List<Map<Object,Object>> censorjoin(VolunteerProgramDetails volunteerProgramDetails) {
+        return this.volunteerProgramDetailsDao.censorjoin(volunteerProgramDetails);
+    }
 }

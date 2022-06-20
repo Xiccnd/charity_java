@@ -1,5 +1,6 @@
 package net.cqwu.charity_commons.pojo;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2022-06-11 15:07:25
  */
+@Data
 public class VolunteerTeamcensor implements Serializable {
     private static final long serialVersionUID = -48044109616351402L;
     

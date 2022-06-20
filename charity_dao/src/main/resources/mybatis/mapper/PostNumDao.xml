@@ -78,4 +78,9 @@
         delete from charity.post_num where pid = #{pid}
     </delete>
 
+    <!--新增通过-->
+    <insert id="agreeinsert" keyProperty="" useGeneratedKeys="true">
+        insert into charity.post_num(pid, postid, target_num, enrolled_num)
+        values (#{pid}, #{postid}, #{targetNum}, 0)
+    </insert>
 </mapper>

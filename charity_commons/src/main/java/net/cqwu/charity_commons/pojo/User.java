@@ -25,7 +25,15 @@ public class User implements Serializable {
     private Integer perid;
 
     private String perName;
+    private String realname;
 
+    public String getPerName() {
+        return perName;
+    }
+
+    public void setPerName(String perName) {
+        this.perName = perName;
+    }
 
     public Integer getId() {
         return id;
@@ -75,6 +83,8 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", perid=" + perid +
+                ", perName='" + perName + '\'' +
+                ", realname='" + realname + '\'' +
                 '}';
     }
 }

@@ -122,4 +122,21 @@
         from volunteers_project a,personal_data b
         where a.pid=#{pid} and a.id=b.id and a.status &lt;&gt; "加入申请中"
     </select>
+    <!--通过主键删除-->
+    <delete id="refuse">
+        delete from charity.volunteers_project
+        where id = #{id} and pid=#{pid} and postid=#{postid}
+    </delete>
+
+    <!--通过主键修改数据-->
+    <update id="agree">
+        update charity.volunteers_project
+        <set>
+            <if test="joinTime != null">
+                joinTime = #{joinTime},
+            </if>
+                status = "已加入",
+        </set>
+        where id = #{id} and pid=#{pid} and postid=#{postid}
+    </update>
 </mapper>

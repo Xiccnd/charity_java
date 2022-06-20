@@ -1,6 +1,7 @@
 package net.cqwu.charity_service.service.impl;
 
 import net.cqwu.charity_commons.pojo.Post;
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetailscensor;
 import net.cqwu.charity_dao.mapper.PostDao;
 import net.cqwu.charity_service.service.PostService;
 import org.springframework.stereotype.Service;
@@ -75,5 +76,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public boolean deleteById(Integer postid) {
         return this.postDao.deleteById(postid) > 0;
+    }
+
+    @Override
+    public int agreeinsert(VolunteerProgramDetailscensor volunteerProgramDetailscensor) {
+        return this.postDao.agreeinsert(volunteerProgramDetailscensor);
     }
 }

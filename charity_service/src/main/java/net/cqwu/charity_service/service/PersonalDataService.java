@@ -59,7 +59,9 @@ public interface PersonalDataService {
      */
     boolean deleteById(Integer id);
     boolean agreeById(Integer id);
+    boolean agreequit(Integer id,Integer teamid);
     boolean refuseById(Integer id,Integer teamid);
+    boolean refusequit(Integer id,Integer teamid);
     List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid);
 
     List<TeamPersonal> getAllJoinMessages(Integer teamid);

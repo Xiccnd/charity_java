@@ -57,4 +57,6 @@ public interface VolunteersProjectService {
     boolean deleteById(VolunteersProject id);
     List<MyProject>myProject(Integer id);
     List<MyProject>myJoinInProject(Integer id);
+    boolean refuse(VolunteersProject volunteersProject);
+    boolean agree(VolunteersProject volunteersProject);
 }

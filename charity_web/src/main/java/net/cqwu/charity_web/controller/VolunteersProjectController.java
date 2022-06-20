@@ -10,6 +10,7 @@ import net.cqwu.charity_web.until.ResultUntil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -92,5 +93,18 @@ public class VolunteersProjectController {
     public ResultUntil deleteProjectNum(VolunteersProject volunteersProject){
         this.volunteersProjectService.deleteById(volunteersProject);
         return new ResultUntil(this.volunteersProjectService.countNunber(volunteersProject.getPid()));
+    }
+    @PostMapping("rufuseProjectNum")
+    public ResultUntil rufuseProjectNum(@RequestBody VolunteersProject volunteersProject){
+        System.out.println("volunteersProject:"+volunteersProject);
+        return new ResultUntil(this.volunteersProjectService.refuse(volunteersProject));
+    }
+    @PostMapping("agreeProjectNum")
+    public ResultUntil agreeProjectNum( @RequestBody VolunteersProject volunteersProject){
+        System.out.println("volunteersProject:"+volunteersProject);
+        Date date = new Date();
+        volunteersProject.setJoinTime(date);
+        System.out.println("volunteersProject:"+volunteersProject);
+        return new ResultUntil(this.volunteersProjectService.agree(volunteersProject));
     }
 }

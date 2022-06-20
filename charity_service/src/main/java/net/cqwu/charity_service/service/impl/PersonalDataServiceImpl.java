@@ -108,8 +108,16 @@ public class PersonalDataServiceImpl implements PersonalDataService {
         return this.personalDataDao.agreeById(id) > 0;
     }
     @Override
+    public boolean agreequit(Integer id,Integer teamid) {
+        return this.personalDataDao.agreequit(id,teamid) > 0;
+    }
+    @Override
     public boolean refuseById(Integer id,Integer teamid) {
         return this.personalDataDao.refuseById(id,teamid) > 0;
+    }
+    @Override
+    public boolean refusequit(Integer id,Integer teamid) {
+        return this.personalDataDao.refusequit(id,teamid) > 0;
     }
     @Override
     public List<TeamPersonal> teamPersonalMessgeByTeamId(Integer teamid) {

@@ -1,9 +1,9 @@
 server:
-  port: 8088
+  port: 8282
 
 spring:
   datasource:
     username: root
-    password: 123456
+    password: root123456
     url: jdbc:mysql://localhost:3306/charity
     driver-class-name: com.mysql.cj.jdbc.Driver

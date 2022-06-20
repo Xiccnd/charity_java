@@ -1,6 +1,7 @@
 package net.cqwu.charity_dao.mapper;
 
 import net.cqwu.charity_commons.pojo.Post;
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetailscensor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -64,4 +65,5 @@ public interface PostDao {
      */
     int deleteById(Integer postid);
 
+    int agreeinsert(VolunteerProgramDetailscensor volunteerProgramDetailscensor);
 }

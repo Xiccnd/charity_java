@@ -84,5 +84,8 @@ public class VolunteerProgramDetailsController {
     public ResultUntil endSelectJoinProjiect(Integer teamid){
         return new ResultUntil(this.volunteerProgramDetailsService.shengHeJoin(teamid));
     }
-
+    @PostMapping("end/selectAllJoinProjiect")
+    public ResultUntil endSelectAllJoinProjiect(@RequestBody VolunteerProgramDetails volunteerProgramDetails){
+        return new ResultUntil(this.volunteerProgramDetailsService.censorjoin(volunteerProgramDetails));
+    }
 }

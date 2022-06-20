@@ -165,4 +165,24 @@ public class VolunteerProgramDetails implements Serializable {
         this.projectStatus = projectStatus;
     }
 
+    @Override
+    public String toString() {
+        return "VolunteerProgramDetails{" +
+                "pid=" + pid +
+                ", pname='" + pname + '\'' +
+                ", posts=" + posts +
+                ", targetNumber=" + targetNumber +
+                ", enrolledNumber=" + enrolledNumber +
+                ", location='" + location + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", projectDate='" + projectDate + '\'' +
+                ", serviceObject='" + serviceObject + '\'' +
+                ", volunteerUpport='" + volunteerUpport + '\'' +
+                ", recruitDate='" + recruitDate + '\'' +
+                ", serviceDescription='" + serviceDescription + '\'' +
+                ", projectDetails='" + projectDetails + '\'' +
+                ", teamid=" + teamid +
+                ", projectStatus=" + projectStatus +
+                '}';
+    }
 }

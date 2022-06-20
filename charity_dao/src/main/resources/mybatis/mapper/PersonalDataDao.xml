@@ -124,8 +124,8 @@
             </if>
         </where>
     </select>
-    <select id="endQueryAll" resultMap="BaseResultMap">
-        select DISTINCT charity.personal_data.*
+    <select id="endQueryAll" resultMap="TeamPersonal">
+        select DISTINCT charity.personal_data.*,volunteers_teamid.*
         from charity.personal_data,`volunteers_teamid`
         <where>
             volunteers_teamid.teamid=#{teamid}
@@ -188,7 +188,7 @@
         </where>
     </select>
     <select id="endQueryJoinAll" resultMap="BaseResultMap">
-        select DISTINCT charity.personal_data.*,mark
+        select DISTINCT *
         from charity.personal_data a,`volunteers_teamid` b
         <where>
             b.teamid=#{teamid}
@@ -320,15 +320,26 @@
     </update>
 
     <!--通过主键删除-->
-    <delete id="deleteById">
-        update `volunteers_teamid` set mark=0 where id = #{id}
-    </delete>
-    <delete id="agreeById">
+    <update id="deleteById">
+        update `volunteers_teamid` set mark=2 where id = #{id}
+    </update>
+    <update id="agreeById">
         update `volunteers_teamid` set mark=1 where id = #{id}
-    </delete>
-    <delete id="refuseById">
-        delete from `volunteers_teamid` where id = #{id} and teamid = #{teamid}
-    </delete>
+    </update>
+    <update id="agreequit">
+        update `volunteers_teamid` set mark=2
+        where id = #{id} and teamid = #{teamid}
+    </update>
+    <update id="refuseById">
+        update  `volunteers_teamid`
+        set mark=2
+        where id = #{id} and teamid = #{teamid}
+    </update>
+    <update id="refusequit">
+        update  `volunteers_teamid`
+        set mark=1
+        where id = #{id} and teamid = #{teamid}
+    </update>
     <select id="teamPersonalMessgeByTeamId" resultMap="TeamPersonal">
         SELECT * FROM `volunteers_teamid`,personal_data
         where volunteers_teamid.id=personal_data.id and mark=1 and volunteers_teamid.teamid=#{teamid}

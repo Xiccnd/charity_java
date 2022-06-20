@@ -70,4 +70,7 @@ public interface VolunteerProgramDetailsDao {
     List<VolunterProgramPost>volunteerProgramPost(Integer id);
     List<ClassOfService>volunteerProgramClass(Integer id);
     List<Map<Object,Object>>shengHeJoin(Integer teamid);
+    int agreeinsert(VolunteerProgramDetailscensor volunteerProgramDetailscensor);
+
+    List<Map<Object, Object>> censorjoin(VolunteerProgramDetails volunteerProgramDetails);
 }

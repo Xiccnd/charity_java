@@ -75,4 +75,9 @@
         delete from charity.post where postid = #{postid}
     </delete>
 
+    <!--新增审核通过-->
+    <insert id="agreeinsert" keyProperty="postid" useGeneratedKeys="true">
+        insert into charity.post(post_desc, post_condition, post_name)
+        values (#{postDesc}, #{postCondition}, #{postName})
+    </insert>
 </mapper>

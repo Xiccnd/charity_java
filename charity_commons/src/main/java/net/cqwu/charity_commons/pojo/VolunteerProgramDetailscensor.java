@@ -52,6 +52,15 @@ public class VolunteerProgramDetailscensor implements Serializable {
     
     private String mark;
 
+    private String postid;
+
+    public String getPostid() {
+        return postid;
+    }
+
+    public void setPostid(String postid) {
+        this.postid = postid;
+    }
 
     public Integer getPid() {
         return pid;

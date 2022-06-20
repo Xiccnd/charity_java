@@ -148,9 +148,11 @@ public class UsersController {
     public Integer Add(@RequestBody AddUserUntil addUser){
         if (this.userService.insert(addUser.getUser(),addUser.getPassword1())==2){
             PersonalData personalData = new PersonalData();
+            System.out.println(addUser);
             User user = addUser.getUser();
+            System.out.println(user);
             personalData.setId(this.userService.queryByName(user.getName()).getId());
-            personalData.setName(user.getName());
+            personalData.setName(user.getRealname());
             personalData.setUname(user.getName());
             personalData.setTelephone(user.getTelephone());
             personalData.setArea("");

@@ -146,9 +146,10 @@
     <select id="queryAllByTeamIdANDName" resultMap="Volunteer">
         select
         *
-        from charity.volunteer_program_details,charity.project_status
+        from charity.volunteer_program_details,charity.project_status,volunteers_project
         <where>
             volunteer_program_details.project_status=project_status.project_status
+            and volunteers_project.status &lt;&gt; '已通过'
             <if test="pid != null">
                 and pid = #{pid}
             </if>
@@ -277,5 +278,29 @@
         where a.teamid=#{teamid}
         and a.pid=d.pid and d.postid=b.postid and c.id=d.id
         and `status` &lt;&gt; "已通过"
+    </select>
+
+    <!--新增所有列-->
+    <insert id="agreeinsert" keyProperty="pid" useGeneratedKeys="true">
+        insert into charity.volunteer_program_details(pname, posts, target_number, enrolled_number, location, release_date, project_date, service_object, volunteer_upport, recruit_date, service_description, project_details, teamid, project_status)
+        values (#{pname}, #{posts}, #{targetNumber}, #{enrolledNumber}, #{location}, #{releaseDate}, #{projectDate}, #{serviceObject}, #{volunteerUpport}, #{recruitDate}, #{serviceDescription}, #{projectDetails}, #{teamid}, #{projectStatus})
+    </insert>
+
+    <select id="censorjoin" resultType="java.util.Map">
+        select *
+        from volunteer_program_details a,post b,personal_data c,volunteers_project d
+        <where>
+            a.teamid=#{teamid}
+          <if test="pid != null and pid != ''" >
+            and a.pid = #{pid}
+          </if>
+          <if test="pname != null and pname != ''">
+                and pname like "%" #{pname} "%"
+          </if>
+            and a.pid=d.pid and d.postid=b.postid and c.id=d.id
+            and `status` &lt;&gt; "已通过"
+        </where>
+
+
     </select>
 </mapper>

@@ -86,4 +86,12 @@ public class VolunteersProjectServiceImpl implements VolunteersProjectService {
     public List<MyProject> myJoinInProject(Integer id){
         return this.volunteersProjectDao.myJoinInProject(id);
     }
+    @Override
+    public boolean refuse(VolunteersProject volunteersProject) {
+        return this.volunteersProjectDao.refuse(volunteersProject) > 0;
+    }
+    @Override
+    public boolean agree(VolunteersProject volunteersProject) {
+        return this.volunteersProjectDao.agree(volunteersProject) > 0;
+    }
 }

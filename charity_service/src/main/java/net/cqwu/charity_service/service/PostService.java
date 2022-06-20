@@ -1,6 +1,8 @@
 package net.cqwu.charity_service.service;
 
 import net.cqwu.charity_commons.pojo.Post;
+import net.cqwu.charity_commons.pojo.VolunteerProgramDetailscensor;
+
 import java.util.List;
 
 /**
@@ -52,4 +54,5 @@ public interface PostService {
      */
     boolean deleteById(Integer postid);
 
+    int agreeinsert(VolunteerProgramDetailscensor volunteerProgramDetailscensor);
 }

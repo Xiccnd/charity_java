@@ -66,4 +66,8 @@ public interface VolunteerProgramDetailsService {
     List<ClassOfService> volunteerProgramClass(Integer id);
     List<VolunteerProgramDetailsUntil> queryAll(VolunteerProgramDetailsUntil volunteerProgramDetails);
     List<VolunteerAllMessge>selectVolunteerAllMessgeByID(Integer id);
+
+    int agreeinsert(VolunteerProgramDetailscensor volunteerProgramDetailscensor);
+
+    List<Map<Object,Object>> censorjoin(VolunteerProgramDetails volunteerProgramDetails);
 }

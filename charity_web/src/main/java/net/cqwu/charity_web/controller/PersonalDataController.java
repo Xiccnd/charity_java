@@ -77,10 +77,19 @@ public class PersonalDataController {
     public ResultUntil agreeById(@RequestBody PersonalData personalData){
         return new ResultUntil(this.personalDataService.agreeById(personalData.getId()));
     }
+    @PostMapping("end/agreequit")
+    public ResultUntil agreequit(@RequestBody PersonalData personalData){
+        return new ResultUntil(this.personalDataService.agreequit(personalData.getId(),personalData.getTeamid()));
+    }
     //拒绝志愿者加入队伍
     @PostMapping("end/refuseById")
     public ResultUntil refuseById(@RequestBody PersonalData personalData){
         return new ResultUntil(this.personalDataService.refuseById(personalData.getId(),personalData.getTeamid()));
+    }
+    //拒绝志愿者退出队伍
+    @PostMapping("end/refusequit")
+    public ResultUntil refusequit(@RequestBody PersonalData personalData){
+        return new ResultUntil(this.personalDataService.refusequit(personalData.getId(),personalData.getTeamid()));
     }
     @PostMapping("/getMyMessages")
     public PersonalData getMyMessages(@RequestBody PersonalData personalData){
