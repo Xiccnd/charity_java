@@ -58,5 +58,7 @@ public interface VolunteersProjectService {
     List<MyProject>myProject(Integer id);
     List<MyProject>myJoinInProject(Integer id);
     boolean refuse(VolunteersProject volunteersProject);
+    boolean refusejoinpro(VolunteersProject volunteersProject);
+    boolean refusequitpro(VolunteersProject volunteersProject);
     boolean agree(VolunteersProject volunteersProject);
 }

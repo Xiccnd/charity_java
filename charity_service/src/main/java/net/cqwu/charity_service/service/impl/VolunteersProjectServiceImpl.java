@@ -91,6 +91,14 @@ public class VolunteersProjectServiceImpl implements VolunteersProjectService {
         return this.volunteersProjectDao.refuse(volunteersProject) > 0;
     }
     @Override
+    public boolean refusejoinpro(VolunteersProject volunteersProject) {
+        return this.volunteersProjectDao.refusejoinpro(volunteersProject) > 0;
+    }
+    @Override
+    public boolean refusequitpro(VolunteersProject volunteersProject) {
+        return this.volunteersProjectDao.refusequitpro(volunteersProject) > 0;
+    }
+    @Override
     public boolean agree(VolunteersProject volunteersProject) {
         return this.volunteersProjectDao.agree(volunteersProject) > 0;
     }

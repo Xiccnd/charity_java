@@ -148,5 +148,40 @@
     <delete id="deleteById">
         delete from charity.volunteer_team where teamid = #{teamid}
     </delete>
-
+    <update id="updateTeamInfomation">
+        update charity.volunteer_team
+        <set>
+            <if test="contact != null and contact != ''">
+                contact = #{contact},
+            </if>
+            <if test="teamName != null and teamName != ''">
+                team_name = #{teamName},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="regisDepartment != null and regisDepartment != ''">
+                regis_department = #{regisDepartment},
+            </if>
+            <if test="registrationAuthority != null and registrationAuthority != ''">
+                registration_authority = #{registrationAuthority},
+            </if>
+            <if test="telephone != null and telephone != ''">
+                telephone = #{telephone},
+            </if>
+            <if test="registerDate != null">
+                register_date = #{registerDate},
+            </if>
+            <if test="detailedAddress != null and detailedAddress != ''">
+                detailed_address = #{detailedAddress},
+            </if>
+            <if test="liaisonOrganization != null and liaisonOrganization != ''">
+                liaison_organization = #{liaisonOrganization},
+            </if>
+            <if test="teamProfile != null and teamProfile != ''">
+                team_profile = #{teamProfile},
+            </if>
+        </set>
+        where teamid = #{teamid}
+    </update>
 </mapper>

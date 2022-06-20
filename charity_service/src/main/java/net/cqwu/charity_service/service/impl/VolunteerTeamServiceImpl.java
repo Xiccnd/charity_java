@@ -82,6 +82,10 @@ public class VolunteerTeamServiceImpl implements VolunteerTeamService {
     public boolean deleteById(Integer teamid) {
         return this.volunteerTeamDao.deleteById(teamid) > 0;
     }
+    @Override
+    public boolean updateTeamInfomation(VolunteerTeam volunteerTeam) {
+        return this.volunteerTeamDao.updateTeamInfomation(volunteerTeam) > 0;
+    }
 
     @Override
     public List<VolunteerTeamUntil> queryAll(VolunteerTeamUntil volunteerTeam) {

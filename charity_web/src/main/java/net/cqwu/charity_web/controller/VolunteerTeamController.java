@@ -67,4 +67,8 @@ public class VolunteerTeamController {
     public ResultUntil endQueryAll(VolunteerTeamUntil volunteerTeam) {
         return new ResultUntil(this.volunteerTeamService.queryAll(volunteerTeam));
     }
+    @GetMapping("updateTeamInfomation")
+    public ResultUntil updateTeamInfomation(VolunteerTeam volunteerTeam) {
+        return new ResultUntil(this.volunteerTeamService.updateTeamInfomation(volunteerTeam));
+    }
 }

@@ -64,5 +64,6 @@ public interface VolunteerTeamDao {
      * @return 影响行数
      */
     int deleteById(Integer teamid);
+    int updateTeamInfomation(VolunteerTeam volunteerTeam);
 
 }

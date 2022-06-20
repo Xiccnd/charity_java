@@ -70,5 +70,7 @@ public interface VolunteersProjectDao {
     List<MyProject>myJoinInProject(Integer id);
     List<Map<Object,Object>>countNunber(Integer pid);
     int refuse(VolunteersProject volunteersProject);
+    int refusejoinpro(VolunteersProject volunteersProject);
+    int refusequitpro(VolunteersProject volunteersProject);
     int agree(VolunteersProject volunteersProject);
 }

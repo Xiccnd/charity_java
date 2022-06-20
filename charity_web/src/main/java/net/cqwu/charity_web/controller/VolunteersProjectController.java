@@ -99,6 +99,14 @@ public class VolunteersProjectController {
         System.out.println("volunteersProject:"+volunteersProject);
         return new ResultUntil(this.volunteersProjectService.refuse(volunteersProject));
     }
+    @PostMapping("refusejoinpro")
+    public ResultUntil refusejoinpro(@RequestBody VolunteersProject volunteersProject){
+        return new ResultUntil(this.volunteersProjectService.refusejoinpro(volunteersProject));
+    }
+    @PostMapping("refusequitpro")
+    public ResultUntil refusequitpro(@RequestBody VolunteersProject volunteersProject){
+        return new ResultUntil(this.volunteersProjectService.refusequitpro(volunteersProject));
+    }
     @PostMapping("agreeProjectNum")
     public ResultUntil agreeProjectNum( @RequestBody VolunteersProject volunteersProject){
         System.out.println("volunteersProject:"+volunteersProject);

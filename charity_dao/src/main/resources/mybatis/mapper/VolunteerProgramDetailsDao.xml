@@ -276,7 +276,7 @@
         from volunteer_program_details a,post b,personal_data c,volunteers_project d
         where a.teamid=#{teamid}
         and a.pid=d.pid and d.postid=b.postid and c.id=d.id
-        and `status` &lt;&gt; "已通过"
+        and `status` &lt;&gt; "已加入"
     </select>
 
     <!--新增所有列-->
@@ -297,7 +297,7 @@
                 and pname like "%" #{pname} "%"
           </if>
             and a.pid=d.pid and d.postid=b.postid and c.id=d.id
-            and `status` &lt;&gt; "已通过"
+            and `status` &lt;&gt; "已加入"
         </where>
     </select>
 </mapper>

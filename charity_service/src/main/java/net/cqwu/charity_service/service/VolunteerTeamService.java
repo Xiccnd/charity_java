@@ -53,6 +53,7 @@ public interface VolunteerTeamService {
      * @return 是否成功
      */
     boolean deleteById(Integer teamid);
+    boolean updateTeamInfomation(VolunteerTeam volunteerTeam);
 
     List<VolunteerTeamUntil> queryAll(VolunteerTeamUntil volunteerTeam);
 }
