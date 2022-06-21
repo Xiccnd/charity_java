@@ -119,7 +119,10 @@
         </set>
         where id = #{id}
     </update>
-
+    <select id="getMapNum" resultType="java.util.Map">
+        SELECT nativePlace as 'name',count(*) as 'value'
+        FROM `personal_data` GROUP BY nativePlace
+    </select>
 
     <!--通过主键删除-->
     <delete id="deleteById">

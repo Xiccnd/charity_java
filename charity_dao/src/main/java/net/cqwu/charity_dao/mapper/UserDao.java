@@ -67,7 +67,7 @@ public interface UserDao {
 
     User queryByName(String name);
     User RegistrationVerification(User user);
-
+    List<Map<Object,Object>> getMapNum();
     //新增方法
     Map<Object,Object> getTeamLoginMessage();
     void updateLoginMessage(User user);

@@ -183,12 +183,7 @@ public class UsersController {
         return new ResultUntil(false);
     }
     @GetMapping("getMapData")
-    public List<Object> getMapData(){
-        List<Object> list = new ArrayList<>();
-        Map<Object,Object> map1 = new HashMap<>();
-        map1.put("name","永川区");
-        map1.put("value",1234);
-        list.add(map1);
-        return list;
+    public List<Map<Object,Object>> getMapData(){
+        return this.userService.getMapNum();
     }
 }

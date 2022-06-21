@@ -37,6 +37,7 @@ public interface UserService {
      */
     Integer insert(User user,String password1);
 
+    List<Map<Object,Object>> getMapNum();
     /**
      * 修改数据
      *

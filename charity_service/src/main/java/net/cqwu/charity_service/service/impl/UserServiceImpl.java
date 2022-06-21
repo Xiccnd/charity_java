@@ -63,6 +63,11 @@ public class UserServiceImpl implements UserService {
         return -1;
     }
 
+    @Override
+    public List<Map<Object, Object>> getMapNum() {
+        return this.userDao.getMapNum();
+    }
+
     /**
      * 修改数据
      *
